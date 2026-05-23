@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isabelle & Gabriel — Nosso Casamento</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Bem-vindo ao site de casamento de Isabelle e Gabriel. Encontre informações sobre o evento, RSVP, lista de presentes e dicas para convidados.">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#03300B',       // Verde escuro principal
+            primaryDark: '#011A06',   // Verde escuro para hover/fundo escuro
+            champagne: '#F4EFE6',     // Creme de fundo elegante
+            accentGold: '#D4AF37',    // Dourado para detalhes
+            fendi: '#7A756B',         // Cinza-quente para textos secundários
+            lightBg: '#FAF9F6'        // Off-white para seções alternadas
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Outfit', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  
+  <!-- Estilos Customizados (Principalmente para Leaflet e transições) -->
+  <style>
+    .leaflet-container {
+      font-family: 'Outfit', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F4EFE6;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #03300B;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-champagne font-sans text-stone-800 antialiased custom-scrollbar">
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-white/80 border-b border-stone-100 shadow-sm" id="main-nav">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center gap-3">
+          <img src="assets/logo.jpg" alt="Logo I&G" class="h-12 w-12 rounded-full object-cover border border-primary/20 shadow-sm">
+          <span class="font-serif text-2xl font-semibold tracking-wider text-primary">I & G</span>
+        </div>
+        
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center space-x-6 text-sm font-medium tracking-wide text-stone-600">
+          <a href="#inicio" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Início</a>
+          <a href="#historia" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">História</a>
+          <a href="#evento" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">O Evento</a>
+          <a href="#dicas" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Dicas</a>
+          <a href="#presentes" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Presentes</a>
+          <a href="#mural" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Mural</a>
+          <a href="#rsvp" class="bg-primary hover:bg-primaryDark text-white px-5 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-xs font-semibold tracking-widest uppercase">Confirmar Presença</a>
+        </div>
+        
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button type="button" class="text-stone-600 hover:text-primary p-2 focus:outline-none" id="mobile-menu-button" aria-label="Abrir menu">
+            <i data-lucide="menu" class="h-6 w-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="hidden md:hidden bg-white/95 border-b border-stone-200 transition-all duration-300" id="mobile-menu">
+      <div class="px-4 pt-2 pb-6 space-y-3 sm:px-3 text-center flex flex-col font-medium tracking-wide">
+        <a href="#inicio" class="block py-2 text-stone-600 hover:text-primary text-base">Início</a>
+        <a href="#historia" class="block py-2 text-stone-600 hover:text-primary text-base">História</a>
+        <a href="#evento" class="block py-2 text-stone-600 hover:text-primary text-base">O Evento</a>
+        <a href="#dicas" class="block py-2 text-stone-600 hover:text-primary text-base">Dicas</a>
+        <a href="#presentes" class="block py-2 text-stone-600 hover:text-primary text-base">Presentes</a>
+        <a href="#mural" class="block py-2 text-stone-600 hover:text-primary text-base">Mural</a>
+        <a href="#rsvp" class="inline-block bg-primary hover:bg-primaryDark text-white px-6 py-3 rounded-full transition-all text-sm font-semibold tracking-wider uppercase mt-2 shadow-md">Confirmar Presença</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="inicio" class="min-h-screen flex flex-col justify-center pt-20 relative overflow-hidden bg-gradient-to-b from-champagne to-lightBg">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 py-12">
+      
+      <!-- Text Info (Left) -->
+      <div class="lg:col-span-6 text-center lg:text-left space-y-6 flex flex-col items-center lg:items-start">
+        <img src="assets/logo.jpg" alt="Logo I&G" class="h-24 w-24 rounded-full object-cover border border-primary/10 shadow-md bg-white mb-2 transform hover:rotate-3 transition duration-500">
+        <div class="inline-flex items-center gap-2 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-white/50 backdrop-blur-sm shadow-sm">
+          <i data-lucide="sparkles" class="h-3.5 w-3.5 text-accentGold animate-pulse"></i>
+          Salvem esta data
+        </div>
+        <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl font-light tracking-wide text-primary leading-tight">
+          Isabelle <br class="hidden sm:inline">
+          <span class="font-light italic text-accentGold font-serif font-light">&amp;</span> Gabriel
+        </h1>
+        <p class="font-serif text-xl sm:text-2xl text-fendi tracking-wider italic">
+          12 de Setembro de 2026 — Hotel Fazenda Fonte Limpa
+        </p>
+        
+        <!-- Countdown Timer -->
+        <div class="grid grid-cols-4 gap-3 sm:gap-4 max-w-sm w-full py-4 text-center" id="countdown-container">
+          <div class="bg-white/90 backdrop-blur-sm border border-stone-200/50 p-2 sm:p-3.5 rounded-xl shadow-sm">
+            <span class="block text-2xl sm:text-3xl font-serif font-semibold text-primary" id="countdown-days">00</span>
+            <span class="text-[10px] sm:text-xs font-semibold text-stone-500 uppercase tracking-widest">Dias</span>
+          </div>
+          <div class="bg-white/90 backdrop-blur-sm border border-stone-200/50 p-2 sm:p-3.5 rounded-xl shadow-sm">
+            <span class="block text-2xl sm:text-3xl font-serif font-semibold text-primary" id="countdown-hours">00</span>
+            <span class="text-[10px] sm:text-xs font-semibold text-stone-500 uppercase tracking-widest">Horas</span>
+          </div>
+          <div class="bg-white/90 backdrop-blur-sm border border-stone-200/50 p-2 sm:p-3.5 rounded-xl shadow-sm">
+            <span class="block text-2xl sm:text-3xl font-serif font-semibold text-primary" id="countdown-minutes">00</span>
+            <span class="text-[10px] sm:text-xs font-semibold text-stone-500 uppercase tracking-widest">Min</span>
+          </div>
+          <div class="bg-white/90 backdrop-blur-sm border border-stone-200/50 p-2 sm:p-3.5 rounded-xl shadow-sm">
+            <span class="block text-2xl sm:text-3xl font-serif font-semibold text-primary" id="countdown-seconds">00</span>
+            <span class="text-[10px] sm:text-xs font-semibold text-stone-500 uppercase tracking-widest">Seg</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto pt-2">
+          <a href="#rsvp" class="w-full sm:w-auto text-center bg-primary hover:bg-primaryDark text-white px-8 py-4 rounded-full font-semibold tracking-wider text-xs uppercase shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
+            Confirmar Presença (RSVP)
+          </a>
+          <a href="#presentes" class="w-full sm:w-auto text-center border-2 border-primary/20 hover:border-primary text-primary px-8 py-3.5 rounded-full font-semibold tracking-wider text-xs uppercase transition-all duration-300">
+            Lista de Presentes
+          </a>
+        </div>
+      </div>
+      
+      <!-- Photos Collage (Right) -->
+      <div class="lg:col-span-6 relative flex items-center justify-center py-6">
+        <div class="grid grid-cols-12 gap-4 w-full max-w-lg">
+          <!-- Main large photo -->
+          <div class="col-span-8 overflow-hidden rounded-2xl shadow-xl aspect-[3/4] border-4 border-white transition-all duration-500 hover:scale-[1.02]">
+            <img src="assets/foto3.jpg" alt="Noivos Isabelle e Gabriel" class="w-full h-full object-cover">
+          </div>
+          <!-- Vertical column of small photos -->
+          <div class="col-span-4 flex flex-col gap-4">
+            <div class="overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-white transition-all duration-500 hover:scale-105">
+              <img src="assets/foto1.jpg" alt="Foto casal 1" class="w-full h-full object-cover">
+            </div>
+            <div class="overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-white transition-all duration-500 hover:scale-105">
+              <img src="assets/foto2.jpg" alt="Foto casal 2" class="w-full h-full object-cover">
+            </div>
+            <div class="overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-white transition-all duration-500 hover:scale-105">
+              <img src="assets/foto4.jpg" alt="Foto casal 4" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== HISTORIA SECTION ==================== -->
+  <section id="historia" class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center space-y-3 mb-16">
+        <span class="font-serif text-accentGold text-xl italic tracking-wider">A nossa história</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Como tudo começou</h2>
+        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+      </div>
+      
+      <!-- Timeline -->
+      <div class="relative border-l-2 border-primary/10 ml-4 sm:ml-32 space-y-16 py-8">
+        
+        <!-- Milestone 1 -->
+        <div class="relative">
+          <!-- Dot / Date tag -->
+          <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
+          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-24 text-left sm:text-right font-serif text-xl font-medium text-accentGold">2018</div>
+          <div class="ml-6 sm:ml-8 space-y-3">
+            <h3 class="font-serif text-2xl font-semibold text-primary">Primeiro Olhar</h3>
+            <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
+              Nossos caminhos se cruzaram pela primeira vez na faculdade. Bastou um simples sorriso em um trabalho em grupo para que soubéssemos que havia algo especial ali.
+            </p>
+            <div class="overflow-hidden rounded-xl shadow-sm max-w-sm aspect-[4/3] mt-2">
+              <img src="assets/foto1.jpg" alt="Início do namoro" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="relative">
+          <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
+          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-24 text-left sm:text-right font-serif text-xl font-medium text-accentGold">2022</div>
+          <div class="ml-6 sm:ml-8 space-y-3">
+            <h3 class="font-serif text-2xl font-semibold text-primary">Viagens e Descobertas</h3>
+            <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
+              Com o namoro maduro, fomos descobrindo o prazer de viajar juntos, conhecer novos cantos, acumular histórias engraçadas e, acima de tudo, ter a certeza de que somos a melhor companhia um do outro.
+            </p>
+            <div class="overflow-hidden rounded-xl shadow-sm max-w-sm aspect-[4/3] mt-2">
+              <img src="assets/foto2.jpg" alt="Nossas viagens" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="relative">
+          <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
+          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-24 text-left sm:text-right font-serif text-xl font-medium text-accentGold">2025</div>
+          <div class="ml-6 sm:ml-8 space-y-3">
+            <h3 class="font-serif text-2xl font-semibold text-primary">O Pedido de Casamento</h3>
+            <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
+              A bordo de um barco, cercados pela paz e pela beleza de um pôr do sol inesquecível, o Gabriel tirou a caixinha do bolso e a Isabelle disse o "Sim" mais feliz de sua vida! 
+            </p>
+            <div class="overflow-hidden rounded-xl shadow-sm max-w-sm aspect-[4/3] mt-2">
+              <img src="assets/foto4.jpg" alt="Pedido de Casamento" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== DETALHES DO EVENTO SECTION ==================== -->
+  <section id="evento" class="py-24 bg-lightBg">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center space-y-3 mb-16">
+        <span class="font-serif text-accentGold text-xl italic tracking-wider">Os Detalhes</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">O Evento e Localização</h2>
+        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+      </div>
+      
+      <!-- Details Cards Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+        
+        <!-- Info Column (Left) -->
+        <div class="lg:col-span-5 space-y-8 flex flex-col justify-between">
+          
+          <!-- Card: Horário -->
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4">
+            <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="clock" class="h-6 w-6"></i>
+            </div>
+            <div class="space-y-2">
+              <h3 class="font-serif text-xl font-bold text-primary">Data e Horário</h3>
+              <p class="text-stone-600 text-sm leading-relaxed" id="venue-datetime">
+                Sábado, 12 de Setembro de 2026<br>
+                Cerimônia pontual às 15h30 (Recomendamos chegar com 20 minutos de antecedência).
+              </p>
+            </div>
+          </div>
+
+          <!-- Card: Localização -->
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4">
+            <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="map-pin" class="h-6 w-6"></i>
+            </div>
+            <div class="space-y-3 w-full">
+              <h3 class="font-serif text-xl font-bold text-primary">Localização</h3>
+              <p class="text-stone-600 text-sm leading-relaxed" id="venue-address-text">
+                <strong>Hotel Fazenda Fonte Limpa</strong><br>
+                Estrada MG-0405, Km 3 - Santana dos Montes, MG
+              </p>
+              
+              <!-- Quick Navigation Buttons -->
+              <div class="flex flex-wrap gap-2 pt-1">
+                <a href="https://maps.google.com/?q=Hotel+Fazenda+Fonte+Limpa,+Santana+dos+Montes,+MG" target="_blank" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition">
+                  <i data-lucide="navigation" class="h-3.5 w-3.5 text-blue-600"></i> Google Maps
+                </a>
+                <a href="https://waze.com/ul?q=Hotel+Fazenda+Fonte+Limpa,+Santana+dos+Montes,+MG" target="_blank" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition">
+                  <i data-lucide="car" class="h-3.5 w-3.5 text-emerald-600"></i> Waze
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card: Dress Code -->
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4">
+            <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="shirt" class="h-6 w-6"></i>
+            </div>
+            <div class="space-y-2">
+              <h3 class="font-serif text-xl font-bold text-primary">Traje (Dress Code)</h3>
+              <p class="text-stone-600 text-sm leading-relaxed">
+                <strong>Passeio Completo / Social</strong><br>
+                Ternos escuros para os homens. Vestidos longos ou midi elegantes para as mulheres. <br>
+                <span class="text-accentGold font-medium block mt-1">Dica: O local possui gramado. Evite saltos agulha muito finos para seu maior conforto!</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- Interactive Map (Right) -->
+        <div class="lg:col-span-7 overflow-hidden rounded-2xl shadow-md border border-stone-200/50 bg-stone-100 min-h-[400px] relative">
+          <!-- Leaflet container -->
+          <div id="wedding-map" class="w-full h-full absolute inset-0 z-0"></div>
+        </div>
+
+      </div>
+
+      <!-- Chronograma (Timeline of the day) -->
+      <div class="bg-white/60 backdrop-blur-sm border border-stone-200/50 p-8 rounded-2xl max-w-2xl mx-auto shadow-sm">
+        <h3 class="font-serif text-2xl font-semibold text-primary text-center mb-8">Cronograma do Nosso Dia</h3>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center relative max-w-lg mx-auto">
+          
+          <!-- Step 1 -->
+          <div class="space-y-3 relative z-10 flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-serif text-lg font-bold shadow-md">15h30</div>
+            <div class="font-serif font-bold text-lg text-primary">A Cerimônia</div>
+            <p class="text-stone-500 text-xs leading-relaxed max-w-[180px]">O momento mais esperado no altar do hotel fazenda.</p>
+          </div>
+          
+          <!-- Step 2 -->
+          <div class="space-y-3 relative z-10 flex flex-col items-center">
+            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-serif text-lg font-bold shadow-md">17h00</div>
+            <div class="font-serif font-bold text-lg text-primary">Recepção e Festa</div>
+            <p class="text-stone-500 text-xs leading-relaxed max-w-[180px]">Comemoração com drinks, jantar típico e muita dança!</p>
+          </div>
+          
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== DICAS SECTION ==================== -->
+  <section id="dicas" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center space-y-3 mb-16">
+        <span class="font-serif text-accentGold text-xl italic tracking-wider">Para facilitar</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Dicas & Recomendações</h2>
+        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+        <p class="text-stone-600 text-sm max-w-lg mx-auto leading-relaxed pt-2">
+          Para quem vem de fora da cidade ou quer aproveitar ao máximo, preparamos uma lista de hotéis recomendados, salões de beleza e atrações turísticas.
+        </p>
+      </div>
+      
+      <!-- Tabs (Hospedagem / Beleza / Turismo) -->
+      <div class="flex justify-center border-b border-stone-200 max-w-md mx-auto mb-10">
+        <button class="px-6 py-3 border-b-2 border-primary text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-hotels">
+          <i data-lucide="hotel" class="h-4 w-4"></i> Hotéis
+        </button>
+        <button class="px-6 py-3 border-b-2 border-transparent text-stone-500 hover:text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-beauty">
+          <i data-lucide="scissors" class="h-4 w-4"></i> Salões & Beleza
+        </button>
+        <button class="px-6 py-3 border-b-2 border-transparent text-stone-500 hover:text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-attractions">
+          <i data-lucide="palmtree" class="h-4 w-4"></i> O que fazer
+        </button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto" id="dicas-content-container">
+        <!-- Generatively rendered by JS based on WeddingConfig.tips -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LISTA DE PRESENTES SECTION ==================== -->
+  <section id="presentes" class="py-24 bg-lightBg">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center space-y-3 mb-16">
+        <span class="font-serif text-accentGold text-xl italic tracking-wider">Lista de Casamento</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Lista de Presentes Virtuais</h2>
+        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+        <p class="text-stone-600 text-sm max-w-xl mx-auto leading-relaxed pt-2">
+          Queridos amigos e familiares, nossa lista de presentes é virtual. Todos os valores arrecadados serão integralmente convertidos em nossa viagem de lua de mel e montagem do nosso novo lar.
+        </p>
+      </div>
+      
+      <!-- Filters -->
+      <div class="flex flex-wrap justify-center gap-2 mb-10" id="gifts-filters">
+        <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary text-white transition" data-filter="all">Todos</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Lua de Mel">Lua de Mel</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Casa">Casa</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Passeios">Passeios</button>
+      </div>
+      
+      <!-- Gift Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="gifts-grid">
+        <!-- Rendered by JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== GUESTBOOK / MURAL DE RECADOS SECTION ==================== -->
+  <section id="mural" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center space-y-3 mb-16">
+        <span class="font-serif text-accentGold text-xl italic tracking-wider">Mural de Carinho</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Mural de Recados</h2>
+        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+        <p class="text-stone-600 text-sm max-w-md mx-auto leading-relaxed pt-2">
+          Deixe sua mensagem de carinho, votos de felicidade ou conselhos para os noivos!
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto">
+        
+        <!-- Form Column (Left) -->
+        <div class="lg:col-span-5 bg-champagne/40 border border-stone-200/50 p-8 rounded-2xl shadow-sm space-y-6">
+          <h3 class="font-serif text-xl font-bold text-primary">Escrever Recado</h3>
+          
+          <form id="guestbook-form" class="space-y-4">
+            <div class="space-y-1">
+              <label for="mural-nome" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Seu Nome</label>
+              <input type="text" id="mural-nome" required class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-white" placeholder="Ex: Maria Souza">
+            </div>
+            
+            <div class="space-y-1">
+              <label for="mural-mensagem" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Mensagem</label>
+              <textarea id="mural-mensagem" required rows="4" class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-white resize-none" placeholder="Escreva sua mensagem com carinho..."></textarea>
+            </div>
+            
+            <button type="submit" class="w-full bg-primary hover:bg-primaryDark text-white py-3.5 rounded-xl font-semibold text-xs tracking-wider uppercase transition shadow-md flex items-center justify-center gap-2">
+              <i data-lucide="send" class="h-4 w-4"></i> Publicar Recado
+            </button>
+          </form>
+        </div>
+        
+        <!-- List Column (Right) -->
+        <div class="lg:col-span-7 space-y-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar" id="mural-lista">
+          <!-- Dynamically populated -->
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== RSVP SECTION ==================== -->
+  <section id="rsvp" class="py-24 bg-gradient-to-b from-lightBg to-champagne relative overflow-hidden">
+    
+    <!-- Background overlay elements -->
+    <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-primary/5 blur-3xl"></div>
+    <div class="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-accentGold/5 blur-3xl"></div>
+    
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Header -->
+      <div class="text-center space-y-3 mb-12">
+        <span class="font-serif text-accentGold text-xl italic tracking-wider">Sua presença importa</span>
+        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Confirmação de Presença</h2>
+        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+        <p class="text-stone-600 text-sm max-w-md mx-auto leading-relaxed pt-2">
+          Por favor, confirme sua presença até o dia <strong>12 de Agosto de 2026</strong> para nos ajudar a organizar o evento com perfeição.
+        </p>
+      </div>
+      
+      <!-- RSVP Form Container -->
+      <div class="bg-white border border-stone-200/50 p-8 sm:p-12 rounded-3xl shadow-lg relative overflow-hidden" id="rsvp-container">
+        
+        <form id="rsvp-form" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Nome -->
+            <div class="space-y-1.5">
+              <label for="rsvp-name" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Seu Nome Completo</label>
+              <input type="text" id="rsvp-name" required class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50" placeholder="Digite seu nome completo">
+            </div>
+            
+            <!-- Confirmação -->
+            <div class="space-y-1.5">
+              <label for="rsvp-confirmed" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Você vai comparecer?</label>
+              <select id="rsvp-confirmed" required class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50">
+                <option value="" disabled selected>Selecione uma opção</option>
+                <option value="true">Sim, com certeza!</option>
+                <option value="false">Infelizmente não poderei comparecer</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Conditional Fields (Only shown if attending) -->
+          <div id="rsvp-attendance-details" class="space-y-6 hidden border-t border-stone-100 pt-6">
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- E-mail -->
+              <div class="space-y-1.5">
+                <label for="rsvp-email" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">E-mail</label>
+                <input type="email" id="rsvp-email" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50" placeholder="seu-email@exemplo.com">
+              </div>
+              
+              <!-- Telefone -->
+              <div class="space-y-1.5">
+                <label for="rsvp-phone" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Celular / WhatsApp</label>
+                <input type="tel" id="rsvp-phone" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50" placeholder="(11) 99999-9999">
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <!-- Acompanhantes Adultos -->
+              <div class="space-y-1.5">
+                <label for="rsvp-adults" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Acompanhantes Adultos (Além de você)</label>
+                <select id="rsvp-adults" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50">
+                  <option value="0">Nenhum</option>
+                  <option value="1">1 acompanhante</option>
+                  <option value="2">2 acompanhantes</option>
+                  <option value="3">3 acompanhantes</option>
+                  <option value="4">4 acompanhantes</option>
+                </select>
+              </div>
+              
+              <!-- Acompanhantes Crianças -->
+              <div class="space-y-1.5">
+                <label for="rsvp-children" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Crianças (0 a 10 anos)</label>
+                <select id="rsvp-children" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50">
+                  <option value="0">Nenhuma</option>
+                  <option value="1">1 criança</option>
+                  <option value="2">2 crianças</option>
+                  <option value="3">3 crianças</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Restrições Alimentares -->
+            <div class="space-y-1.5">
+              <label for="rsvp-restrictions" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Alguma restrição alimentar ou alergia?</label>
+              <select id="rsvp-restrictions" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50">
+                <option value="Nenhuma">Nenhuma</option>
+                <option value="Vegano">Vegano / Vegetariano</option>
+                <option value="Sem Glúten">Sem Glúten</option>
+                <option value="Sem Lactose">Sem Lactose</option>
+                <option value="Outros">Outros (Descreva no campo de observação)</option>
+              </select>
+            </div>
+            
+          </div>
+          
+          <!-- Observação Geral (Sempre visível) -->
+          <div class="space-y-1.5">
+            <label for="rsvp-message" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Observações ou mensagem aos noivos</label>
+            <textarea id="rsvp-message" rows="3" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50 resize-none" placeholder="Se desejar, deixe um comentário aqui..."></textarea>
+          </div>
+          
+          <!-- Submit Button -->
+          <button type="submit" class="w-full bg-primary hover:bg-primaryDark text-white py-4 rounded-xl font-semibold text-xs tracking-widest uppercase transition shadow-md hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2" id="rsvp-submit-btn">
+            Confirmar RSVP
+          </button>
+        </form>
+        
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-primary text-white/90 py-12 border-t border-primaryDark">
+    <div class="max-w-6xl mx-auto px-4 text-center space-y-6">
+      
+      <!-- Monogram / Initials -->
+      <div class="inline-block relative">
+        <img src="assets/logo.jpg" alt="Logo I&G" class="h-20 w-20 rounded-full object-cover border border-white/20 shadow-md bg-white">
+      </div>
+      
+      <p class="font-serif text-xl italic text-champagne/80">
+        Isabelle &amp; Gabriel
+      </p>
+      
+      <p class="text-xs text-stone-300 tracking-wider">
+        12 de Setembro de 2026 — Hotel Fazenda Fonte Limpa, Santana dos Montes - MG
+      </p>
+      
+      <div class="h-px w-24 bg-white/10 mx-auto"></div>
+      
+      <p class="text-[10px] text-stone-400 tracking-widest uppercase">
+        Feito com carinho para o nosso grande dia
+      </p>
+      
+    </div>
+  </footer>
+
+  <!-- ==================== CHECKOUT MODAL ==================== -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden items-center justify-center p-4 bg-stone-900/60 backdrop-blur-md">
+    <div class="bg-white border border-stone-200 max-w-md w-full rounded-3xl shadow-2xl p-6 sm:p-8 transform transition-all duration-300 scale-95 opacity-0 flex flex-col space-y-6 relative overflow-hidden" id="checkout-modal-content">
+      
+      <!-- Close button -->
+      <button class="absolute top-4 right-4 text-stone-400 hover:text-stone-600" id="close-modal-btn" aria-label="Fechar modal">
+        <i data-lucide="x" class="h-6 w-6"></i>
+      </button>
+      
+      <!-- Modal Header -->
+      <div class="text-center space-y-1">
+        <span class="text-xs font-semibold text-accentGold uppercase tracking-widest">Lista de Casamento</span>
+        <h3 class="font-serif text-2xl font-bold text-primary" id="modal-gift-title">Presentear Cota</h3>
+        <p class="text-stone-500 text-xs" id="modal-gift-price">Valor: R$ 0,00</p>
+      </div>
+      
+      <!-- Step 1: Guest details -->
+      <div id="modal-step-1" class="space-y-4">
+        <div class="space-y-3">
+          <div class="space-y-1">
+            <label for="guest-name" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Seu Nome Completo</label>
+            <input type="text" id="guest-name" required class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:ring-1 focus:ring-primary focus:border-primary text-sm" placeholder="Nome para os noivos verem">
+          </div>
+          <div class="space-y-1">
+            <label for="guest-email" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">E-mail</label>
+            <input type="email" id="guest-email" required class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:ring-1 focus:ring-primary focus:border-primary text-sm" placeholder="Para confirmação">
+          </div>
+          
+          <!-- Dynamic Amount field (only shown if cota livre) -->
+          <div id="dynamic-amount-container" class="space-y-1 hidden">
+            <label for="guest-amount" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Valor do Presente (R$)</label>
+            <input type="number" id="guest-amount" class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:ring-1 focus:ring-primary focus:border-primary text-sm font-bold" min="10" placeholder="Ex: 150">
+          </div>
+          
+          <div class="space-y-1">
+            <label for="guest-message" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Mensagem aos Noivos</label>
+            <textarea id="guest-message" rows="3" class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:ring-1 focus:ring-primary focus:border-primary text-sm resize-none" placeholder="Deixe um recado de felicitações..."></textarea>
+          </div>
+        </div>
+        
+        <button id="modal-next-btn" class="w-full bg-primary hover:bg-primaryDark text-white py-3.5 rounded-xl font-semibold text-xs tracking-wider uppercase transition shadow-md">
+          Avançar para o Pagamento
+        </button>
+      </div>
+      
+      <!-- Step 2: Payment options -->
+      <div id="modal-step-2" class="space-y-6 hidden">
+        
+        <!-- Toggle Buttons -->
+        <div class="grid grid-cols-2 gap-2 border-b border-stone-100 pb-4">
+          <button id="pay-btn-pix" class="py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-primary text-white transition flex items-center justify-center gap-1.5">
+            <i data-lucide="qr-code" class="h-4 w-4"></i> Pix (0% taxa)
+          </button>
+          <button id="pay-btn-card" class="py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider bg-stone-100 text-stone-600 hover:bg-stone-200 transition flex items-center justify-center gap-1.5">
+            <i data-lucide="credit-card" class="h-4 w-4"></i> Cartão (Mercado Pago)
+          </button>
+        </div>
+        
+        <!-- Tab 1: Pix payment screen -->
+        <div id="payment-pix-screen" class="space-y-4 flex flex-col items-center">
+          <p class="text-xs text-stone-500 text-center max-w-xs leading-relaxed">
+            Escaneie o código abaixo com o aplicativo do seu banco para transferir direto para os noivos (Chave Gabriel Ferreira Mattos).
+          </p>
+          
+          <!-- QR Code Container -->
+          <div class="bg-stone-50 border border-stone-100 p-4 rounded-2xl flex items-center justify-center shadow-inner" id="pix-qrcode-wrapper">
+            <div id="pix-qrcode" class="w-48 h-48 flex items-center justify-center bg-white border border-stone-100 p-2 shadow-sm rounded-lg">
+              <!-- Dynamically populated by QRCodeJS -->
+            </div>
+          </div>
+          
+          <!-- Pix Copy Paste -->
+          <div class="w-full space-y-1.5">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-stone-400 text-center">Pix Copia e Cola</label>
+            <div class="flex gap-2 w-full">
+              <input type="text" id="pix-code-text" readonly class="flex-grow border border-stone-200 px-3 py-2.5 rounded-xl text-[10px] font-mono bg-stone-50 select-all overflow-ellipsis" value="">
+              <button id="copy-pix-btn" class="bg-primary hover:bg-primaryDark text-white px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-1 flex-shrink-0">
+                <i data-lucide="copy" class="h-3.5 w-3.5"></i> Copiar
+              </button>
+            </div>
+          </div>
+          
+          <button id="confirm-pix-paid-btn" class="w-full bg-primary hover:bg-primaryDark text-white py-3 rounded-xl text-xs font-semibold tracking-wider uppercase transition shadow-md mt-2">
+            Já realizei a transferência!
+          </button>
+        </div>
+        
+        <!-- Tab 2: Credit Card payment screen -->
+        <div id="payment-card-screen" class="space-y-5 hidden text-center py-4 flex flex-col items-center">
+          <div class="p-3 bg-blue-50 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-1">
+            <i data-lucide="shield-check" class="h-8 w-8"></i>
+          </div>
+          
+          <h4 class="font-serif text-lg font-bold text-stone-800">Pagamento Seguro Mercado Pago</h4>
+          <p class="text-xs text-stone-500 max-w-xs leading-relaxed">
+            Você será redirecionado para o ambiente seguro do Mercado Pago para pagar parcelado em até 12x ou no cartão à vista.
+          </p>
+          
+          <a href="#" target="_blank" id="mercado-pago-redirect-link" class="w-full text-center bg-[#009EE3] hover:bg-[#0089C7] text-white py-4 rounded-xl font-semibold text-xs tracking-wider uppercase transition shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="external-link" class="h-4 w-4"></i> Ir para o Mercado Pago
+          </a>
+          
+          <p class="text-[10px] text-stone-400 italic">
+            Obs: O presente será confirmado nos nossos registros automaticamente.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lucide Icons Scripts -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Leaflet Map Script -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- QRCode.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  
+  <!-- Canvas Confetti Script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- Custom JavaScript Files -->
+  <script src="config.js"></script>
+  <script src="pix.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
