@@ -26,7 +26,7 @@ const WeddingConfig = {
   },
   
   // URL do Web App do Google Apps Script (Preencha aqui após implantar o script)
-  googleSheetsUrl: "", 
+  googleSheetsUrl: "https://script.google.com/macros/s/AKfycbxz9gZOxEIsy3qYmQ4CmyWmerlOog25wko-yFBib5RD-krbjfE3eRn2iJ6XW3ATIrHR/exec", 
 
   // Configuração Visual (Verde Escuro do Casal)
   theme: {

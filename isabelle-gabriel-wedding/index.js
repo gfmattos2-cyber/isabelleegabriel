@@ -468,9 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmed = rsvpConfirmed.value === "true";
     const email = document.getElementById("rsvp-email").value.trim();
     const phone = document.getElementById("rsvp-phone").value.trim();
-    const adultsCount = parseInt(document.getElementById("rsvp-adults").value) || 0;
     const childrenCount = parseInt(document.getElementById("rsvp-children").value) || 0;
-    const dietaryRestrictions = document.getElementById("rsvp-restrictions").value;
     const message = document.getElementById("rsvp-message").value.trim();
     
     const rsvpData = {
@@ -479,9 +477,9 @@ document.addEventListener("DOMContentLoaded", () => {
       confirmed,
       email,
       phone,
-      adultsCount,
+      adultsCount: 0, // Individual
       childrenCount,
-      dietaryRestrictions,
+      dietaryRestrictions: "", // Desativado
       message
     };
     
@@ -539,21 +537,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 9. Mural de Recados (Guestbook)
   const guestbookForm = document.getElementById("guestbook-form");
   
-  // Mensagens pré-definidas para o site carregar com conteúdo e ficar elegante
-  const defaultMessages = [
-    {
-      name: "Ana e Rodrigo (Padrinhos)",
-      message: "Que alegria sem fim poder fazer parte do momento em que vocês dizem o sim eterno! Que a caminhada seja tão linda e doce quanto o amor de vocês. Estamos contando os dias para celebrar! 🥂💚"
-    },
-    {
-      name: "Tio Carlos e Família",
-      message: "Isabelle e Gabriel, desejamos que a cumplicidade e a amizade guiem esta nova etapa. Que Deus cubra a casa de vocês com muitas bênçãos e que nunca falte a alegria no lar."
-    },
-    {
-      name: "Camila Mendes",
-      message: "O casal mais lindo que eu conheço! Vocês transmitem uma luz incrível juntos. Parabéns pelo casamento, que a festa seja só o início da noite mais feliz de suas vidas!"
-    }
-  ];
+  // Lista de mensagens padrão vazia (recados reais serão adicionados dinamicamente)
+  const defaultMessages = [];
 
   function loadGuestbook() {
     const list = document.getElementById("mural-lista");
@@ -564,6 +549,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Se tiver banco configurado, podemos dar GET (futuramente), mas por ora usamos LocalStorage + Defaults
     const localMsgs = JSON.parse(localStorage.getItem("mock_guestbook")) || [];
     messages = [...localMsgs, ...defaultMessages];
+    
+    if (messages.length === 0) {
+      list.innerHTML = `
+        <div class="text-center py-10 bg-stone-50 border border-stone-200/30 rounded-2xl p-6 flex flex-col items-center justify-center space-y-3">
+          <div class="p-3 bg-champagne text-primary rounded-full">
+            <i data-lucide="message-square" class="h-6 w-6"></i>
+          </div>
+          <p class="text-sm font-semibold text-stone-600">Ainda não há recados por aqui.</p>
+          <p class="text-xs text-stone-400">Seja o primeiro a deixar uma mensagem de carinho para nós!</p>
+        </div>
+      `;
+      lucide.createIcons();
+      return;
+    }
     
     messages.forEach(msg => {
       // Iniciais para o avatar
