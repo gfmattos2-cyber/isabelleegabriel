@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (difference <= 0) {
       document.getElementById("countdown-container").innerHTML = `
-        <div class="col-span-4 bg-primary text-white p-4 rounded-xl shadow-md font-serif text-lg">
+        <div class="col-span-4 bg-primary text-white p-4 rounded-xl shadow-md font-display tracking-wider text-base uppercase">
           Chegou o Grande Dia! 🤍
         </div>
       `;
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Adiciona marcador
     L.marker(coords, { icon: heartIcon }).addTo(map)
-      .bindPopup(`<strong class="text-primary font-serif">${WeddingConfig.venueName}</strong><br><span class="text-xs">${WeddingConfig.venueAddress}</span>`)
+      .bindPopup(`<strong class="text-primary font-display uppercase tracking-wide text-xs">${WeddingConfig.venueName}</strong><br><span class="text-xs">${WeddingConfig.venueAddress}</span>`)
       .openPopup();
   }
 
@@ -553,7 +553,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="p-3.5 bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mb-2 shadow-md">
             <i data-lucide="check-circle" class="h-10 w-10"></i>
           </div>
-          <h3 class="font-serif text-3xl font-bold text-primary">Confirmação Enviada!</h3>
+          <h3 class="font-display text-2xl font-normal text-primary tracking-wide uppercase">Confirmação Enviada!</h3>
           <p class="text-stone-600 text-sm max-w-sm leading-relaxed">
             Muito obrigado, <strong>${name}</strong>. Seus dados foram salvos com sucesso e enviados para o controle dos noivos.
           </p>
@@ -618,7 +618,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "bg-champagne/30 border border-stone-200/40 p-5 rounded-2xl shadow-sm flex gap-4 items-start";
       card.innerHTML = `
-        <div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold font-serif flex-shrink-0 shadow-sm border border-white/40">
+        <div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold font-display flex-shrink-0 shadow-sm border border-white/40">
           ${initials}
         </div>
         <div class="space-y-1.5 flex-grow">

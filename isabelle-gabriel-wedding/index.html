@@ -6,7 +6,7 @@
   <title>Isabelle &amp; Gabriel | Nosso Casamento</title>
 
   <!-- Favicon monograma -->
-  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
+  <link rel="icon" href="assets/monograma.png" type="image/png">
   
   <!-- SEO Meta Tags -->
   <meta name="description" content="Bem-vindo ao site de casamento de Isabelle e Gabriel. Encontre informações sobre o evento, RSVP, lista de presentes e dicas para convidados.">
@@ -15,7 +15,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -34,7 +34,8 @@
           fontFamily: {
             serif: ['Cormorant Garamond', 'serif'],
             sans: ['Outfit', 'sans-serif'],
-            script: ['Sacramento', 'cursive']
+            script: ['Great Vibes', 'cursive'],
+            display: ['Cinzel', 'serif']
           }
         }
       }
@@ -71,7 +72,7 @@
       background-size: 24px 10px;
     }
     /* Fonte script para nomes de local */
-    .font-script { font-family: 'Sacramento', cursive; }
+    .font-script { font-family: 'Great Vibes', cursive; }
     /* Carta de convite frame */
     .invitation-frame {
       border: 1.5px solid rgba(42,92,36,0.35);
@@ -94,9 +95,8 @@
       <div class="flex items-center justify-between h-20">
         
         <!-- Logo -->
-        <div class="flex-shrink-0 flex items-center gap-3">
-          <img src="assets/logo.jpg" alt="Logo I&G" class="h-12 w-12 rounded-full object-cover border border-primary/20 shadow-sm">
-          <span class="font-serif text-2xl font-semibold tracking-wider text-primary">I & G</span>
+        <div class="flex-shrink-0 flex items-center">
+          <img src="assets/monograma.png" alt="Monograma I&G" class="h-14 w-14 object-contain">
         </div>
         
         <!-- Desktop Navigation Links -->
@@ -139,17 +139,17 @@
       
       <!-- Text Info (Left) -->
       <div class="lg:col-span-6 text-center lg:text-left space-y-6 flex flex-col items-center lg:items-start">
-        <img src="assets/logo.jpg" alt="Logo I&G" class="h-24 w-24 rounded-full object-cover border border-primary/10 shadow-md bg-white mb-2 transform hover:rotate-3 transition duration-500">
+        <img src="assets/monograma.png" alt="Monograma I&G" class="h-28 w-28 object-contain mb-2 transform hover:rotate-3 transition duration-500">
         <div class="inline-flex items-center gap-2 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-white/50 backdrop-blur-sm shadow-sm">
           <i data-lucide="sparkles" class="h-3.5 w-3.5 text-accentGold animate-pulse"></i>
           Salvem esta data
         </div>
-        <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl font-light tracking-wide text-primary leading-tight">
+        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-light tracking-wide text-primary leading-tight uppercase">
           Isabelle <br class="hidden sm:inline">
-          <span class="font-light italic text-accentGold font-serif font-light">&amp;</span> Gabriel
+          <span class="font-script text-accentGold font-normal lowercase tracking-normal text-4xl sm:text-5xl md:text-6xl align-middle mx-1">&amp;</span> Gabriel
         </h1>
-        <p class="font-serif text-xl sm:text-2xl text-fendi tracking-wider italic">
-          12 de Setembro de 2026 — Hotel Fazenda Fonte Limpa
+        <p class="font-serif text-lg sm:text-xl text-fendi tracking-wider">
+          12 de Setembro de 2026 — <span class="font-script text-primary text-2xl sm:text-3xl align-middle font-normal">Hotel Fazenda Fonte Limpa</span>
         </p>
 
         <!-- Countdown Timer -->
@@ -211,8 +211,8 @@
           </svg>
           <div class="h-px w-10 bg-primary/20"></div>
         </div>
-        <span class="font-serif text-accentGold text-xl italic tracking-wider">A nossa história</span>
-        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Como tudo começou</h2>
+        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">A nossa história</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Como tudo começou</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
       </div>
       
@@ -223,7 +223,7 @@
         <div class="relative">
           <!-- Dot / Date tag -->
           <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
-          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-serif text-lg font-medium text-accentGold">Dezembro 2015</div>
+          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-display text-xs tracking-wider uppercase text-accentGold">Dezembro 2015</div>
           <div class="ml-6 sm:ml-8 space-y-3">
             <!-- Ilustração: Céu Estrelado -->
             <div class="text-primary opacity-80">
@@ -252,7 +252,7 @@
                 <path d="M5 75 Q40 70 80 74 Q120 70 155 74" stroke-width="0.6" opacity="0.4" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3 class="font-serif text-2xl font-semibold text-primary">Como Tudo Começou</h3>
+            <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Como Tudo Começou</h3>
             <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
               Nos conhecemos em dezembro de 2015 em Amarantina e foi um dia muito especial. Dançamos bastante forró e vimos o céu mais lindo e estrelado das nossas vidas. Ali começou tudo!
             </p>
@@ -262,7 +262,7 @@
         <!-- Milestone 2 -->
         <div class="relative">
           <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
-          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-serif text-lg font-medium text-accentGold">Histórias</div>
+          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-display text-xs tracking-wider uppercase text-accentGold">Histórias</div>
           <div class="ml-6 sm:ml-8 space-y-3">
             <!-- Ilustração: Viagem -->
             <div class="text-primary opacity-80">
@@ -288,7 +288,7 @@
                 <path d="M68 68 L76 76 M76 68 L68 76" stroke-width="0.6" opacity="0.4"/>
               </svg>
             </div>
-            <h3 class="font-serif text-2xl font-semibold text-primary">Viagens e Descobertas</h3>
+            <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Viagens e Descobertas</h3>
             <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
               Com o namoro maduro, fomos descobrindo o prazer de viajar juntos, conhecer novos cantos, acumular histórias engraçadas e, acima de tudo, ter a certeza de que somos a melhor companhia um do outro.
             </p>
@@ -298,7 +298,7 @@
         <!-- Milestone 3 -->
         <div class="relative">
           <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
-          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-serif text-lg font-medium text-accentGold">O Pedido</div>
+          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-display text-xs tracking-wider uppercase text-accentGold">O Pedido</div>
           <div class="ml-6 sm:ml-8 space-y-3">
             <!-- Ilustração: Contorno da Ilha Grande -->
             <div class="text-primary opacity-75">
@@ -320,7 +320,7 @@
                 <text x="100" y="88" text-anchor="middle" font-size="6" fill="currentColor" stroke="none" font-family="Georgia, serif" letter-spacing="1" opacity="0.6">ILHA GRANDE</text>
               </svg>
             </div>
-            <h3 class="font-serif text-2xl font-semibold text-primary">O Pedido de Casamento</h3>
+            <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">O Pedido de Casamento</h3>
             <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
               O pedido de casamento foi em um lugar muito especial para a gente: Ilha Grande. O Gabriel planejou uma surpresa e fomos para lá. Era para o pedido ser no pôr do sol, mas acabou ficando super nublado (risos), mas deu tudo certo e a Isabelle disse sim!
             </p>
@@ -338,8 +338,8 @@
       
       <!-- Header -->
       <div class="text-center space-y-3 mb-16">
-        <span class="font-serif text-accentGold text-xl italic tracking-wider">Os Detalhes</span>
-        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">O Evento e Localização</h2>
+        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Os Detalhes</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">O Evento e Localização</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
       </div>
       
@@ -355,7 +355,7 @@
               <i data-lucide="clock" class="h-6 w-6"></i>
             </div>
             <div class="space-y-2">
-              <h3 class="font-serif text-xl font-bold text-primary">Data e Horário</h3>
+              <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Data e Horário</h3>
               <p class="text-stone-600 text-sm leading-relaxed" id="venue-datetime">
                 Sábado, 12 de Setembro de 2026<br>
                 Cerimônia pontual às 15h30 (Recomendamos chegar com 20 minutos de antecedência).
@@ -369,7 +369,7 @@
               <i data-lucide="map-pin" class="h-6 w-6"></i>
             </div>
             <div class="space-y-3 w-full">
-              <h3 class="font-serif text-xl font-bold text-primary">Localização</h3>
+              <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Localização</h3>
               <p class="text-stone-600 text-sm leading-relaxed" id="venue-address-text">
                 <strong>Hotel Fazenda Fonte Limpa</strong><br>
                 Estrada MG-0405, Km 3 - Santana dos Montes, MG
@@ -393,7 +393,7 @@
               <i data-lucide="shirt" class="h-6 w-6"></i>
             </div>
             <div class="space-y-2">
-              <h3 class="font-serif text-xl font-bold text-primary">Traje (Dress Code)</h3>
+              <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Traje (Dress Code)</h3>
               <p class="text-stone-600 text-sm leading-relaxed">
                 <strong>Passeio Completo / Social</strong><br>
                 Ternos escuros para os homens. Vestidos longos ou midi elegantes para as mulheres. <br>
@@ -414,21 +414,21 @@
 
       <!-- Chronograma (Timeline of the day) -->
       <div class="bg-white/60 backdrop-blur-sm border border-stone-200/50 p-8 rounded-2xl max-w-2xl mx-auto shadow-sm">
-        <h3 class="font-serif text-2xl font-semibold text-primary text-center mb-8">Cronograma do Nosso Dia</h3>
+        <h3 class="font-display text-lg font-normal tracking-wide text-primary text-center uppercase mb-8">Cronograma do Nosso Dia</h3>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center relative max-w-lg mx-auto">
           
           <!-- Step 1 -->
           <div class="space-y-3 relative z-10 flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-serif text-lg font-bold shadow-md">15h30</div>
-            <div class="font-serif font-bold text-lg text-primary">A Cerimônia</div>
+            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-display text-sm font-semibold shadow-md">15h30</div>
+            <div class="font-display text-sm font-semibold tracking-wide text-primary uppercase">A Cerimônia</div>
             <p class="text-stone-500 text-xs leading-relaxed max-w-[180px]">O momento mais esperado no altar do hotel fazenda.</p>
           </div>
           
           <!-- Step 2 -->
           <div class="space-y-3 relative z-10 flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-serif text-lg font-bold shadow-md">17h00</div>
-            <div class="font-serif font-bold text-lg text-primary">Recepção e Festa</div>
+            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-display text-sm font-semibold shadow-md">17h00</div>
+            <div class="font-display text-sm font-semibold tracking-wide text-primary uppercase">Recepção e Festa</div>
             <p class="text-stone-500 text-xs leading-relaxed max-w-[180px]">Comemoração com drinks, jantar típico e muita dança!</p>
           </div>
           
@@ -444,8 +444,8 @@
       
       <!-- Header -->
       <div class="text-center space-y-3 mb-16">
-        <span class="font-serif text-accentGold text-xl italic tracking-wider">Para facilitar</span>
-        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Dicas & Recomendações</h2>
+        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Para facilitar</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Dicas & Recomendações</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
         <p class="text-stone-600 text-sm max-w-lg mx-auto leading-relaxed pt-2">
           Para quem vem de fora da cidade ou quer aproveitar ao máximo, preparamos uma lista de hotéis recomendados, salões de beleza e atrações turísticas.
@@ -479,8 +479,8 @@
       
       <!-- Header -->
       <div class="text-center space-y-3 mb-16">
-        <span class="font-serif text-accentGold text-xl italic tracking-wider">Lista de Casamento</span>
-        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Lista de Presentes Virtuais</h2>
+        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Lista de Casamento</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Lista de Presentes Virtuais</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
         <p class="text-stone-600 text-sm max-w-xl mx-auto leading-relaxed pt-2">
           Queridos amigos e familiares, nossa lista de presentes é virtual. Todos os valores arrecadados serão integralmente convertidos em nossa viagem de lua de mel e montagem do nosso novo lar.
@@ -510,8 +510,8 @@
       
       <!-- Header -->
       <div class="text-center space-y-3 mb-16">
-        <span class="font-serif text-accentGold text-xl italic tracking-wider">Mural de Carinho</span>
-        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Mural de Recados</h2>
+        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Mural de Carinho</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Mural de Recados</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
         <p class="text-stone-600 text-sm max-w-md mx-auto leading-relaxed pt-2">
           Deixe sua mensagem de carinho, votos de felicidade ou conselhos para os noivos!
@@ -522,7 +522,7 @@
         
         <!-- Form Column (Left) -->
         <div class="lg:col-span-5 bg-champagne/40 border border-stone-200/50 p-8 rounded-2xl shadow-sm space-y-6">
-          <h3 class="font-serif text-xl font-bold text-primary">Escrever Recado</h3>
+          <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Escrever Recado</h3>
           
           <form id="guestbook-form" class="space-y-4">
             <div class="space-y-1">
@@ -562,8 +562,8 @@
       
       <!-- Header -->
       <div class="text-center space-y-3 mb-12">
-        <span class="font-serif text-accentGold text-xl italic tracking-wider">Sua presença importa</span>
-        <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Confirmação de Presença</h2>
+        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Sua presença importa</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Confirmação de Presença</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
         <p class="text-stone-600 text-sm max-w-md mx-auto leading-relaxed pt-2">
           Por favor, confirme sua presença até o dia <strong>12 de Agosto de 2026</strong> para nos ajudar a organizar o evento com perfeição.
@@ -645,11 +645,11 @@
       
       <!-- Monogram / Initials -->
       <div class="inline-block relative">
-        <img src="assets/logo.jpg" alt="Logo I&G" class="h-20 w-20 rounded-full object-cover border border-white/20 shadow-md bg-white">
+        <img src="assets/monograma.png" alt="Monograma I&G" class="h-24 w-24 object-contain brightness-0 invert opacity-90">
       </div>
       
-      <p class="font-serif text-xl italic text-champagne/80">
-        Isabelle &amp; Gabriel
+      <p class="font-display text-2xl font-light tracking-widest text-champagne uppercase">
+        Isabelle <span class="font-script text-accentGold font-normal lowercase tracking-normal text-3xl align-middle mx-1">&amp;</span> Gabriel
       </p>
       
       <p class="text-xs text-stone-300 tracking-wider">
@@ -677,7 +677,7 @@
       <!-- Modal Header -->
       <div class="text-center space-y-1">
         <span class="text-xs font-semibold text-accentGold uppercase tracking-widest">Lista de Casamento</span>
-        <h3 class="font-serif text-2xl font-bold text-primary" id="modal-gift-title">Presentear Cota</h3>
+        <h3 class="font-display text-xl font-normal text-primary tracking-wide uppercase" id="modal-gift-title">Presentear Cota</h3>
         <p class="text-stone-500 text-xs" id="modal-gift-price">Valor: R$ 0,00</p>
       </div>
       

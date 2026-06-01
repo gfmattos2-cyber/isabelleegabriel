@@ -200,7 +200,7 @@ const WeddingConfig = {
         phone: "",
         price: "R$ 270 / casal",
         regime: "Café da manhã",
-        description: "Hotel executivo moderno com ótima infraestrutura urbana em Conselheiro Lafaiete."
+        description: ""
       },
       {
         name: "Hotel Villa do Tanque — Suíte Paiol",
@@ -208,15 +208,7 @@ const WeddingConfig = {
         phone: "",
         price: "R$ 1.040 / casal",
         regime: "Pensão completa",
-        description: "Acomoda até 4 pessoas. Banheira de hidromassagem dupla, 2 chuveiros, frigobar. Desconto de R$30/adulto no jantar de sábado."
-      },
-      {
-        name: "Pousada Cristina",
-        address: "Santana dos Montes, MG",
-        phone: "",
-        price: "R$ 150 / pessoa",
-        regime: "Sem refeições",
-        description: "Opção mais econômica. 6 suítes: 1 suíte grande (até 10 pessoas) + demais com cama casal e solteiro(s). Apenas hospedagem, sem refeições incluídas."
+        description: ""
       },
       {
         name: "Minas Platinum Hotel",
@@ -232,7 +224,7 @@ const WeddingConfig = {
         phone: "",
         price: "R$ 1.550 / casal",
         regime: "Pensão completa",
-        description: "R$ 1.400,00/casal a partir da 2ª diária. Inclui 4 refeições e lazer de fazenda. Não funciona sem refeições."
+        description: ""
       },
       {
         name: "Hotel Golden Inn",
@@ -248,7 +240,7 @@ const WeddingConfig = {
         phone: "",
         price: "R$ 790 / casal",
         regime: "Pensão completa",
-        description: "Acomoda até 4 pessoas (1 casal + 2 solteiros). Desconto de R$30/adulto no jantar de sábado. Localizado em Santana dos Montes."
+        description: ""
       },
       {
         name: "Hotel Fazenda Paciência",
@@ -256,7 +248,7 @@ const WeddingConfig = {
         phone: "",
         price: "R$ 1.092 / casal",
         regime: "Pensão completa",
-        description: "Inclui café da manhã, almoço, café da tarde e jantar. Bebidas à parte. Sem pet. Crianças até 5 anos grátis; 6-14 anos pagam 40%. Parcelamento em até 6x no cartão."
+        description: ""
       },
       {
         name: "Hotel Fazenda da Chácara",
@@ -264,7 +256,15 @@ const WeddingConfig = {
         phone: "",
         price: "R$ 1.212,50 / casal",
         regime: "Pensão completa",
-        description: "5% de desconto via PIX para grupo de 5 quartos. Inclui café da manhã, almoço e jantar. Parcelamento em até 3x no cartão."
+        description: ""
+      },
+      {
+        name: "Pousada Cristina",
+        address: "Santana dos Montes, MG",
+        phone: "",
+        price: "R$ 150 / pessoa",
+        regime: "Sem refeições",
+        description: ""
       }
     ],
     beautySalons: [
