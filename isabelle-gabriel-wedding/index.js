@@ -125,6 +125,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Exibir o contêiner selecionado
     targetContainer.classList.remove("opacity-0", "pointer-events-none", "z-0");
     targetContainer.classList.add("opacity-100", "z-10");
+
+    // Controlar a exibição da moldura (frame) do contêiner
+    const containerFrame = document.getElementById("container-frame");
+    if (containerFrame) {
+      if (targetContainer === inviteContainer) {
+        containerFrame.classList.remove("opacity-100");
+        containerFrame.classList.add("opacity-0");
+      } else {
+        containerFrame.classList.remove("opacity-0");
+        containerFrame.classList.add("opacity-100");
+      }
+    }
   }
 
   if (cardDatetime && cardLocation && cardDress) {

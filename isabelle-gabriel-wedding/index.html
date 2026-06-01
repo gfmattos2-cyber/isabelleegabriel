@@ -63,13 +63,19 @@
     }
     /* Textura de papel sutil */
     body {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-image: url('assets/paper_texture.jpg');
+      background-repeat: repeat;
     }
-    /* Faixa decorativa meandro (borda do convite) */
-    .meander-strip {
+    /* Faixas decorativas meandro (bordas do convite) */
+    .meander-strip, .meander-strip-horizontal {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M0 10 L0 4 L6 4 L6 0 L12 0 L12 4 L18 4 L18 0 L24 0 L24 4 L24 10' fill='none' stroke='%232a5c24' stroke-width='1.3'/%3E%3C/svg%3E");
       background-repeat: repeat-x;
       background-size: 24px 10px;
+    }
+    .meander-strip-vertical {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='24' viewBox='0 0 10 24'%3E%3Cpath d='M10 0 L4 0 L4 6 L0 6 L0 12 L4 12 L4 18 L0 18 L0 24 L4 24 L10 24' fill='none' stroke='%232a5c24' stroke-width='1.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      background-size: 10px 24px;
     }
     /* Fonte script para nomes de local */
     .font-script { font-family: 'Great Vibes', cursive; }
@@ -134,18 +140,13 @@
   </nav>
 
   <!-- ==================== HERO SECTION ==================== -->
-  <section id="inicio" class="min-h-screen flex flex-col justify-center pt-20 relative overflow-hidden bg-gradient-to-b from-champagne to-lightBg">
+  <section id="inicio" class="min-h-screen flex flex-col justify-center pt-20 relative overflow-hidden bg-transparent">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 py-12">
       
       <!-- Text Info (Left) -->
       <div class="lg:col-span-6 text-center lg:text-left space-y-6 flex flex-col items-center lg:items-start">
-        <img src="assets/monograma.png" alt="Monograma I&G" class="h-28 w-28 object-contain mb-2 transform hover:rotate-3 transition duration-500">
-        <div class="inline-flex items-center gap-2 border border-primary/20 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-primary bg-white/50 backdrop-blur-sm shadow-sm">
-          <i data-lucide="sparkles" class="h-3.5 w-3.5 text-accentGold animate-pulse"></i>
-          Salvem esta data
-        </div>
-        <h1 class="w-full max-w-lg mb-4">
-          <img src="assets/convite_art.png" alt="Isabelle &amp; Gabriel - Casamento em 12 de Setembro de 2026 no Hotel Fazenda Fonte Limpa" class="w-full object-contain">
+        <h1 class="w-full max-w-2xl mb-4">
+          <img src="assets/convite_art.jpg" alt="Isabelle &amp; Gabriel - Casamento em 12 de Setembro de 2026 no Hotel Fazenda Fonte Limpa" class="w-full object-contain">
         </h1>
 
         <!-- Countdown Timer -->
@@ -194,7 +195,7 @@
   </div>
 
   <!-- ==================== HISTORIA SECTION ==================== -->
-  <section id="historia" class="py-24 bg-white">
+  <section id="historia" class="py-24 bg-white/50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header com ornamento de alianças do convite -->
@@ -328,7 +329,7 @@
   </section>
 
   <!-- ==================== DETALHES DO EVENTO SECTION ==================== -->
-  <section id="evento" class="py-24 bg-lightBg">
+  <section id="evento" class="py-24 bg-lightBg/50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header -->
@@ -400,15 +401,33 @@
         </div>
         
         <!-- Interactive Map / Image Column (Right) -->
-        <div class="lg:col-span-7 overflow-hidden rounded-2xl shadow-md border border-stone-200/50 bg-stone-100 min-h-[400px] relative">
-          <!-- Leaflet container -->
-          <div id="wedding-map" class="w-full h-full absolute inset-0 z-0 transition-opacity duration-300"></div>
-          <!-- Convite (Foto 3) -->
-          <div id="wedding-invitation-container" class="w-full h-full absolute inset-0 z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-white flex items-center justify-center p-4">
-            <img src="assets/foto3.jpg" alt="Convite de Casamento" class="w-full h-full object-contain">
+        <div class="lg:col-span-7 min-h-[450px] relative bg-transparent">
+          
+          <!-- Moldura do Convite (Green Meander Frame) -->
+          <div id="container-frame" class="absolute inset-0 pointer-events-none z-20 transition-opacity duration-300">
+            <!-- Linha externa -->
+            <div class="absolute inset-0 border-[1.5px] border-primary"></div>
+            <!-- Linha interna fina -->
+            <div class="absolute inset-[3px] border-[0.5px] border-primary/40"></div>
+            <!-- Faixas meandro -->
+            <div class="absolute top-[8px] bottom-[8px] left-[8px] w-[10px] meander-strip-vertical"></div>
+            <div class="absolute top-[8px] bottom-[8px] right-[8px] w-[10px] meander-strip-vertical"></div>
+            <div class="absolute left-[8px] right-[8px] top-[8px] h-[10px] meander-strip-horizontal"></div>
+            <div class="absolute left-[8px] right-[8px] bottom-[8px] h-[10px] meander-strip-horizontal"></div>
+            <!-- Linha interna após meandro -->
+            <div class="absolute inset-[22px] border-[1px] border-primary/30"></div>
           </div>
+
+          <!-- Leaflet container -->
+          <div id="wedding-map" class="absolute inset-[23px] z-0 transition-opacity duration-300"></div>
+          
+          <!-- Convite (Foto 3) -->
+          <div id="wedding-invitation-container" class="w-full h-full absolute inset-0 z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-transparent flex items-center justify-center p-0">
+            <img src="assets/convite_completo.jpg" alt="Convite de Casamento" class="w-full h-full object-contain">
+          </div>
+          
           <!-- Traje Passeio Completo -->
-          <div id="wedding-dress-container" class="w-full h-full absolute inset-0 z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-white flex items-center justify-center p-4">
+          <div id="wedding-dress-container" class="absolute inset-[23px] z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-white flex items-center justify-center p-2">
             <img src="assets/traje.png" alt="Exemplo Traje Passeio Completo" class="w-full h-full object-contain">
           </div>
         </div>
@@ -419,7 +438,7 @@
   </section>
 
   <!-- ==================== LISTA DE PRESENTES SECTION ==================== -->
-  <section id="presentes" class="py-24 bg-white">
+  <section id="presentes" class="py-24 bg-white/50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header -->
@@ -450,7 +469,7 @@
   </section>
 
   <!-- ==================== RSVP SECTION ==================== -->
-  <section id="rsvp" class="py-24 bg-gradient-to-b from-lightBg to-champagne relative overflow-hidden">
+  <section id="rsvp" class="py-24 bg-champagne/50 relative overflow-hidden">
     
     <!-- Background overlay elements -->
     <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-primary/5 blur-3xl"></div>
@@ -538,7 +557,7 @@
   </section>
 
   <!-- ==================== DICAS SECTION ==================== -->
-  <section id="dicas" class="py-24 bg-white">
+  <section id="dicas" class="py-24 bg-white/50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header -->
@@ -573,7 +592,7 @@
   </section>
 
   <!-- ==================== GUESTBOOK / MURAL DE RECADOS SECTION ==================== -->
-  <section id="mural" class="py-24 bg-lightBg">
+  <section id="mural" class="py-24 bg-lightBg/50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header -->
@@ -620,27 +639,13 @@
   </section>
 
   <!-- ==================== FOOTER ==================== -->
-  <footer class="bg-primary text-white/90 py-12 border-t border-primaryDark">
-    <div class="max-w-6xl mx-auto px-4 text-center space-y-6">
+  <footer class="text-white/90 py-16 border-t border-primaryDark" style="background-image: url('assets/paper_texture.jpg'); background-repeat: repeat; background-color: #2a5c24; background-blend-mode: multiply;">
+    <div class="max-w-6xl mx-auto px-4 text-center">
       
       <!-- Monogram / Initials -->
       <div class="inline-block relative">
-        <img src="assets/monograma.png" alt="Monograma I&G" class="h-24 w-24 object-contain brightness-0 invert opacity-90">
+        <img src="assets/monograma.png" alt="Monograma I&G" class="h-36 w-36 object-contain brightness-0 invert opacity-90 transform hover:scale-105 transition duration-500">
       </div>
-      
-      <p class="font-display text-2xl font-light tracking-widest text-champagne uppercase">
-        Isabelle <span class="font-script text-accentGold font-normal lowercase tracking-normal text-3xl align-middle mx-1">&amp;</span> Gabriel
-      </p>
-      
-      <p class="text-xs text-stone-300 tracking-wider">
-        12 de Setembro de 2026 — Hotel Fazenda Fonte Limpa, Santana dos Montes - MG
-      </p>
-      
-      <div class="h-px w-24 bg-white/10 mx-auto"></div>
-      
-      <p class="text-[10px] text-stone-400 tracking-widest uppercase">
-        Feito com carinho para o nosso grande dia
-      </p>
       
     </div>
   </footer>
