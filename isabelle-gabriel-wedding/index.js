@@ -118,19 +118,60 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (category === "hotels") {
       activeBtn = tabBtnHotels;
-      items = WeddingConfig.tips.hotels.map(hotel => `
+
+      const PAGE_SIZE = 4;
+      const hotels = WeddingConfig.tips.hotels;
+      const totalPages = Math.ceil(hotels.length / PAGE_SIZE);
+      const page = window._hotelPage || 0;
+      const slice = hotels.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+
+      const hotelCards = slice.map(hotel => `
         <div class="bg-champagne/30 border border-stone-200/50 p-6 rounded-2xl shadow-sm flex flex-col justify-between space-y-4">
           <div class="space-y-2">
             <h4 class="font-serif text-lg font-bold text-primary">${hotel.name}</h4>
             <p class="text-stone-500 text-xs flex items-center gap-1"><i data-lucide="map-pin" class="h-3 w-3"></i> ${hotel.address}</p>
-            <p class="text-stone-600 text-xs leading-relaxed">${hotel.description}</p>
+            ${hotel.description ? `<p class="text-stone-600 text-xs leading-relaxed">${hotel.description}</p>` : ''}
           </div>
-          <div class="pt-2 border-t border-stone-200/40 flex justify-between items-center text-xs">
-            <span class="text-stone-500">Cupom: <strong class="text-accentGold font-mono bg-white px-2 py-0.5 rounded border border-stone-200">${hotel.discountCode}</strong></span>
-            <span class="text-primary font-semibold flex items-center gap-0.5"><i data-lucide="phone" class="h-3 w-3"></i> ${hotel.phone}</span>
+          <div class="pt-2 border-t border-stone-200/40 flex flex-wrap gap-2 items-center text-xs">
+            ${hotel.price ? `<span class="font-serif text-base font-bold text-primary">${hotel.price}</span>` : ''}
+            ${hotel.regime ? `<span class="bg-primary/10 text-primary px-2 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wide">${hotel.regime}</span>` : ''}
+            ${hotel.phone ? `<span class="text-primary font-semibold flex items-center gap-0.5 ml-auto"><i data-lucide="phone" class="h-3 w-3"></i> ${hotel.phone}</span>` : ''}
           </div>
         </div>
-      `);
+      `).join("");
+
+      // Paginação
+      const pagination = totalPages > 1 ? `
+        <div class="col-span-full flex items-center justify-center gap-4 pt-4">
+          <button id="hotel-prev" ${page === 0 ? 'disabled' : ''}
+            class="flex items-center gap-1.5 px-4 py-2 rounded-full border border-primary/25 text-primary text-xs font-semibold tracking-wide transition-all
+              ${page === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-primary hover:text-white hover:border-primary'}">
+            <i data-lucide="chevron-left" class="h-3.5 w-3.5"></i> Anterior
+          </button>
+          <span class="text-xs text-stone-400 font-medium tracking-wide">${page + 1} de ${totalPages}</span>
+          <button id="hotel-next" ${page === totalPages - 1 ? 'disabled' : ''}
+            class="flex items-center gap-1.5 px-4 py-2 rounded-full border border-primary/25 text-primary text-xs font-semibold tracking-wide transition-all
+              ${page === totalPages - 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-primary hover:text-white hover:border-primary'}">
+            Próximos <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
+          </button>
+        </div>
+      ` : '';
+
+      activeBtn.classList.remove("border-transparent", "text-stone-500");
+      activeBtn.classList.add("border-primary", "text-primary");
+      container.innerHTML = hotelCards + pagination;
+      lucide.createIcons();
+
+      // Eventos dos botões de página
+      const prevBtn = document.getElementById("hotel-prev");
+      const nextBtn = document.getElementById("hotel-next");
+      if (prevBtn) prevBtn.addEventListener("click", () => {
+        if (window._hotelPage > 0) { window._hotelPage--; renderTips("hotels"); }
+      });
+      if (nextBtn) nextBtn.addEventListener("click", () => {
+        if (window._hotelPage < totalPages - 1) { window._hotelPage++; renderTips("hotels"); }
+      });
+      return;
     } else if (category === "beauty") {
       activeBtn = tabBtnBeauty;
       items = WeddingConfig.tips.beautySalons.map(salon => `
@@ -161,11 +202,12 @@ document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
   }
   
-  tabBtnHotels.addEventListener("click", () => renderTips("hotels"));
+  tabBtnHotels.addEventListener("click", () => { window._hotelPage = 0; renderTips("hotels"); });
   tabBtnBeauty.addEventListener("click", () => renderTips("beauty"));
   tabBtnAttractions.addEventListener("click", () => renderTips("attractions"));
   
   // Render inicial de dicas (Hotéis)
+  window._hotelPage = 0;
   renderTips("hotels");
 
   // 6. Lista de Presentes
@@ -181,24 +223,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     filteredGifts.forEach(gift => {
-      const priceText = gift.price ? `R$ ${gift.price.toFixed(2).replace('.', ',')}` : "Qualquer valor";
+      const priceText = gift.price ? `R$ ${new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(gift.price)}` : "Qualquer valor";
       
       const card = document.createElement("div");
       card.className = "bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200/50 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 flex flex-col justify-between";
       card.innerHTML = `
-        <div class="relative overflow-hidden aspect-[4/3] bg-stone-100 border-b border-stone-100">
-          <img src="${gift.image}" alt="${gift.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+        <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-champagne to-lightBg border-b border-stone-100 flex items-center justify-center p-6">
+          <div class="w-16 h-16 rounded-full bg-white text-primary flex items-center justify-center shadow-md border border-stone-200/20 transform hover:scale-110 transition duration-300">
+            <i data-lucide="${gift.icon}" class="w-8 h-8"></i>
+          </div>
           <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-stone-200/50">
             ${gift.category}
           </span>
         </div>
         <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
           <div class="space-y-2">
-            <h4 class="font-serif text-lg font-semibold text-primary leading-snug line-clamp-1">${gift.title}</h4>
+            <h4 class="font-serif text-lg font-semibold text-primary leading-snug line-clamp-2 min-h-[3.5rem] flex items-center">${gift.title}</h4>
             <p class="text-stone-500 text-xs leading-relaxed line-clamp-2">${gift.description}</p>
           </div>
           <div class="flex items-center justify-between pt-2 border-t border-stone-100">
-            <span class="font-serif text-base font-bold text-accentGold">${priceText}</span>
+            <span class="font-serif text-[1.2rem] font-bold text-accentGold">${priceText}</span>
             <button class="bg-primary hover:bg-primaryDark text-white px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition transform active:scale-95" data-gift-id="${gift.id}">
               Presentear
             </button>
@@ -207,6 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       grid.appendChild(card);
     });
+    
+    // Inicializa os ícones Lucide recém-renderizados
+    lucide.createIcons();
     
     // Adicionar eventos para botões "Presentear"
     grid.querySelectorAll("button[data-gift-id]").forEach(btn => {
@@ -273,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
       amountFieldContainer.classList.add("hidden");
       amountField.required = false;
       amountField.value = selectedGift.price;
-      document.getElementById("modal-gift-price").innerText = `Valor: R$ ${selectedGift.price.toFixed(2).replace('.', ',')}`;
+      document.getElementById("modal-gift-price").innerText = `Valor: R$ ${new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(selectedGift.price)}`;
     }
     
     document.getElementById("modal-gift-title").innerText = selectedGift.title;

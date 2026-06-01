@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Monograma I & G para Favicon (fundo transparente) -->
+  <text
+    x="15"
+    y="75"
+    font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+    font-size="65"
+    font-weight="600"
+    fill="#2a5c24">I</text>
+  <text
+    x="42"
+    y="65"
+    font-family="'Sacramento', Georgia, 'Times New Roman', serif"
+    font-size="45"
+    font-weight="normal"
+    fill="#D4AF37">&amp;</text>
+  <text
+    x="58"
+    y="75"
+    font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+    font-size="65"
+    font-weight="600"
+    fill="#2a5c24">G</text>
+</svg>

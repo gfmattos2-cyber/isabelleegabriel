@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Isabelle & Gabriel — Nosso Casamento</title>
+  <title>Isabelle &amp; Gabriel | Nosso Casamento</title>
+
+  <!-- Favicon monograma -->
+  <link rel="icon" href="assets/logo.jpg" type="image/jpeg">
   
   <!-- SEO Meta Tags -->
   <meta name="description" content="Bem-vindo ao site de casamento de Isabelle e Gabriel. Encontre informações sobre o evento, RSVP, lista de presentes e dicas para convidados.">
@@ -12,7 +15,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -21,16 +24,17 @@
       theme: {
         extend: {
           colors: {
-            primary: '#03300B',       // Verde escuro principal
-            primaryDark: '#011A06',   // Verde escuro para hover/fundo escuro
-            champagne: '#F4EFE6',     // Creme de fundo elegante
+            primary: '#2a5c24',       // Verde Floresta (convite oficial)
+            primaryDark: '#1e4620',   // Verde escuro para hover
+            champagne: '#f0ebe0',     // Bege Papel (convite oficial)
             accentGold: '#D4AF37',    // Dourado para detalhes
             fendi: '#7A756B',         // Cinza-quente para textos secundários
-            lightBg: '#FAF9F6'        // Off-white para seções alternadas
+            lightBg: '#f7f4ee'        // Off-white para seções alternadas
           },
           fontFamily: {
             serif: ['Cormorant Garamond', 'serif'],
-            sans: ['Outfit', 'sans-serif']
+            sans: ['Outfit', 'sans-serif'],
+            script: ['Sacramento', 'cursive']
           }
         }
       }
@@ -50,11 +54,35 @@
       height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #F4EFE6;
+      background: #f0ebe0;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #03300B;
+      background: #2a5c24;
       border-radius: 3px;
+    }
+    /* Textura de papel sutil */
+    body {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    /* Faixa decorativa meandro (borda do convite) */
+    .meander-strip {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M0 10 L0 4 L6 4 L6 0 L12 0 L12 4 L18 4 L18 0 L24 0 L24 4 L24 10' fill='none' stroke='%232a5c24' stroke-width='1.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-size: 24px 10px;
+    }
+    /* Fonte script para nomes de local */
+    .font-script { font-family: 'Sacramento', cursive; }
+    /* Carta de convite frame */
+    .invitation-frame {
+      border: 1.5px solid rgba(42,92,36,0.35);
+      position: relative;
+    }
+    .invitation-frame::before {
+      content: '';
+      position: absolute;
+      inset: 7px;
+      border: 0.5px solid rgba(42,92,36,0.15);
+      pointer-events: none;
     }
   </style>
 </head>
@@ -123,7 +151,7 @@
         <p class="font-serif text-xl sm:text-2xl text-fendi tracking-wider italic">
           12 de Setembro de 2026 — Hotel Fazenda Fonte Limpa
         </p>
-        
+
         <!-- Countdown Timer -->
         <div class="grid grid-cols-4 gap-3 sm:gap-4 max-w-sm w-full py-4 text-center" id="countdown-container">
           <div class="bg-white/90 backdrop-blur-sm border border-stone-200/50 p-2 sm:p-3.5 rounded-xl shadow-sm">
@@ -154,37 +182,35 @@
         </div>
       </div>
       
-      <!-- Photos Collage (Right) -->
+      <!-- Photo (Right) -->
       <div class="lg:col-span-6 relative flex items-center justify-center py-6">
-        <div class="grid grid-cols-12 gap-4 w-full max-w-lg">
-          <!-- Main large photo -->
-          <div class="col-span-8 overflow-hidden rounded-2xl shadow-xl aspect-[3/4] border-4 border-white transition-all duration-500 hover:scale-[1.02]">
-            <img src="assets/foto3.jpg" alt="Noivos Isabelle e Gabriel" class="w-full h-full object-cover">
-          </div>
-          <!-- Vertical column of small photos -->
-          <div class="col-span-4 flex flex-col gap-4">
-            <div class="overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-white transition-all duration-500 hover:scale-105">
-              <img src="assets/foto1.jpg" alt="Foto casal 1" class="w-full h-full object-cover">
-            </div>
-            <div class="overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-white transition-all duration-500 hover:scale-105">
-              <img src="assets/foto2.jpg" alt="Foto casal 2" class="w-full h-full object-cover">
-            </div>
-            <div class="overflow-hidden rounded-xl shadow-lg aspect-square border-2 border-white transition-all duration-500 hover:scale-105">
-              <img src="assets/foto4.jpg" alt="Foto casal 4" class="w-full h-full object-cover">
-            </div>
-          </div>
+        <div class="relative max-w-sm w-full aspect-[3/4] overflow-hidden rounded-2xl shadow-2xl border-[12px] border-white transform rotate-1 hover:rotate-0 transition duration-500">
+          <img src="assets/foto3.jpg" alt="Isabelle & Gabriel" class="w-full h-full object-cover">
         </div>
       </div>
 
     </div>
   </section>
 
+  <!-- Faixa meandro decorativa entre seções (elemento do convite) -->
+  <div class="overflow-hidden h-[8px] opacity-30" aria-hidden="true">
+    <div class="meander-strip h-full"></div>
+  </div>
+
   <!-- ==================== HISTORIA SECTION ==================== -->
   <section id="historia" class="py-24 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Header -->
+      <!-- Header com ornamento de alianças do convite -->
       <div class="text-center space-y-3 mb-16">
+        <div class="flex items-center justify-center gap-3 mb-1">
+          <div class="h-px w-10 bg-primary/20"></div>
+          <svg viewBox="0 0 50 30" class="w-8 h-5 text-primary/30" fill="none" stroke="currentColor" stroke-width="1.2">
+            <ellipse cx="16" cy="15" rx="13" ry="9" transform="rotate(-10 16 15)"/>
+            <ellipse cx="34" cy="15" rx="13" ry="9" transform="rotate(10 34 15)"/>
+          </svg>
+          <div class="h-px w-10 bg-primary/20"></div>
+        </div>
         <span class="font-serif text-accentGold text-xl italic tracking-wider">A nossa história</span>
         <h2 class="font-serif text-4xl sm:text-5xl font-light text-primary">Como tudo começou</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
@@ -199,28 +225,73 @@
           <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
           <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-serif text-lg font-medium text-accentGold">Dezembro 2015</div>
           <div class="ml-6 sm:ml-8 space-y-3">
+            <!-- Ilustração: Céu Estrelado -->
+            <div class="text-primary opacity-80">
+              <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" class="w-36 h-20" fill="none" stroke="currentColor">
+                <!-- Lua crescente -->
+                <path d="M118 14 A16 16 0 0 1 94 30 A20 20 0 0 0 118 14Z" stroke-width="1.1" stroke-linecap="round"/>
+                <!-- Estrela grande (4 pontas) -->
+                <path d="M32 20 L34 27 L32 20 M32 20 L39 22 L32 20 M32 20 L30 27 L32 20 M32 20 L25 22 L32 20" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M32 13 L32 31 M23 22 L41 22" stroke-width="0.7" opacity="0.5"/>
+                <!-- Estrela 4 pontas menor -->
+                <path d="M68 10 L68 18 M64 14 L72 14" stroke-width="0.8" stroke-linecap="round"/>
+                <!-- Estrela 4 pontas menor 2 -->
+                <path d="M50 38 L50 44 M47 41 L53 41" stroke-width="0.8" stroke-linecap="round"/>
+                <!-- Pontinhos de estrelas -->
+                <circle cx="20" cy="38" r="1.2" fill="currentColor" stroke="none"/>
+                <circle cx="55" cy="15" r="1" fill="currentColor" stroke="none"/>
+                <circle cx="80" cy="8" r="1.4" fill="currentColor" stroke="none"/>
+                <circle cx="100" cy="48" r="1" fill="currentColor" stroke="none"/>
+                <circle cx="140" cy="18" r="1.2" fill="currentColor" stroke="none"/>
+                <circle cx="130" cy="40" r="0.9" fill="currentColor" stroke="none"/>
+                <circle cx="15" cy="20" r="0.8" fill="currentColor" stroke="none"/>
+                <circle cx="145" cy="52" r="0.8" fill="currentColor" stroke="none"/>
+                <!-- Linha de horizonte serrana -->
+                <path d="M5 68 Q30 55 55 65 Q80 52 110 63 Q132 55 155 65" stroke-width="1" stroke-linecap="round"/>
+                <!-- Ondulações do campo -->
+                <path d="M5 75 Q40 70 80 74 Q120 70 155 74" stroke-width="0.6" opacity="0.4" stroke-linecap="round"/>
+              </svg>
+            </div>
             <h3 class="font-serif text-2xl font-semibold text-primary">Como Tudo Começou</h3>
             <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
               Nos conhecemos em dezembro de 2015 em Amarantina e foi um dia muito especial. Dançamos bastante forró e vimos o céu mais lindo e estrelado das nossas vidas. Ali começou tudo!
             </p>
-            <div class="overflow-hidden rounded-xl shadow-sm max-w-sm aspect-[4/3] mt-2">
-              <img src="assets/foto1.jpg" alt="Nosso início" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-            </div>
           </div>
         </div>
 
         <!-- Milestone 2 -->
         <div class="relative">
           <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
-          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-serif text-lg font-medium text-accentGold">Aventuras</div>
+          <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-serif text-lg font-medium text-accentGold">Histórias</div>
           <div class="ml-6 sm:ml-8 space-y-3">
+            <!-- Ilustração: Viagem -->
+            <div class="text-primary opacity-80">
+              <svg viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" class="w-36 h-20" fill="none" stroke="currentColor">
+                <!-- Mala de viagem -->
+                <rect x="8" y="35" width="38" height="30" rx="3" stroke-width="1.1"/>
+                <rect x="18" y="29" width="18" height="8" rx="2" stroke-width="1"/>
+                <line x1="8" y1="50" x2="46" y2="50" stroke-width="0.7"/>
+                <line x1="27" y1="35" x2="27" y2="65" stroke-width="0.7"/>
+                <!-- Rota / trilha pontilhada curva -->
+                <path d="M48 50 Q75 20 115 42" stroke-width="1" stroke-dasharray="3 3" stroke-linecap="round"/>
+                <!-- Avião -->
+                <path d="M110 35 L122 30 L118 38 L125 42 L112 44 L108 50 L105 44 L97 46 L100 40 L110 35Z" stroke-width="1" stroke-linejoin="round"/>
+                <!-- Torre Eiffel simplificada -->
+                <path d="M140 65 L136 42 L144 42 L140 65" stroke-width="1" stroke-linejoin="round"/>
+                <line x1="136" y1="52" x2="144" y2="52" stroke-width="0.8"/>
+                <line x1="137" y1="46" x2="143" y2="46" stroke-width="0.8"/>
+                <path d="M139 36 L140 42 L141 36" stroke-width="1" stroke-linejoin="round"/>
+                <!-- Linha do solo -->
+                <line x1="5" y1="68" x2="155" y2="68" stroke-width="0.6" opacity="0.3"/>
+                <!-- Carimbo passaporte (circulo com X) -->
+                <circle cx="72" cy="72" r="7" stroke-width="0.8" opacity="0.5"/>
+                <path d="M68 68 L76 76 M76 68 L68 76" stroke-width="0.6" opacity="0.4"/>
+              </svg>
+            </div>
             <h3 class="font-serif text-2xl font-semibold text-primary">Viagens e Descobertas</h3>
             <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
               Com o namoro maduro, fomos descobrindo o prazer de viajar juntos, conhecer novos cantos, acumular histórias engraçadas e, acima de tudo, ter a certeza de que somos a melhor companhia um do outro.
             </p>
-            <div class="overflow-hidden rounded-xl shadow-sm max-w-sm aspect-[4/3] mt-2">
-              <img src="assets/foto2.jpg" alt="Nossas viagens" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-            </div>
           </div>
         </div>
 
@@ -229,13 +300,30 @@
           <div class="absolute -left-[9px] top-1.5 h-4.5 w-4.5 rounded-full bg-primary border-4 border-white shadow"></div>
           <div class="sm:absolute sm:-left-32 sm:top-1 sm:w-28 text-left sm:text-right font-serif text-lg font-medium text-accentGold">O Pedido</div>
           <div class="ml-6 sm:ml-8 space-y-3">
+            <!-- Ilustração: Contorno da Ilha Grande -->
+            <div class="text-primary opacity-75">
+              <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" class="w-44 h-24" fill="none" stroke="currentColor">
+                <!-- Contorno real de Ilha Grande -->
+                <path d="M 98.9,10.0 L 102.7,10.0 L 99.8,15.0 L 100.5,16.6 L 109.6,16.3 L 112.4,17.5 L 112.1,21.3 L 115.8,20.4 L 119.0,20.7 L 120.5,23.2 L 123.1,22.2 L 121.8,24.7 L 117.4,26.3 L 117.4,25.1 L 115.2,23.8 L 109.9,24.1 L 108.6,26.3 L 110.8,28.2 L 114.0,26.6 L 118.0,33.8 L 120.2,32.3 L 124.0,33.8 L 126.5,31.6 L 132.8,32.0 L 130.9,37.9 L 133.1,42.9 L 136.2,45.1 L 140.0,42.9 L 139.7,39.8 L 141.9,41.1 L 145.6,34.5 L 152.2,33.8 L 153.8,32.6 L 155.1,35.4 L 147.8,42.6 L 147.8,46.4 L 149.1,47.3 L 151.0,46.7 L 148.5,50.8 L 149.4,53.3 L 151.9,53.6 L 153.5,51.1 L 156.0,51.7 L 158.8,50.2 L 159.8,48.0 L 159.5,51.4 L 164.5,57.1 L 171.4,57.7 L 170.4,62.1 L 161.6,65.5 L 160.1,68.4 L 156.0,68.0 L 152.2,69.6 L 152.2,68.0 L 156.0,65.5 L 156.0,61.8 L 152.5,58.6 L 145.3,58.6 L 135.6,62.1 L 132.5,66.2 L 133.7,67.4 L 131.8,67.4 L 131.2,65.5 L 124.3,65.5 L 122.4,70.2 L 126.5,71.2 L 126.5,72.4 L 125.9,74.3 L 121.8,75.3 L 120.9,78.1 L 119.3,77.5 L 119.0,74.3 L 115.2,73.7 L 113.6,71.8 L 106.4,74.3 L 103.3,74.0 L 102.4,75.6 L 98.0,76.2 L 97.0,77.5 L 94.5,76.2 L 92.9,79.0 L 90.7,79.3 L 88.9,76.5 L 92.0,75.3 L 92.0,71.2 L 88.5,70.2 L 86.7,71.8 L 84.2,71.8 L 82.6,64.9 L 77.3,63.3 L 74.4,64.6 L 72.9,63.0 L 65.0,64.0 L 62.5,64.6 L 58.4,68.4 L 58.1,71.2 L 60.3,70.5 L 55.9,78.1 L 51.8,80.9 L 50.6,88.1 L 44.0,90.0 L 47.8,86.9 L 42.1,85.0 L 42.7,79.0 L 47.8,70.5 L 47.1,66.8 L 44.6,64.6 L 43.4,68.0 L 41.5,68.4 L 38.7,71.5 L 38.7,68.7 L 36.2,64.9 L 34.3,64.6 L 32.7,66.5 L 30.8,66.5 L 28.6,63.6 L 28.9,60.8 L 32.4,58.3 L 38.0,57.4 L 40.5,54.9 L 44.3,54.9 L 45.9,52.0 L 54.7,52.7 L 58.4,46.7 L 57.2,42.3 L 61.9,42.0 L 61.9,37.0 L 69.1,30.7 L 69.1,39.2 L 71.3,39.8 L 71.9,42.3 L 76.0,42.0 L 76.0,38.5 L 77.9,37.9 L 77.9,36.0 L 81.3,35.1 L 81.0,31.0 L 88.5,30.4 L 88.9,27.9 L 93.3,27.6 L 93.6,22.2 L 87.9,21.0 L 93.9,20.4 L 98.3,18.2 L 99.2,16.0 L 98.6,13.5 L 99.8,12.2 L 97.3,11.6 L 98.9,10.0 Z" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Alianças em formato de coração do convite -->
+                <g class="text-primary" stroke-width="0.8" fill="none" stroke="currentColor">
+                  <path d="M 96.8,44.0 L 97.6,44.2 L 98.3,44.6 L 100.0,46.6 L 102.9,44.0 L 103.7,44.0 L 104.9,45.3 L 105.0,45.7 L 104.8,46.7 L 103.9,48.5 L 102.8,50.1 L 101.1,51.6 L 100.4,52.0 L 99.4,51.8 L 97.9,50.5 L 95.9,47.8 L 95.1,46.5 L 95.0,45.5 L 95.2,44.9 L 96.7,44.2 Z" />
+                  <path d="M 97.0,44.5 L 99.5,46.6 L 99.8,47.1 L 99.4,47.6 L 99.1,47.6 L 96.7,45.0 L 96.8,44.6 Z" />
+                  <path d="M 103.2,44.5 L 103.8,45.0 L 101.2,47.2 L 99.6,49.8 L 99.0,49.0 L 100.0,47.3 L 102.1,45.1 L 103.0,44.6 Z" />
+                  <path d="M 96.0,45.1 L 96.2,45.3 L 96.7,46.6 L 97.8,48.3 L 99.3,50.0 L 100.6,51.1 L 100.5,51.4 L 99.5,51.4 L 97.0,48.8 L 95.7,46.4 L 95.6,45.5 L 95.9,45.3 Z" />
+                  <path d="M 104.1,45.4 L 104.6,45.5 L 104.5,46.5 L 103.3,48.5 L 102.0,49.9 L 101.7,49.2 L 103.7,46.5 L 104.0,45.5 Z" />
+                  <path d="M 102.9,46.1 L 102.9,46.8 L 101.5,48.7 L 101.2,48.4 L 101.3,47.8 L 102.8,46.2 Z" />
+                  <path d="M 97.2,46.2 L 97.6,46.4 L 99.0,48.1 L 98.7,48.7 L 97.8,47.7 L 97.1,46.4 Z" />
+                  <path d="M 100.9,48.8 L 101.6,50.4 L 101.2,50.7 L 100.9,50.5 L 100.6,49.9 L 100.5,49.3 L 100.7,48.9 Z" />
+                </g>
+                <!-- Texto "Ilha Grande" abaixo -->
+                <text x="100" y="88" text-anchor="middle" font-size="6" fill="currentColor" stroke="none" font-family="Georgia, serif" letter-spacing="1" opacity="0.6">ILHA GRANDE</text>
+              </svg>
+            </div>
             <h3 class="font-serif text-2xl font-semibold text-primary">O Pedido de Casamento</h3>
             <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
               O pedido de casamento foi em um lugar muito especial para a gente: Ilha Grande. O Gabriel planejou uma surpresa e fomos para lá. Era para o pedido ser no pôr do sol, mas acabou ficando super nublado (risos), mas deu tudo certo e a Isabelle disse sim!
             </p>
-            <div class="overflow-hidden rounded-xl shadow-sm max-w-sm aspect-[4/3] mt-2">
-              <img src="assets/foto4.jpg" alt="Pedido de Casamento" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-            </div>
           </div>
         </div>
 
@@ -405,6 +493,7 @@
         <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Lua de Mel">Lua de Mel</button>
         <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Casa">Casa</button>
         <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Passeios">Passeios</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Brincadeiras">Brincadeiras</button>
       </div>
       
       <!-- Gift Grid -->
