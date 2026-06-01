@@ -98,6 +98,54 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Erro ao inicializar mapa Leaflet:", err);
   }
 
+  // 4.1. Cartões Interativos do Evento (Foto 1: Data, Localização, Traje)
+  const cardDatetime = document.getElementById("card-datetime");
+  const cardLocation = document.getElementById("card-location");
+  const cardDress = document.getElementById("card-dress");
+  
+  const mapContainer = document.getElementById("wedding-map");
+  const inviteContainer = document.getElementById("wedding-invitation-container");
+  const dressContainer = document.getElementById("wedding-dress-container");
+
+  function activeCard(card, targetContainer) {
+    // Resetar estilos de todos os cartões
+    [cardDatetime, cardLocation, cardDress].forEach(c => {
+      c.classList.remove("border-primary", "bg-primary/[0.02]", "ring-1", "ring-primary/20");
+      c.classList.add("border-stone-200/50", "bg-white");
+    });
+    // Ativar o cartão selecionado
+    card.classList.remove("border-stone-200/50", "bg-white");
+    card.classList.add("border-primary", "bg-primary/[0.02]", "ring-1", "ring-primary/20");
+
+    // Ocultar todos os contêineres à direita
+    [mapContainer, inviteContainer, dressContainer].forEach(container => {
+      container.classList.remove("opacity-100", "z-10");
+      container.classList.add("opacity-0", "pointer-events-none", "z-0");
+    });
+    // Exibir o contêiner selecionado
+    targetContainer.classList.remove("opacity-0", "pointer-events-none", "z-0");
+    targetContainer.classList.add("opacity-100", "z-10");
+  }
+
+  if (cardDatetime && cardLocation && cardDress) {
+    // Por padrão, a localização (mapa) está ativa
+    activeCard(cardLocation, mapContainer);
+
+    cardDatetime.addEventListener("click", () => {
+      activeCard(cardDatetime, inviteContainer);
+    });
+    cardLocation.addEventListener("click", () => {
+      activeCard(cardLocation, mapContainer);
+      // Redesenhar o mapa para corrigir possíveis falhas de tamanho ao reexibir
+      if (map) {
+        setTimeout(() => { map.invalidateSize(); }, 300);
+      }
+    });
+    cardDress.addEventListener("click", () => {
+      activeCard(cardDress, dressContainer);
+    });
+  }
+
   // 5. Abas de Dicas
   const tabBtnHotels = document.getElementById("tab-btn-hotels");
   const tabBtnBeauty = document.getElementById("tab-btn-beauty");

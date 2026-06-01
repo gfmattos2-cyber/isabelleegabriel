@@ -104,8 +104,8 @@
           <a href="#inicio" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Início</a>
           <a href="#historia" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">História</a>
           <a href="#evento" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">O Evento</a>
-          <a href="#dicas" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Dicas</a>
           <a href="#presentes" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Presentes</a>
+          <a href="#dicas" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Dicas</a>
           <a href="#mural" class="hover:text-primary transition-colors py-2 border-b-2 border-transparent hover:border-primary">Mural</a>
           <a href="#rsvp" class="bg-primary hover:bg-primaryDark text-white px-5 py-2.5 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 text-xs font-semibold tracking-widest uppercase">Confirmar Presença</a>
         </div>
@@ -125,8 +125,8 @@
         <a href="#inicio" class="block py-2 text-stone-600 hover:text-primary text-base">Início</a>
         <a href="#historia" class="block py-2 text-stone-600 hover:text-primary text-base">História</a>
         <a href="#evento" class="block py-2 text-stone-600 hover:text-primary text-base">O Evento</a>
-        <a href="#dicas" class="block py-2 text-stone-600 hover:text-primary text-base">Dicas</a>
         <a href="#presentes" class="block py-2 text-stone-600 hover:text-primary text-base">Presentes</a>
+        <a href="#dicas" class="block py-2 text-stone-600 hover:text-primary text-base">Dicas</a>
         <a href="#mural" class="block py-2 text-stone-600 hover:text-primary text-base">Mural</a>
         <a href="#rsvp" class="inline-block bg-primary hover:bg-primaryDark text-white px-6 py-3 rounded-full transition-all text-sm font-semibold tracking-wider uppercase mt-2 shadow-md">Confirmar Presença</a>
       </div>
@@ -144,13 +144,9 @@
           <i data-lucide="sparkles" class="h-3.5 w-3.5 text-accentGold animate-pulse"></i>
           Salvem esta data
         </div>
-        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-light tracking-wide text-primary leading-tight uppercase">
-          Isabelle <br class="hidden sm:inline">
-          <span class="font-script text-accentGold font-normal lowercase tracking-normal text-4xl sm:text-5xl md:text-6xl align-middle mx-1">&amp;</span> Gabriel
+        <h1 class="w-full max-w-lg mb-4">
+          <img src="assets/convite_art.png" alt="Isabelle &amp; Gabriel - Casamento em 12 de Setembro de 2026 no Hotel Fazenda Fonte Limpa" class="w-full object-contain">
         </h1>
-        <p class="font-serif text-lg sm:text-xl text-fendi tracking-wider">
-          12 de Setembro de 2026 — <span class="font-script text-primary text-2xl sm:text-3xl align-middle font-normal">Hotel Fazenda Fonte Limpa</span>
-        </p>
 
         <!-- Countdown Timer -->
         <div class="grid grid-cols-4 gap-3 sm:gap-4 max-w-sm w-full py-4 text-center" id="countdown-container">
@@ -283,9 +279,8 @@
                 <path d="M139 36 L140 42 L141 36" stroke-width="1" stroke-linejoin="round"/>
                 <!-- Linha do solo -->
                 <line x1="5" y1="68" x2="155" y2="68" stroke-width="0.6" opacity="0.3"/>
-                <!-- Carimbo passaporte (circulo com X) -->
+                <!-- Carimbo passaporte -->
                 <circle cx="72" cy="72" r="7" stroke-width="0.8" opacity="0.5"/>
-                <path d="M68 68 L76 76 M76 68 L68 76" stroke-width="0.6" opacity="0.4"/>
               </svg>
             </div>
             <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Viagens e Descobertas</h3>
@@ -322,7 +317,7 @@
             </div>
             <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">O Pedido de Casamento</h3>
             <p class="text-stone-600 leading-relaxed text-sm max-w-xl">
-              O pedido de casamento foi em um lugar muito especial para a gente: Ilha Grande. O Gabriel planejou uma surpresa e fomos para lá. Era para o pedido ser no pôr do sol, mas acabou ficando super nublado (risos), mas deu tudo certo e a Isabelle disse sim!
+              O pedido de casamento foi em um lugar muito especial para a gente: Ilha Grande. O Gabriel planejou uma surpresa e fomos para lá.
             </p>
           </div>
         </div>
@@ -350,7 +345,7 @@
         <div class="lg:col-span-5 space-y-8 flex flex-col justify-between">
           
           <!-- Card: Horário -->
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4">
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4 cursor-pointer transition-all duration-300 hover:border-primary/40" id="card-datetime">
             <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
               <i data-lucide="clock" class="h-6 w-6"></i>
             </div>
@@ -364,7 +359,7 @@
           </div>
 
           <!-- Card: Localização -->
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4">
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4 cursor-pointer transition-all duration-300 hover:border-primary/40" id="card-location">
             <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
               <i data-lucide="map-pin" class="h-6 w-6"></i>
             </div>
@@ -388,7 +383,7 @@
           </div>
 
           <!-- Card: Dress Code -->
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4">
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4 cursor-pointer transition-all duration-300 hover:border-primary/40" id="card-dress">
             <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
               <i data-lucide="shirt" class="h-6 w-6"></i>
             </div>
@@ -404,77 +399,27 @@
 
         </div>
         
-        <!-- Interactive Map (Right) -->
+        <!-- Interactive Map / Image Column (Right) -->
         <div class="lg:col-span-7 overflow-hidden rounded-2xl shadow-md border border-stone-200/50 bg-stone-100 min-h-[400px] relative">
           <!-- Leaflet container -->
-          <div id="wedding-map" class="w-full h-full absolute inset-0 z-0"></div>
+          <div id="wedding-map" class="w-full h-full absolute inset-0 z-0 transition-opacity duration-300"></div>
+          <!-- Convite (Foto 3) -->
+          <div id="wedding-invitation-container" class="w-full h-full absolute inset-0 z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-white flex items-center justify-center p-4">
+            <img src="assets/foto3.jpg" alt="Convite de Casamento" class="w-full h-full object-contain">
+          </div>
+          <!-- Traje Passeio Completo -->
+          <div id="wedding-dress-container" class="w-full h-full absolute inset-0 z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-white flex items-center justify-center p-4">
+            <img src="assets/traje.png" alt="Exemplo Traje Passeio Completo" class="w-full h-full object-contain">
+          </div>
         </div>
 
-      </div>
-
-      <!-- Chronograma (Timeline of the day) -->
-      <div class="bg-white/60 backdrop-blur-sm border border-stone-200/50 p-8 rounded-2xl max-w-2xl mx-auto shadow-sm">
-        <h3 class="font-display text-lg font-normal tracking-wide text-primary text-center uppercase mb-8">Cronograma do Nosso Dia</h3>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center relative max-w-lg mx-auto">
-          
-          <!-- Step 1 -->
-          <div class="space-y-3 relative z-10 flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-display text-sm font-semibold shadow-md">15h30</div>
-            <div class="font-display text-sm font-semibold tracking-wide text-primary uppercase">A Cerimônia</div>
-            <p class="text-stone-500 text-xs leading-relaxed max-w-[180px]">O momento mais esperado no altar do hotel fazenda.</p>
-          </div>
-          
-          <!-- Step 2 -->
-          <div class="space-y-3 relative z-10 flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-display text-sm font-semibold shadow-md">17h00</div>
-            <div class="font-display text-sm font-semibold tracking-wide text-primary uppercase">Recepção e Festa</div>
-            <p class="text-stone-500 text-xs leading-relaxed max-w-[180px]">Comemoração com drinks, jantar típico e muita dança!</p>
-          </div>
-          
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== DICAS SECTION ==================== -->
-  <section id="dicas" class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Header -->
-      <div class="text-center space-y-3 mb-16">
-        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Para facilitar</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Dicas & Recomendações</h2>
-        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
-        <p class="text-stone-600 text-sm max-w-lg mx-auto leading-relaxed pt-2">
-          Para quem vem de fora da cidade ou quer aproveitar ao máximo, preparamos uma lista de hotéis recomendados, salões de beleza e atrações turísticas.
-        </p>
-      </div>
-      
-      <!-- Tabs (Hospedagem / Beleza / Turismo) -->
-      <div class="flex justify-center border-b border-stone-200 max-w-md mx-auto mb-10">
-        <button class="px-6 py-3 border-b-2 border-primary text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-hotels">
-          <i data-lucide="hotel" class="h-4 w-4"></i> Hotéis
-        </button>
-        <button class="px-6 py-3 border-b-2 border-transparent text-stone-500 hover:text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-beauty">
-          <i data-lucide="scissors" class="h-4 w-4"></i> Salões & Beleza
-        </button>
-        <button class="px-6 py-3 border-b-2 border-transparent text-stone-500 hover:text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-attractions">
-          <i data-lucide="palmtree" class="h-4 w-4"></i> O que fazer
-        </button>
-      </div>
-
-      <!-- Tab Content Area -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto" id="dicas-content-container">
-        <!-- Generatively rendered by JS based on WeddingConfig.tips -->
       </div>
 
     </div>
   </section>
 
   <!-- ==================== LISTA DE PRESENTES SECTION ==================== -->
-  <section id="presentes" class="py-24 bg-lightBg">
+  <section id="presentes" class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header -->
@@ -499,53 +444,6 @@
       <!-- Gift Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="gifts-grid">
         <!-- Rendered by JS -->
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==================== GUESTBOOK / MURAL DE RECADOS SECTION ==================== -->
-  <section id="mural" class="py-24 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Header -->
-      <div class="text-center space-y-3 mb-16">
-        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Mural de Carinho</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Mural de Recados</h2>
-        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
-        <p class="text-stone-600 text-sm max-w-md mx-auto leading-relaxed pt-2">
-          Deixe sua mensagem de carinho, votos de felicidade ou conselhos para os noivos!
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto">
-        
-        <!-- Form Column (Left) -->
-        <div class="lg:col-span-5 bg-champagne/40 border border-stone-200/50 p-8 rounded-2xl shadow-sm space-y-6">
-          <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Escrever Recado</h3>
-          
-          <form id="guestbook-form" class="space-y-4">
-            <div class="space-y-1">
-              <label for="mural-nome" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Seu Nome</label>
-              <input type="text" id="mural-nome" required class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-white" placeholder="Ex: Maria Souza">
-            </div>
-            
-            <div class="space-y-1">
-              <label for="mural-mensagem" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Mensagem</label>
-              <textarea id="mural-mensagem" required rows="4" class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-white resize-none" placeholder="Escreva sua mensagem com carinho..."></textarea>
-            </div>
-            
-            <button type="submit" class="w-full bg-primary hover:bg-primaryDark text-white py-3.5 rounded-xl font-semibold text-xs tracking-wider uppercase transition shadow-md flex items-center justify-center gap-2">
-              <i data-lucide="send" class="h-4 w-4"></i> Publicar Recado
-            </button>
-          </form>
-        </div>
-        
-        <!-- List Column (Right) -->
-        <div class="lg:col-span-7 space-y-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar" id="mural-lista">
-          <!-- Dynamically populated -->
-        </div>
-
       </div>
 
     </div>
@@ -636,6 +534,88 @@
         
       </div>
       
+    </div>
+  </section>
+
+  <!-- ==================== DICAS SECTION ==================== -->
+  <section id="dicas" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center space-y-3 mb-16">
+        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Para facilitar</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Dicas & Recomendações</h2>
+        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+        <p class="text-stone-600 text-sm max-w-lg mx-auto leading-relaxed pt-2">
+          Para quem vem de fora da cidade ou quer aproveitar ao máximo, preparamos uma lista de hotéis recomendados, salões de beleza e atrações turísticas.
+        </p>
+      </div>
+      
+      <!-- Tabs (Hospedagem / Beleza / Turismo) -->
+      <div class="flex justify-center border-b border-stone-200 max-w-md mx-auto mb-10">
+        <button class="px-6 py-3 border-b-2 border-primary text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-hotels">
+          <i data-lucide="hotel" class="h-4 w-4"></i> Hotéis
+        </button>
+        <button class="px-6 py-3 border-b-2 border-transparent text-stone-500 hover:text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-beauty">
+          <i data-lucide="scissors" class="h-4 w-4"></i> Salões & Beleza
+        </button>
+        <button class="px-6 py-3 border-b-2 border-transparent text-stone-500 hover:text-primary font-medium text-sm focus:outline-none flex items-center gap-1.5" id="tab-btn-attractions">
+          <i data-lucide="palmtree" class="h-4 w-4"></i> O que fazer
+        </button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto" id="dicas-content-container">
+        <!-- Generatively rendered by JS based on WeddingConfig.tips -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== GUESTBOOK / MURAL DE RECADOS SECTION ==================== -->
+  <section id="mural" class="py-24 bg-lightBg">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header -->
+      <div class="text-center space-y-3 mb-16">
+        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Mural de Carinho</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Mural de Recados</h2>
+        <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+        <p class="text-stone-600 text-sm max-w-md mx-auto leading-relaxed pt-2">
+          Deixe sua mensagem de carinho, votos de felicidade ou conselhos para os noivos!
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-5xl mx-auto">
+        
+        <!-- Form Column (Left) -->
+        <div class="lg:col-span-5 bg-champagne/40 border border-stone-200/50 p-8 rounded-2xl shadow-sm space-y-6">
+          <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Escrever Recado</h3>
+          
+          <form id="guestbook-form" class="space-y-4">
+            <div class="space-y-1">
+              <label for="mural-nome" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Seu Nome</label>
+              <input type="text" id="mural-nome" required class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-white" placeholder="Ex: Maria Souza">
+            </div>
+            
+            <div class="space-y-1">
+              <label for="mural-mensagem" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Mensagem</label>
+              <textarea id="mural-mensagem" required rows="4" class="w-full border border-stone-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-white resize-none" placeholder="Escreva sua mensagem com carinho..."></textarea>
+            </div>
+            
+            <button type="submit" class="w-full bg-primary hover:bg-primaryDark text-white py-3.5 rounded-xl font-semibold text-xs tracking-wider uppercase transition shadow-md flex items-center justify-center gap-2">
+              <i data-lucide="send" class="h-4 w-4"></i> Publicar Recado
+            </button>
+          </form>
+        </div>
+        
+        <!-- List Column (Right) -->
+        <div class="lg:col-span-7 space-y-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar" id="mural-lista">
+          <!-- Dynamically populated -->
+        </div>
+
+      </div>
+
     </div>
   </section>
 
