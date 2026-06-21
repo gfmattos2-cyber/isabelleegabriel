@@ -288,11 +288,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200/50 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 flex flex-col justify-between";
       card.innerHTML = `
-        <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-champagne to-lightBg border-b border-stone-100 flex items-center justify-center p-6">
-          <div class="w-16 h-16 rounded-full bg-white text-primary flex items-center justify-center shadow-md border border-stone-200/20 transform hover:scale-110 transition duration-300">
-            <i data-lucide="${gift.icon}" class="w-8 h-8"></i>
-          </div>
-          <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-stone-200/50">
+        <div class="relative overflow-hidden aspect-[4/3] border-b border-stone-100 bg-stone-100">
+          <img src="${gift.image || 'assets/monograma.png'}" alt="${gift.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-stone-200/50 z-10">
             ${gift.category}
           </span>
         </div>
