@@ -37,62 +37,50 @@ const WeddingConfig = {
   // Lista de Presentes Virtuais (Cotas de Lua de Mel e Itens)
   gifts: [
     {
-      id: "jogo_tabuleiro",
-      title: "Jogo de tabuleiro",
+      id: "kit_churrasco",
+      title: "Kit churrasco",
       category: "Casa",
       price: 87.50,
-      icon: "dices",
-      image: "assets/gift_jogo_tabuleiro.jpeg",
-      description: "Pra noite de casal que começa em paz e termina em discussão saudável",
-      mercadoPagoLink: "https://mpago.la/2Us5aF9"
-    },
-    {
-      id: "karaoke",
-      title: "Aparelho de karaoke",
-      category: "Brincadeiras",
-      price: 162.00,
-      icon: "music",
-      image: "assets/gift_karaoke.webp",
-      description: "Eles precisam treinar",
-      mercadoPagoLink: "https://mpago.la/1aprDxN"
-    },
-    {
-      id: "churrasco_premium",
-      title: "Kit churrasco premium",
-      category: "Casa",
-      price: 220.00,
       icon: "utensils",
       image: "assets/gift_kit_churrasco.png",
-      description: "Faca, tábua, pinças e chaira para o mestre da área gourmet",
-      mercadoPagoLink: "https://mpago.la/2ZF7fRK"
-    },
-    {
-      id: "cama_linho",
-      title: "Jogo de cama de linho",
-      category: "Casa",
-      price: 279.00,
-      icon: "bed",
-      image: "assets/gift_cama_linho.png",
-      description: "Para a suíte com headboard de couro merecer um enxoval à altura",
+      description: "Para eles aproveitarem um bom churrasco",
       mercadoPagoLink: ""
     },
     {
-      id: "cantar_casamento",
-      title: "Cantar uma música no casamento",
+      id: "jogo_tabuleiro",
+      title: "Jogo de tabuleiro",
+      category: "Casa",
+      price: 162.00,
+      icon: "dices",
+      image: "assets/gift_jogo_tabuleiro.jpeg",
+      description: "Para contribuir com noites divertidas",
+      mercadoPagoLink: ""
+    },
+    {
+      id: "jogo_cama",
+      title: "Jogo de cama",
+      category: "Casa",
+      price: 220.00,
+      icon: "bed",
+      image: "assets/gift_cama_linho.png",
+      description: "Para a suíte do casal merecer um enxoval à altura",
+      mercadoPagoLink: ""
+    },
+    {
+      id: "direito_dormir",
+      title: "Direito de dormir 20 minutinhos durante a festa",
       category: "Brincadeiras",
-      price: 315.00,
-      icon: "mic",
-      image: "assets/gift_cantar_musica.jpeg",
-      objectPosition: "object-top",
-      imageClass: "scale-110 origin-top",
-      description: "Com participação dos MCs Belly e Gabs",
-      mercadoPagoLink: "https://mpago.li/2jYEHrQ"
+      price: 279.00,
+      icon: "moon",
+      image: "assets/gift_direito_dormir.jpeg",
+      description: "Para quem vai precisar recuperar as energias e voltar com tudo",
+      mercadoPagoLink: ""
     },
     {
       id: "curso_fotografia",
       title: "Curso de fotografia para o Gabriel",
       category: "Brincadeiras",
-      price: 350.00,
+      price: 315.00,
       icon: "camera",
       image: "assets/gift_curso_fotografia.jpeg",
       description: "Para ele aprender a tirar foto nas viagens",
@@ -102,62 +90,64 @@ const WeddingConfig = {
       id: "terninho_jeff",
       title: "Terninho do Jeff",
       category: "Casa",
-      price: 388.00,
+      price: 350.00,
       icon: "paw-print",
       image: "assets/gift_terninho_jeff.png",
       description: "Para ele chegar trajado",
-      mercadoPagoLink: "https://mpago.li/2X5Btqh"
-    },
-    {
-      id: "hipnose_unha",
-      title: "Fazer o Gabriel parar de roer unha",
-      category: "Brincadeiras",
-      price: 423.00,
-      icon: "brain",
-      image: "assets/gift_hipnose_unha.jpeg",
-      objectFit: "object-contain",
-      description: "Só uma magia muito forte é capaz",
-      mercadoPagoLink: "https://mpago.li/2aoAnTe"
-    },
-    {
-      id: "aula_kitesurf",
-      title: "Aula de kitesurf na lua de mel",
-      category: "Lua de Mel",
-      price: 491.00,
-      icon: "waves",
-      image: "assets/gift_aula_kitesurf.jpg",
-      description: "Ele vai querer muito. Ela vai fingir que não. Os dois vão amar.",
-      mercadoPagoLink: "https://mpago.li/2HRA2XT"
+      mercadoPagoLink: ""
     },
     {
       id: "jantar_lua_mel",
       title: "Jantar romântico na lua de mel",
       category: "Lua de Mel",
-      price: 526.00,
+      price: 388.00,
       icon: "utensils",
       image: "assets/gift_jantar_romantico.jpg",
       description: "Uma noite especial em São Miguel do Gostoso com vista e boa comida",
       mercadoPagoLink: ""
     },
     {
+      id: "aula_kitesurf",
+      title: "Aula de kitesurf na lua de mel",
+      category: "Lua de Mel",
+      price: 423.00,
+      icon: "waves",
+      image: "assets/gift_aula_kitesurf.jpg",
+      description: "Ele vai querer muito. Ela vai fingir que não. Os dois vão amar.",
+      mercadoPagoLink: ""
+    },
+    {
+      id: "hipnose_unha",
+      title: "Sessão de hipnose para o Gabriel parar de roer unha",
+      category: "Brincadeiras",
+      price: 491.00,
+      icon: "brain",
+      image: "assets/gift_hipnose_unha.png",
+      imageClass: "scale-105 origin-center",
+      description: "Já está na hora",
+      mercadoPagoLink: ""
+    },
+    {
       id: "hipnose_verdura",
       title: "Sessão de hipnose para a Belle comer verdura",
       category: "Brincadeiras",
-      price: 548.50,
+      price: 526.00,
       icon: "salad",
       image: "assets/gift_hipnose_verdura.png",
       objectFit: "object-contain",
       description: "Para a ela finalmente fazer as pazes com a couve",
-      mercadoPagoLink: "https://mpago.li/2DJZeqV"
+      mercadoPagoLink: ""
     },
     {
-      id: "direito_dormir",
-      title: "Direito de dormir 20 minutinhos durante a festa",
+      id: "cantar_casamento",
+      title: "Cantar uma música no casamento",
       category: "Brincadeiras",
       price: 583.00,
-      icon: "moon",
-      image: "assets/gift_direito_dormir.jpeg",
-      description: "Para quem vai precisar recuperar as energias",
+      icon: "mic",
+      image: "assets/gift_cantar_musica.png",
+      objectPosition: "object-top",
+      imageClass: "scale-110 origin-top",
+      description: "Com participação especial dos noivos",
       mercadoPagoLink: ""
     },
     {
