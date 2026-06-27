@@ -288,11 +288,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "bg-white rounded-2xl overflow-hidden shadow-sm border border-stone-200/50 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 flex flex-col justify-between";
       card.innerHTML = `
-        <div class="relative overflow-hidden aspect-[4/3] border-b border-stone-100 bg-stone-100">
-          <img src="${gift.image || 'assets/monograma.png'}" alt="${gift.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+        <div class="relative overflow-hidden aspect-[4/3] border-b border-stone-100 bg-stone-100 flex items-center justify-center">
+          <img src="${gift.image || 'assets/monograma.png'}" alt="${gift.title}" class="w-full h-full ${gift.objectFit || 'object-cover'} ${gift.objectPosition || 'object-center'} ${gift.imageClass || ''} transition-transform duration-500 ${gift.imageClass ? 'hover:scale-[1.2]' : 'hover:scale-105'}">
           <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-stone-200/50 z-10">
             ${gift.category}
           </span>
+          ${gift.isProjectPhoto ? `
+            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-accentGold text-[10px] font-bold px-2.5 py-1 rounded-full border border-stone-200/50 z-10 cursor-help flex items-center gap-1 shadow-sm" title="Imagem ilustrativa do projeto real do nosso apartamento">
+              <span class="text-xs leading-none text-accentGold">*</span> Projeto
+            </span>
+          ` : ''}
         </div>
         <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
           <div class="space-y-2">
@@ -452,9 +457,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     // Configurar Tela 2: Mercado Pago (Cartão)
-    // Se o casal cadastrou um link Mercado Pago no presente, usa ele. Caso contrário, monta um mock bonito
-    const mpLink = selectedGift.mercadoPagoLink || "https://www.mercadopago.com.br";
-    document.getElementById("mercado-pago-redirect-link").href = mpLink;
+    // Se o casal cadastrou um link Mercado Pago no presente, usa ele. Caso contrário, oculta a aba de cartão.
+    const mpLink = selectedGift.mercadoPagoLink;
+    if (mpLink) {
+      payBtnCard.classList.remove("hidden");
+      payBtnPix.parentElement.classList.remove("grid-cols-1");
+      payBtnPix.parentElement.classList.add("grid-cols-2");
+      document.getElementById("mercado-pago-redirect-link").href = mpLink;
+    } else {
+      payBtnCard.classList.add("hidden");
+      payBtnPix.parentElement.classList.remove("grid-cols-2");
+      payBtnPix.parentElement.classList.add("grid-cols-1");
+    }
     
     // Iniciar por padrão na aba Pix
     selectPaymentMethod("pix");

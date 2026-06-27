@@ -15,7 +15,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@200;300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Special+Elite&family=Outfit:wght@200;300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -33,7 +33,9 @@
           },
           fontFamily: {
             serif: ['Cormorant Garamond', 'serif'],
-            sans: ['Outfit', 'sans-serif'],
+            sans: ['"Courier Prime"', 'monospace'],
+            special: ['"Special Elite"', 'cursive'],
+            outfit: ['Outfit', 'sans-serif'],
             script: ['Great Vibes', 'cursive'],
             display: ['Cinzel', 'serif']
           }
@@ -48,7 +50,7 @@
   <!-- Estilos Customizados (Principalmente para Leaflet e transições) -->
   <style>
     .leaflet-container {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Courier Prime', monospace;
     }
     .custom-scrollbar::-webkit-scrollbar {
       width: 6px;
@@ -353,8 +355,8 @@
             <div class="space-y-2">
               <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Data e Horário</h3>
               <p class="text-stone-600 text-sm leading-relaxed" id="venue-datetime">
-                Sábado, 12 de Setembro de 2026<br>
-                Cerimônia pontual às 15h30 (Recomendamos chegar com 20 minutos de antecedência).
+                12 de setembro de 2026,<br>
+                Sábado às 15h30
               </p>
             </div>
           </div>
@@ -391,9 +393,10 @@
             <div class="space-y-2">
               <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Traje (Dress Code)</h3>
               <p class="text-stone-600 text-sm leading-relaxed">
-                <strong>Passeio Completo / Social</strong><br>
-                Ternos escuros para os homens. Vestidos longos ou midi elegantes para as mulheres. <br>
-                <span class="text-accentGold font-medium block mt-1">Dica: O local possui gramado. Evite saltos agulha muito finos para seu maior conforto!</span>
+                <strong>Passeio Completo</strong><br>
+                Ternos para os homens. Vestidos longos ou midi elegantes para as mulheres.<br>
+                <span class="text-xs text-[#9c6d03] font-medium block mt-1">Importante: Pedimos a gentileza de não utilizar branco ou off-white (cores exclusivas da noiva).</span>
+                <span class="text-xs text-stone-500 font-medium block mt-0.5">Dica: O local possui gramado. Evite saltos agulha muito finos para seu maior conforto!</span>
               </p>
             </div>
           </div>
@@ -460,7 +463,7 @@
       </div>
       
       <!-- Gift Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="gifts-grid">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gifts-grid">
         <!-- Rendered by JS -->
       </div>
 

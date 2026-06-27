@@ -42,28 +42,18 @@ const WeddingConfig = {
       category: "Casa",
       price: 87.50,
       icon: "dices",
-      image: "assets/gift_jogo_tabuleiro.png",
+      image: "assets/gift_jogo_tabuleiro.jpeg",
       description: "Pra noite de casal que começa em paz e termina em discussão saudável",
       mercadoPagoLink: "https://mpago.la/2Us5aF9"
     },
     {
-      id: "kit_temperos",
-      title: "Kit de temperos gourmet",
-      category: "Casa",
-      price: 135.00,
-      icon: "flame",
-      image: "assets/gift_kit_temperos.png",
-      description: "Para o mestre do churrasco e da área gourmet ter onde se inspirar",
-      mercadoPagoLink: "https://mpago.la/24Uj75x"
-    },
-    {
-      id: "terninho_jeff",
-      title: "Terninho do Jeff",
-      category: "Casa",
+      id: "karaoke",
+      title: "Aparelho de karaoke",
+      category: "Brincadeiras",
       price: 162.00,
-      icon: "paw-print",
-      image: "assets/gift_terninho_jeff.png",
-      description: "O projeto já tem o jardim, falta encher de verde de verdade",
+      icon: "music",
+      image: "assets/gift_karaoke.webp",
+      description: "Eles precisam treinar",
       mercadoPagoLink: "https://mpago.la/1aprDxN"
     },
     {
@@ -84,7 +74,7 @@ const WeddingConfig = {
       icon: "bed",
       image: "assets/gift_cama_linho.png",
       description: "Para a suíte com headboard de couro merecer um enxoval à altura",
-      mercadoPagoLink: "https://mpago.li/2CPsUuY"
+      mercadoPagoLink: ""
     },
     {
       id: "cantar_casamento",
@@ -92,38 +82,41 @@ const WeddingConfig = {
       category: "Brincadeiras",
       price: 315.00,
       icon: "mic",
-      image: "assets/gift_cantar_musica.png",
-      description: "Uma música, um microfone, uma memória pra sempre",
+      image: "assets/gift_cantar_musica.jpeg",
+      objectPosition: "object-top",
+      imageClass: "scale-110 origin-top",
+      description: "Com participação dos MCs Belly e Gabs",
       mercadoPagoLink: "https://mpago.li/2jYEHrQ"
     },
     {
-      id: "jantar_lua_mel",
-      title: "Jantar romântico na lua de mel",
-      category: "Lua de Mel",
+      id: "curso_fotografia",
+      title: "Curso de fotografia para o Gabriel",
+      category: "Brincadeiras",
       price: 350.00,
-      icon: "utensils",
-      image: "assets/gift_jantar_romantico.jpg",
-      description: "Uma noite especial em São Miguel do Gostoso com vista e boa comida",
-      mercadoPagoLink: "https://mpago.li/2ugFKJ5"
+      icon: "camera",
+      image: "assets/gift_curso_fotografia.jpeg",
+      description: "Para ele aprender a tirar foto nas viagens",
+      mercadoPagoLink: ""
     },
     {
-      id: "corrimao_escada",
-      title: "Corrimão da escada do apartamento",
+      id: "terninho_jeff",
+      title: "Terninho do Jeff",
       category: "Casa",
       price: 388.00,
-      icon: "shield",
-      image: "assets/gift_corrimao_escada.jpg",
-      description: "Pequeno detalhe, grande segurança",
+      icon: "paw-print",
+      image: "assets/gift_terninho_jeff.png",
+      description: "Para ele chegar trajado",
       mercadoPagoLink: "https://mpago.li/2X5Btqh"
     },
     {
       id: "hipnose_unha",
-      title: "Sessão de hipnose para o Gabriel parar de roer unha",
+      title: "Fazer o Gabriel parar de roer unha",
       category: "Brincadeiras",
       price: 423.00,
       icon: "brain",
-      image: "assets/gift_hipnose_unha.png",
-      description: "Para ele chegar ao altar com as unhas intactas",
+      image: "assets/gift_hipnose_unha.jpeg",
+      objectFit: "object-contain",
+      description: "Só uma magia muito forte é capaz",
       mercadoPagoLink: "https://mpago.li/2aoAnTe"
     },
     {
@@ -137,14 +130,35 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/2HRA2XT"
     },
     {
+      id: "jantar_lua_mel",
+      title: "Jantar romântico na lua de mel",
+      category: "Lua de Mel",
+      price: 526.00,
+      icon: "utensils",
+      image: "assets/gift_jantar_romantico.jpg",
+      description: "Uma noite especial em São Miguel do Gostoso com vista e boa comida",
+      mercadoPagoLink: ""
+    },
+    {
       id: "hipnose_verdura",
       title: "Sessão de hipnose para a Belle comer verdura",
       category: "Brincadeiras",
       price: 548.50,
       icon: "salad",
       image: "assets/gift_hipnose_verdura.png",
+      objectFit: "object-contain",
       description: "Para a ela finalmente fazer as pazes com a couve",
       mercadoPagoLink: "https://mpago.li/2DJZeqV"
+    },
+    {
+      id: "direito_dormir",
+      title: "Direito de dormir 20 minutinhos durante a festa",
+      category: "Brincadeiras",
+      price: 583.00,
+      icon: "moon",
+      image: "assets/gift_direito_dormir.jpeg",
+      description: "Para quem vai precisar recuperar as energias",
+      mercadoPagoLink: ""
     },
     {
       id: "cervejeira",
@@ -152,59 +166,65 @@ const WeddingConfig = {
       category: "Casa",
       price: 719.00,
       icon: "beer",
-      image: "assets/gift_cervejeira.png",
-      description: "Já está no projeto da área gourmet, agora precisa ser realidade",
+      image: "assets/gift_cervejeira.jpeg",
+      objectFit: "object-contain",
+      description: "Alguem vai ficar muito feliz...",
       mercadoPagoLink: "https://mpago.li/26Lg3is"
     },
     {
-      id: "karaoke",
-      title: "Aparelho de karaoke",
-      category: "Brincadeiras",
+      id: "corrimao_escada",
+      title: "Corrimão da escada do apartamento",
+      category: "Casa",
       price: 968.00,
-      icon: "music",
-      image: "assets/gift_karaoke.png",
-      description: "Eles precisam treinar",
+      icon: "shield",
+      image: "assets/gift_corrimao_escada.jpg",
+      isProjectPhoto: true,
+      description: "Pequeno detalhe, grande segurança",
       mercadoPagoLink: "https://mpago.li/2vvJ14P"
     },
     {
-      id: "telhado_ap",
-      title: "Fundo para reforma do telhado do apartamento",
+      id: "gesso_cobertura",
+      title: "Contribuição para gesso da cobertura",
       category: "Casa",
       price: 1262.00,
       icon: "home",
-      image: "assets/gift_telhado_ap.png",
+      image: "assets/gift_gesso_cobertura.jpeg",
+      objectPosition: "object-top",
+      imageClass: "scale-110 origin-top",
       description: "Porque um lar bonito nao pode ter goteiras",
       mercadoPagoLink: "https://mpago.li/2GUguYP"
-    },
-    {
-      id: "sofa_novo",
-      title: "Sofá novo",
-      category: "Casa",
-      price: 1800.00,
-      icon: "armchair",
-      image: "assets/gift_sofa_novo.jpg",
-      description: "O sofá da sala de TV que eles tanto amam",
-      mercadoPagoLink: "https://mpago.li/2GiqhRk"
     },
     {
       id: "passagem_aerea",
       title: "Passagem aérea para a lua de mel",
       category: "Lua de Mel",
-      price: 2691.00,
+      price: 1800.00,
       icon: "plane",
       image: "assets/gift_passagem_aerea.jpg",
       description: "Afinal nao dá pra ir pro RN de carro...",
+      mercadoPagoLink: "https://mpago.li/2GiqhRk"
+    },
+    {
+      id: "sofa_novo",
+      title: "Sofá novo",
+      category: "Casa",
+      price: 2691.00,
+      icon: "armchair",
+      image: "assets/gift_sofa_novo.jpg",
+      isProjectPhoto: true,
+      description: "O sofá da sala de TV que eles tanto amam",
       mercadoPagoLink: "https://mpago.li/18WNGQD"
     },
     {
       id: "quarto_bebe",
       title: "Quarto do bebê",
       category: "Casa",
-      price: 4189.00,
+      price: 4389.00,
       icon: "baby",
       image: "assets/gift_quarto_bebe.jpg",
+      isProjectPhoto: true,
       description: "Para o futuro! 🤣",
-      mercadoPagoLink: "https://mpago.li/2faWJUE"
+      mercadoPagoLink: "https://mpago.li/2jR1xsu"
     }
   ],
   
