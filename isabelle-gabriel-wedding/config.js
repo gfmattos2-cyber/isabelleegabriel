@@ -11,7 +11,7 @@ const WeddingConfig = {
   
   // Localização
   venueName: "Hotel Fazenda Fonte Limpa",
-  venueAddress: "Estrada MG-405, Km 3 - Santana dos Montes, MG",
+  venueAddress: "Estrada AMG-405, Km 3 - Santana dos Montes, MG",
   venueCoordinates: {
     lat: -20.806147,
     lng: -43.701210
