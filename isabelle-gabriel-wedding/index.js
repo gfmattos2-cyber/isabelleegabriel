@@ -80,11 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let map;
   function initMap() {
     const coords = [WeddingConfig.venueCoordinates.lat, WeddingConfig.venueCoordinates.lng];
+    // Offset the center coordinates further south so the marker is pushed to the upper area of the map
+    const centerCoords = [WeddingConfig.venueCoordinates.lat - 0.0055, WeddingConfig.venueCoordinates.lng];
     
     // Inicializa o mapa
     map = L.map("wedding-map", {
       scrollWheelZoom: false
-    }).setView(coords, 15);
+    }).setView(centerCoords, 15);
     
     // Adiciona o tile layer CartoDB Voyager (Tema pastel/champagne premium)
     L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -120,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cardLocation = document.getElementById("card-location");
   const cardDress = document.getElementById("card-dress");
   
-  const mapContainer = document.getElementById("wedding-map");
+  const mapContainer = document.getElementById("wedding-map-container");
   const inviteContainer = document.getElementById("wedding-invitation-container");
   const dressContainer = document.getElementById("wedding-dress-container");
 
@@ -157,21 +159,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (cardDatetime && cardLocation && cardDress) {
+    const mediaPanel = document.getElementById("event-media-panel");
+    const scrollToMedia = () => {
+      if (window.innerWidth < 1024 && mediaPanel) {
+        mediaPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    };
+
     // Por padrão, a localização (mapa) está ativa
     activeCard(cardLocation, mapContainer);
 
     cardDatetime.addEventListener("click", () => {
       activeCard(cardDatetime, inviteContainer);
+      scrollToMedia();
     });
     cardLocation.addEventListener("click", () => {
       activeCard(cardLocation, mapContainer);
       // Redesenhar o mapa para corrigir possíveis falhas de tamanho ao reexibir
       if (map) {
-        setTimeout(() => { map.invalidateSize(); }, 300);
+        setTimeout(() => { 
+          map.invalidateSize(); 
+          map.setView([WeddingConfig.venueCoordinates.lat - 0.0055, WeddingConfig.venueCoordinates.lng], 15);
+        }, 300);
       }
+      scrollToMedia();
     });
     cardDress.addEventListener("click", () => {
       activeCard(cardDress, dressContainer);
+      scrollToMedia();
     });
   }
 
