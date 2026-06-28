@@ -99,14 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (category === "hotels") {
       activeBtn = tabBtnHotels;
-
-      const PAGE_SIZE = 4;
-      const hotels = WeddingConfig.tips.hotels;
-      const totalPages = Math.ceil(hotels.length / PAGE_SIZE);
-      const page = window._hotelPage || 0;
-      const slice = hotels.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
-
-      const hotelCards = slice.map(hotel => `
+      items = WeddingConfig.tips.hotels.map(hotel => `
         <div class="bg-champagne/30 border border-stone-200/50 p-6 rounded-2xl shadow-sm flex flex-col justify-between space-y-4">
           <div class="space-y-2">
             <h4 class="font-serif text-lg font-bold text-primary">${hotel.name}</h4>
@@ -119,40 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ${hotel.phone ? `<span class="text-primary font-semibold flex items-center gap-0.5 ml-auto"><i data-lucide="phone" class="h-3 w-3"></i> ${hotel.phone}</span>` : ''}
           </div>
         </div>
-      `).join("");
-
-      // Paginação
-      const pagination = totalPages > 1 ? `
-        <div class="col-span-full flex items-center justify-center gap-4 pt-4">
-          <button id="hotel-prev" ${page === 0 ? 'disabled' : ''}
-            class="flex items-center gap-1.5 px-4 py-2 rounded-full border border-primary/25 text-primary text-xs font-semibold tracking-wide transition-all
-              ${page === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-primary hover:text-white hover:border-primary'}">
-            <i data-lucide="chevron-left" class="h-3.5 w-3.5"></i> Anterior
-          </button>
-          <span class="text-xs text-stone-400 font-medium tracking-wide">${page + 1} de ${totalPages}</span>
-          <button id="hotel-next" ${page === totalPages - 1 ? 'disabled' : ''}
-            class="flex items-center gap-1.5 px-4 py-2 rounded-full border border-primary/25 text-primary text-xs font-semibold tracking-wide transition-all
-              ${page === totalPages - 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-primary hover:text-white hover:border-primary'}">
-            Próximos <i data-lucide="chevron-right" class="h-3.5 w-3.5"></i>
-          </button>
-        </div>
-      ` : '';
-
-      activeBtn.classList.remove("border-transparent", "text-stone-500");
-      activeBtn.classList.add("border-primary", "text-primary");
-      container.innerHTML = hotelCards + pagination;
-      lucide.createIcons();
-
-      // Eventos dos botões de página
-      const prevBtn = document.getElementById("hotel-prev");
-      const nextBtn = document.getElementById("hotel-next");
-      if (prevBtn) prevBtn.addEventListener("click", () => {
-        if (window._hotelPage > 0) { window._hotelPage--; renderTips("hotels"); }
-      });
-      if (nextBtn) nextBtn.addEventListener("click", () => {
-        if (window._hotelPage < totalPages - 1) { window._hotelPage++; renderTips("hotels"); }
-      });
-      return;
+      `);
     } else if (category === "beauty") {
       activeBtn = tabBtnBeauty;
       items = WeddingConfig.tips.beautySalons.map(salon => `
@@ -183,12 +143,11 @@ document.addEventListener("DOMContentLoaded", () => {
     lucide.createIcons();
   }
   
-  tabBtnHotels.addEventListener("click", () => { window._hotelPage = 0; renderTips("hotels"); });
+  tabBtnHotels.addEventListener("click", () => renderTips("hotels"));
   tabBtnBeauty.addEventListener("click", () => renderTips("beauty"));
   tabBtnAttractions.addEventListener("click", () => renderTips("attractions"));
   
   // Render inicial de dicas (Hotéis)
-  window._hotelPage = 0;
   renderTips("hotels");
 
   // 6. Lista de Presentes
