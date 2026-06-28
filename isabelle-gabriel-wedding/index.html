@@ -446,12 +446,8 @@
       
       <!-- Header -->
       <div class="text-center space-y-3 mb-16">
-        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Lista de Casamento</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Lista de Presentes Virtuais</h2>
+        <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">LISTA DE PRESENTES</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
-        <p class="text-stone-600 text-sm max-w-xl mx-auto leading-relaxed pt-2">
-          Queridos amigos e familiares, nossa lista de presentes é virtual. Todos os valores arrecadados serão integralmente convertidos em nossa viagem de lua de mel e montagem do nosso novo lar.
-        </p>
       </div>
       
       <!-- Filters -->
@@ -459,7 +455,7 @@
         <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary text-white transition" data-filter="all">Todos</button>
         <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Lua de Mel">Lua de Mel</button>
         <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Casa">Casa</button>
-        <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Brincadeiras">Brincadeiras</button>
+        <button class="px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-white border border-stone-200 text-stone-600 hover:bg-stone-50 transition" data-filter="Divertido">Divertido</button>
       </div>
       
       <!-- Gift Grid -->
@@ -484,77 +480,71 @@
         <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Sua presença importa</span>
         <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Confirmação de Presença</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
-        <p class="text-stone-600 text-sm max-w-md mx-auto leading-relaxed pt-2">
-          Por favor, confirme sua presença até o dia <strong>12 de Agosto de 2026</strong> para nos ajudar a organizar o evento com perfeição.
-        </p>
       </div>
       
-      <!-- RSVP Form Container -->
+      <!-- RSVP Container (Multi-step) -->
       <div class="bg-white border border-stone-200/50 p-8 sm:p-12 rounded-3xl shadow-lg relative overflow-hidden" id="rsvp-container">
         
-        <form id="rsvp-form" class="space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <!-- Nome -->
-            <div class="space-y-1.5">
-              <label for="rsvp-name" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Seu Nome Completo</label>
-              <input type="text" id="rsvp-name" required class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50" placeholder="Digite seu nome completo">
-            </div>
-            
-            <!-- Confirmação -->
-            <div class="space-y-1.5">
-              <label for="rsvp-confirmed" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Você vai comparecer?</label>
-              <select id="rsvp-confirmed" required class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50">
-                <option value="" disabled selected>Selecione uma opção</option>
-                <option value="true">Sim, com certeza!</option>
-                <option value="false">Infelizmente não poderei comparecer</option>
-              </select>
-            </div>
+        <!-- STEP 1: SEARCH GUEST -->
+        <div id="rsvp-step-search" class="space-y-6">
+          <div class="space-y-2 text-center">
+            <p class="text-sm text-stone-600">Busque seu nome abaixo para sua confirmação de seus acompanhantes.</p>
           </div>
           
-          <!-- Conditional Fields (Only shown if attending) -->
-          <div id="rsvp-attendance-details" class="space-y-6 hidden border-t border-stone-100 pt-6">
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <!-- E-mail -->
-              <div class="space-y-1.5">
-                <label for="rsvp-email" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">E-mail</label>
-                <input type="email" id="rsvp-email" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50" placeholder="seu-email@exemplo.com">
-              </div>
-              
-              <!-- Telefone -->
-              <div class="space-y-1.5">
-                <label for="rsvp-phone" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Celular / WhatsApp</label>
-                <input type="tel" id="rsvp-phone" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50" placeholder="(11) 99999-9999">
+          <div class="space-y-4">
+            <div class="space-y-1.5">
+              <label for="rsvp-search-name" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Seu nome conforme o convite</label>
+              <div class="flex gap-2">
+                <input type="text" id="rsvp-search-name" required class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50" placeholder="Ex: Isabelle de Matos">
+                <button id="rsvp-btn-search" class="bg-primary hover:bg-primaryDark text-white px-6 py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-md flex items-center justify-center gap-1.5 flex-shrink-0">
+                  <i data-lucide="search" class="h-4 w-4"></i> Buscar
+                </button>
               </div>
             </div>
-            
-            <!-- Acompanhantes Crianças -->
-            <div class="space-y-1.5">
-              <label for="rsvp-children" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Levará crianças (0 a 10 anos)?</label>
-              <select id="rsvp-children" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50">
-                <option value="0">Nenhuma</option>
-                <option value="1">1 criança</option>
-                <option value="2">2 crianças</option>
-                <option value="3">3 crianças</option>
-              </select>
+          </div>
+          
+          <!-- Search Results Container -->
+          <div id="rsvp-search-results" class="hidden space-y-3 pt-4 border-t border-stone-100">
+            <p class="text-xs font-semibold text-stone-500 uppercase tracking-wider">Selecione o seu nome na lista:</p>
+            <div class="grid grid-cols-1 gap-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar" id="rsvp-search-results-list">
+              <!-- Dynamically populated -->
             </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: GROUP ATTENDANCE TOGGLES -->
+        <div id="rsvp-step-attendance" class="space-y-8 hidden">
+          <div class="text-center space-y-2">
+            <h3 class="font-serif text-2xl font-bold text-primary">Quem vai?</h3>
+            <p class="text-xs text-stone-500 max-w-md mx-auto leading-relaxed">
+              Sua resposta ajuda na organização. Você pode alterá-la sempre que precisar.
+            </p>
+          </div>
+          
+          <!-- Group Members Toggles List -->
+          <div class="space-y-4 max-h-[350px] overflow-y-auto pr-2 custom-scrollbar" id="rsvp-group-members-list">
+            <!-- Dynamically populated -->
+          </div>
+          
+          <!-- Children Container (Only visible to specific groups) -->
+          <div id="rsvp-children-container" class="hidden">
+            <!-- Children form dynamically populated in JS -->
+          </div>
+          
+          <div class="space-y-2">
+            <!-- Submit Button (Confirmar Presença) -->
+            <button id="rsvp-btn-submit-all" class="w-full bg-primary hover:bg-primaryDark text-white py-4 rounded-xl font-semibold text-xs tracking-widest uppercase transition shadow-md hover:shadow-xl flex items-center justify-center gap-2">
+              Confirmar Presença
+            </button>
             
+            <!-- Back to search link -->
+            <button type="button" id="rsvp-btn-back-to-search" class="w-full text-center text-xs text-stone-500 hover:text-primary transition flex items-center justify-center gap-1.5 pt-2">
+              <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i> Não é você? Buscar outro nome
+            </button>
           </div>
-          
-          <!-- Observação Geral (Sempre visível) -->
-          <div class="space-y-1.5">
-            <label for="rsvp-message" class="block text-xs font-semibold uppercase tracking-wider text-stone-600">Observações ou mensagem aos noivos</label>
-            <textarea id="rsvp-message" rows="3" class="w-full border border-stone-200 px-4 py-3.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm bg-stone-50/50 resize-none" placeholder="Se desejar, deixe um comentário aqui..."></textarea>
-          </div>
-          
-          <!-- Submit Button -->
-          <button type="submit" class="w-full bg-primary hover:bg-primaryDark text-white py-4 rounded-xl font-semibold text-xs tracking-widest uppercase transition shadow-md hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2" id="rsvp-submit-btn">
-            Confirmar RSVP
-          </button>
-        </form>
-        
+        </div>
+
       </div>
-      
     </div>
   </section>
 
@@ -568,7 +558,7 @@
         <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Dicas & Recomendações</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
         <p class="text-stone-600 text-sm max-w-lg mx-auto leading-relaxed pt-2">
-          Para quem vem de fora da cidade ou quer aproveitar ao máximo, preparamos uma lista de hotéis recomendados, salões de beleza e atrações turísticas.
+          Para quem for se hospedar, preparamos uma lista de hotéis recomendados, salões de beleza/maquiadoras e atrações turísticas da região.
         </p>
       </div>
       
@@ -599,11 +589,10 @@
       
       <!-- Header -->
       <div class="text-center space-y-3 mb-16">
-        <span class="font-display text-accentGold text-base sm:text-lg tracking-widest uppercase">Mural de Carinho</span>
         <h2 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Mural de Recados</h2>
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
         <p class="text-stone-600 text-sm max-w-md mx-auto leading-relaxed pt-2">
-          Deixe sua mensagem de carinho, votos de felicidade ou conselhos para os noivos!
+          Deixe sua mensagem de carinho e votos de felicidade para os noivos!
         </p>
       </div>
       
@@ -647,6 +636,11 @@
       <!-- Monogram / Initials -->
       <div class="inline-block relative">
         <img src="assets/monograma.png" alt="Monograma I&G" class="h-36 w-36 object-contain brightness-0 invert opacity-90 transform hover:scale-105 transition duration-500">
+      </div>
+      
+      <!-- Copyright / Rights Notice -->
+      <div class="mt-6 text-xs text-white/60 font-sans tracking-wide">
+        © 2026 Isabelle & Gabriel. Todos os direitos reservados.
       </div>
       
     </div>
@@ -744,23 +738,15 @@
           <div class="p-3 bg-blue-50 text-blue-600 rounded-full w-14 h-14 flex items-center justify-center mb-1">
             <i data-lucide="shield-check" class="h-8 w-8"></i>
           </div>
-          
           <h4 class="font-serif text-lg font-bold text-stone-800">Pagamento Seguro Mercado Pago</h4>
           <p class="text-xs text-stone-500 max-w-xs leading-relaxed">
-            Você será redirecionado para o ambiente seguro do Mercado Pago para pagar parcelado em até 12x ou no cartão à vista.
+            Você será redirecionado para o ambiente seguro do Mercado Pago.
           </p>
-          
           <a href="#" target="_blank" id="mercado-pago-redirect-link" class="w-full text-center bg-[#009EE3] hover:bg-[#0089C7] text-white py-4 rounded-xl font-semibold text-xs tracking-wider uppercase transition shadow-md flex items-center justify-center gap-2">
             <i data-lucide="external-link" class="h-4 w-4"></i> Ir para o Mercado Pago
           </a>
-          
-          <p class="text-[10px] text-stone-400 italic">
-            Obs: O presente será confirmado nos nossos registros automaticamente.
-          </p>
         </div>
-
       </div>
-
     </div>
   </div>
 
@@ -778,6 +764,7 @@
   
   <!-- Custom JavaScript Files -->
   <script src="config.js"></script>
+  <script src="guests_list.js"></script>
   <script src="pix.js"></script>
   <script src="index.js"></script>
 </body>

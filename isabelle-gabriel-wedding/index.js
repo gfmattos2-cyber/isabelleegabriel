@@ -3,6 +3,23 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // 0. Reset por parâmetro na URL (?reset, ?clear ou fragmentos com hash como #rsvp?reset)
+  const urlSearch = window.location.search;
+  const urlHash = window.location.hash;
+  const isReset = urlSearch.includes("clear") || urlSearch.includes("reset") || 
+                  urlHash.includes("clear") || urlHash.includes("reset");
+
+  if (isReset) {
+    localStorage.removeItem("confirmed_guests_rsvp");
+    try {
+      const cleanUrl = window.location.pathname + (urlHash.includes("?") ? urlHash.split("?")[0] : urlHash);
+      window.history.replaceState({}, document.title, cleanUrl);
+      alert("Testes limpos com sucesso! Todos os convidados foram liberados para busca.");
+    } catch (e) {
+      window.location.href = window.location.pathname;
+    }
+  }
+
   // 1. Inicializar Ícones Lucide
   lucide.createIcons();
   
@@ -565,61 +582,343 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 8. Confirmação de RSVP
-  const rsvpForm = document.getElementById("rsvp-form");
-  const rsvpConfirmed = document.getElementById("rsvp-confirmed");
-  const rsvpAttendanceDetails = document.getElementById("rsvp-attendance-details");
-  const rsvpSubmitBtn = document.getElementById("rsvp-submit-btn");
+  // 8. Confirmação de RSVP (Multi-etapas por grupo)
+  const storedConfirmed = JSON.parse(localStorage.getItem("confirmed_guests_rsvp")) || [];
+  let activeGuests = WeddingGuests.filter(g => !storedConfirmed.includes(g.name));
+  let selectedGuest = null;
+  let groupMembers = [];
+  let memberAttendance = {}; // name -> boolean (true: vai, false: não vai)
 
-  // Mostrar campos apenas se a pessoa responder que SIM, vai comparecer
-  rsvpConfirmed.addEventListener("change", (e) => {
-    if (e.target.value === "true") {
-      rsvpAttendanceDetails.classList.remove("hidden");
-    } else {
-      rsvpAttendanceDetails.classList.add("hidden");
+  // Groups authorized to add children (MM, RR, B, D, L, Q, T, Y, HHH, II, UU, ZZ)
+  const GROUPS_WITH_CHILDREN = ["MM", "RR", "B", "D", "L", "Q", "T", "Y", "HHH", "II", "UU", "ZZ"];
+
+  const rsvpStepSearch = document.getElementById("rsvp-step-search");
+  const rsvpStepAttendance = document.getElementById("rsvp-step-attendance");
+
+  const rsvpSearchNameInput = document.getElementById("rsvp-search-name");
+  const rsvpBtnSearch = document.getElementById("rsvp-btn-search");
+  const rsvpSearchResults = document.getElementById("rsvp-search-results");
+  const rsvpSearchResultsList = document.getElementById("rsvp-search-results-list");
+
+  const rsvpGroupMembersList = document.getElementById("rsvp-group-members-list");
+  const rsvpBtnSubmitAll = document.getElementById("rsvp-btn-submit-all");
+  const rsvpBtnBackToSearch = document.getElementById("rsvp-btn-back-to-search");
+
+  // Helper to normalize strings for comparison (removes accents and lowercases)
+  function normalizeText(text) {
+    if (!text) return "";
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  }
+
+  // Handle Search
+  function performSearch() {
+    const searchTerm = rsvpSearchNameInput.value.trim();
+    if (!searchTerm) return;
+
+    const normalizedSearch = normalizeText(searchTerm);
+    
+    if (typeof WeddingGuests === "undefined") {
+      alert("Erro ao carregar a lista de convidados. Por favor, atualize a página.");
+      return;
+    }
+
+    // Filter active guests (not yet confirmed) with name containing the search term
+    const matches = activeGuests.filter(guest => 
+      normalizeText(guest.name).includes(normalizedSearch)
+    );
+
+    // Clean previous results
+    rsvpSearchResultsList.innerHTML = "";
+    
+    if (matches.length === 0) {
+      rsvpSearchResults.classList.remove("hidden");
+      rsvpSearchResultsList.innerHTML = `
+        <p class="text-xs text-red-500 py-2 text-center font-medium">
+          Nenhum convidado encontrado ou presença já confirmada. Verifique se o nome está correto ou busque apenas o primeiro nome.
+        </p>
+      `;
+      return;
+    }
+
+    rsvpSearchResults.classList.remove("hidden");
+
+    matches.forEach(guest => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "w-full text-left px-4 py-3 rounded-xl border border-stone-200 hover:bg-stone-50 transition text-sm text-stone-800 font-medium flex items-center justify-between";
+      btn.innerHTML = `
+        <span>${guest.name}</span>
+        <i data-lucide="chevron-right" class="h-4 w-4 text-stone-400"></i>
+      `;
+      btn.addEventListener("click", () => {
+        selectGuest(guest);
+      });
+      rsvpSearchResultsList.appendChild(btn);
+    });
+
+    lucide.createIcons();
+  }
+
+  rsvpBtnSearch.addEventListener("click", performSearch);
+  rsvpSearchNameInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      performSearch();
     }
   });
 
-  rsvpForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  // Select Guest and show Step 2
+  function selectGuest(guest) {
+    selectedGuest = guest;
+    const groupCode = guest.group;
     
-    const name = document.getElementById("rsvp-name").value.trim();
-    const confirmed = rsvpConfirmed.value === "true";
-    const email = document.getElementById("rsvp-email").value.trim();
-    const phone = document.getElementById("rsvp-phone").value.trim();
-    const childrenCount = parseInt(document.getElementById("rsvp-children").value) || 0;
-    const message = document.getElementById("rsvp-message").value.trim();
-    
-    const rsvpData = {
-      action: "rsvp",
-      name,
-      confirmed,
-      email,
-      phone,
-      adultsCount: 0, // Individual
-      childrenCount,
-      dietaryRestrictions: "", // Desativado
-      message
-    };
-    
-    rsvpSubmitBtn.disabled = true;
-    rsvpSubmitBtn.innerText = "Enviando...";
-    
-    try {
-      if (WeddingConfig.googleSheetsUrl) {
-        await fetch(WeddingConfig.googleSheetsUrl, {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(rsvpData)
+    // Find all guests in the same group
+    groupMembers = activeGuests.filter(g => g.group === groupCode);
+
+    // Initialize attendance (default to true)
+    groupMembers.forEach(m => {
+      if (memberAttendance[m.name] === undefined) {
+        memberAttendance[m.name] = true;
+      }
+    });
+
+    // Render list
+    renderGroupMembers();
+
+    // Configure children section if group matches
+    const showChildrenOption = GROUPS_WITH_CHILDREN.includes(groupCode);
+    const childrenContainer = document.getElementById("rsvp-children-container");
+    if (showChildrenOption) {
+      childrenContainer.classList.remove("hidden");
+      initChildrenSection();
+    } else {
+      childrenContainer.classList.add("hidden");
+      childrenContainer.innerHTML = "";
+    }
+
+    // Show Step 2
+    rsvpStepSearch.classList.add("hidden");
+    rsvpStepAttendance.classList.remove("hidden");
+  }
+
+  function renderGroupMembers() {
+    rsvpGroupMembersList.innerHTML = "";
+
+    groupMembers.forEach(member => {
+      const container = document.createElement("div");
+      container.className = "flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 p-4 bg-stone-50 border border-stone-100 rounded-2xl transition";
+      
+      const isConfirmed = memberAttendance[member.name];
+
+      // Deep green (#03300B) for 'Yes', Charcoal grey (#444) for 'No' to align with premium palette
+      container.innerHTML = `
+        <span class="text-sm font-semibold text-stone-800">${member.name}</span>
+        <div class="flex gap-2 w-full sm:w-auto">
+          <!-- Yes button -->
+          <button type="button" data-name="${member.name}" data-status="true" class="rsvp-toggle-btn flex-1 sm:flex-none py-2.5 px-4 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-1.5 ${isConfirmed ? 'bg-primary text-white border-primary font-semibold shadow-sm' : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'}">
+            <i data-lucide="check" class="h-3.5 w-3.5"></i> Irá comparecer
+          </button>
+          <!-- No button -->
+          <button type="button" data-name="${member.name}" data-status="false" class="rsvp-toggle-btn flex-1 sm:flex-none py-2.5 px-4 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-1.5 ${!isConfirmed ? 'bg-stone-700 text-white border-stone-700 font-semibold shadow-sm' : 'bg-white text-stone-600 border-stone-200 hover:bg-stone-50'}">
+            <i data-lucide="x" class="h-3.5 w-3.5"></i> Não irá comparecer
+          </button>
+        </div>
+      `;
+
+      // Add event listeners to toggles
+      const btns = container.querySelectorAll(".rsvp-toggle-btn");
+      btns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const status = btn.getAttribute("data-status") === "true";
+          memberAttendance[member.name] = status;
+          renderGroupMembers();
         });
-      } else {
-        saveToMockDb("rsvp", rsvpData);
+      });
+
+      rsvpGroupMembersList.appendChild(container);
+    });
+
+    lucide.createIcons();
+  }
+
+  // Children Section Initialization
+  function initChildrenSection() {
+    const childrenContainer = document.getElementById("rsvp-children-container");
+    childrenContainer.innerHTML = `
+      <div class="p-6 bg-champagne/10 border border-stone-100 rounded-3xl space-y-4 my-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+          <span class="text-sm font-semibold text-stone-800">Levará crianças?</span>
+          <div class="flex gap-2 w-full sm:w-auto">
+            <button type="button" id="rsvp-children-toggle-yes" class="flex-1 sm:flex-none py-2 px-4 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-1.5 bg-white text-stone-600 border-stone-200 hover:bg-stone-50">
+              Sim
+            </button>
+            <button type="button" id="rsvp-children-toggle-no" class="flex-1 sm:flex-none py-2 px-4 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-1.5 bg-stone-700 text-white border-stone-700 font-semibold shadow-sm">
+              Não
+            </button>
+          </div>
+        </div>
+        
+        <!-- Children inputs wrapper -->
+        <div id="rsvp-children-inputs-container" class="hidden space-y-3 pt-3 border-t border-stone-100/50">
+          <div id="rsvp-children-list" class="space-y-3">
+            <!-- Row inputs -->
+          </div>
+          <button type="button" id="rsvp-btn-add-child" class="text-xs text-primary hover:text-primaryDark font-semibold flex items-center gap-1.5 mt-2">
+            <i data-lucide="plus-circle" class="h-4 w-4"></i> Adicionar outra criança
+          </button>
+        </div>
+      </div>
+    `;
+
+    const toggleYes = document.getElementById("rsvp-children-toggle-yes");
+    const toggleNo = document.getElementById("rsvp-children-toggle-no");
+    const inputsContainer = document.getElementById("rsvp-children-inputs-container");
+    const listContainer = document.getElementById("rsvp-children-list");
+    const btnAddChild = document.getElementById("rsvp-btn-add-child");
+
+    toggleYes.addEventListener("click", () => {
+      toggleYes.className = "flex-1 sm:flex-none py-2 px-4 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-1.5 bg-primary text-white border-primary font-semibold shadow-sm";
+      toggleNo.className = "flex-1 sm:flex-none py-2 px-4 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-1.5 bg-white text-stone-600 border-stone-200 hover:bg-stone-50";
+      inputsContainer.classList.remove("hidden");
+      
+      if (listContainer.children.length === 0) {
+        addChildRow();
+      }
+    });
+
+    toggleNo.addEventListener("click", () => {
+      toggleNo.className = "flex-1 sm:flex-none py-2 px-4 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-1.5 bg-stone-700 text-white border-stone-700 font-semibold shadow-sm";
+      toggleYes.className = "flex-1 sm:flex-none py-2 px-4 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-1.5 bg-white text-stone-600 border-stone-200 hover:bg-stone-50";
+      inputsContainer.classList.add("hidden");
+    });
+
+    btnAddChild.addEventListener("click", () => {
+      addChildRow();
+    });
+
+    lucide.createIcons();
+  }
+
+  function addChildRow() {
+    const listContainer = document.getElementById("rsvp-children-list");
+    const childId = 'child-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    
+    const row = document.createElement("div");
+    row.id = childId;
+    row.className = "flex gap-2 items-center w-full";
+    row.innerHTML = `
+      <input type="text" class="rsvp-child-name flex-grow border border-stone-200 px-3 py-2.5 rounded-xl text-xs bg-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary" placeholder="Nome da criança" required>
+      <input type="number" min="0" max="17" class="rsvp-child-age w-20 border border-stone-200 px-3 py-2.5 rounded-xl text-xs bg-white focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary" placeholder="Idade" required>
+      <button type="button" class="rsvp-btn-remove-child text-red-500 hover:text-red-700 p-2 flex items-center justify-center transition flex-shrink-0">
+        <i data-lucide="trash-2" class="h-4 w-4"></i>
+      </button>
+    `;
+    
+    row.querySelector(".rsvp-btn-remove-child").addEventListener("click", () => {
+      row.remove();
+      if (listContainer.children.length === 0) {
+        document.getElementById("rsvp-children-toggle-no").click();
+      }
+    });
+
+    listContainer.appendChild(row);
+    lucide.createIcons();
+  }
+
+  // Go back to Step 1 (Search)
+  rsvpBtnBackToSearch.addEventListener("click", () => {
+    rsvpStepAttendance.classList.add("hidden");
+    rsvpStepSearch.classList.remove("hidden");
+    rsvpSearchNameInput.value = "";
+    rsvpSearchResults.classList.add("hidden");
+    rsvpSearchResultsList.innerHTML = "";
+    selectedGuest = null;
+    groupMembers = [];
+    
+    const childrenContainer = document.getElementById("rsvp-children-container");
+    childrenContainer.classList.add("hidden");
+    childrenContainer.innerHTML = "";
+  });
+
+  // Final Form Submit (Direct from Step 2)
+  rsvpBtnSubmitAll.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    // Check if children section is shown and "Sim" is selected
+    const childrenContainer = document.getElementById("rsvp-children-container");
+    const isChildrenSectionVisible = !childrenContainer.classList.contains("hidden");
+    const toggleYes = document.getElementById("rsvp-children-toggle-yes");
+    const hasChildren = isChildrenSectionVisible && toggleYes && toggleYes.classList.contains("bg-primary");
+
+    let childCount = 0;
+    let childrenMessage = "";
+
+    if (hasChildren) {
+      const childNameInputs = document.querySelectorAll(".rsvp-child-name");
+      const childAgeInputs = document.querySelectorAll(".rsvp-child-age");
+      const childDetails = [];
+
+      for (let i = 0; i < childNameInputs.length; i++) {
+        const childName = childNameInputs[i].value.trim();
+        const childAge = childAgeInputs[i].value.trim();
+        
+        if (!childName || !childAge) {
+          alert("Por favor, preencha o nome e a idade de todas as crianças.");
+          return;
+        }
+        
+        childDetails.push(`${childName} (${childAge} anos)`);
       }
       
-      // Mostrar tela de sucesso
+      childCount = childNameInputs.length;
+      if (childCount > 0) {
+        childrenMessage = "Crianças: " + childDetails.join(", ");
+      }
+    }
+
+    rsvpBtnSubmitAll.disabled = true;
+    rsvpBtnSubmitAll.innerText = "Enviando...";
+
+    try {
+      // Send sequential requests instead of Promise.all to avoid Google Sheets Apps Script concurrency race conditions
+      for (const member of groupMembers) {
+        const isConfirmed = memberAttendance[member.name];
+        const rsvpData = {
+          action: "rsvp",
+          name: member.name,
+          confirmed: isConfirmed,
+          email: "",
+          phone: "",
+          adultsCount: 0,
+          childrenCount: isConfirmed && hasChildren ? childCount : 0,
+          dietaryRestrictions: "",
+          message: isConfirmed && hasChildren ? childrenMessage : ""
+        };
+
+        if (WeddingConfig.googleSheetsUrl) {
+          await fetch(WeddingConfig.googleSheetsUrl, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(rsvpData)
+          });
+        } else {
+          saveToMockDb("rsvp", rsvpData);
+        }
+      }
+
+      // Remove confirmed group members from the active search list in-memory
+      const groupNames = groupMembers.map(m => m.name);
+      activeGuests = activeGuests.filter(guest => !groupNames.includes(guest.name));
+
+      // Save confirmed names in localStorage so they remain hidden even after page reload
+      const currentStored = JSON.parse(localStorage.getItem("confirmed_guests_rsvp")) || [];
+      const updatedStored = [...new Set([...currentStored, ...groupNames])];
+      localStorage.setItem("confirmed_guests_rsvp", JSON.stringify(updatedStored));
+
+      // Show success screen
       document.getElementById("rsvp-container").innerHTML = `
         <div class="text-center space-y-4 py-8 flex flex-col items-center">
           <div class="p-3.5 bg-primary text-white rounded-full w-16 h-16 flex items-center justify-center mb-2 shadow-md">
@@ -627,7 +926,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <h3 class="font-display text-2xl font-normal text-primary tracking-wide uppercase">Confirmação Enviada!</h3>
           <p class="text-stone-600 text-sm max-w-sm leading-relaxed">
-            Muito obrigado, <strong>${name}</strong>. Seus dados foram salvos com sucesso e enviados para o controle dos noivos.
+            Presença confirmada com sucesso para o seu grupo! Seus dados foram salvos e enviados para o controle dos noivos.
           </p>
           <p class="text-xs text-stone-500 italic">
             "Sua presença fará o nosso dia ainda mais inesquecível!" — Isabelle & Gabriel
@@ -635,21 +934,20 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
       lucide.createIcons();
-      
-      // Efeito premium de confete
+
+      // Confetti effect
       confetti({
         particleCount: 200,
         spread: 100,
         origin: { y: 0.6 },
         colors: ['#03300B', '#D4AF37', '#FAF9F6']
       });
-      
+
     } catch (err) {
       console.error(err);
       alert("Houve um erro de rede. Por favor, tente enviar seu RSVP novamente.");
-    } finally {
-      rsvpSubmitBtn.disabled = false;
-      rsvpSubmitBtn.innerText = "Confirmar RSVP";
+      rsvpBtnSubmitAll.disabled = false;
+      rsvpBtnSubmitAll.innerText = "Confirmar Presença";
     }
   });
 

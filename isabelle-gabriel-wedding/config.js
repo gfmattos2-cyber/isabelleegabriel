@@ -43,18 +43,20 @@ const WeddingConfig = {
       price: 87.50,
       icon: "utensils",
       image: "assets/gift_kit_churrasco.png",
-      description: "Para eles aproveitarem um bom churrasco",
-      mercadoPagoLink: ""
+      objectFit: "object-contain",
+      objectPosition: "object-center",
+      description: "",
+      mercadoPagoLink: "https://mpago.la/1KJf62v"
     },
     {
       id: "jogo_tabuleiro",
       title: "Jogo de tabuleiro",
-      category: "Casa",
+      category: "Divertido",
       price: 162.00,
       icon: "dices",
       image: "assets/gift_jogo_tabuleiro.jpeg",
       description: "Para contribuir com noites divertidas",
-      mercadoPagoLink: ""
+      mercadoPagoLink: "https://mpago.la/1Aze1cH"
     },
     {
       id: "jogo_cama",
@@ -63,38 +65,38 @@ const WeddingConfig = {
       price: 220.00,
       icon: "bed",
       image: "assets/gift_cama_linho.png",
-      description: "Para a suíte do casal merecer um enxoval à altura",
-      mercadoPagoLink: ""
+      description: "",
+      mercadoPagoLink: "https://mpago.li/1ymaAJH"
     },
     {
       id: "direito_dormir",
-      title: "Direito de dormir 20 minutinhos durante a festa",
-      category: "Brincadeiras",
+      title: "Direito de dormir 20 minutinhos",
+      category: "Divertido",
       price: 279.00,
       icon: "moon",
       image: "assets/gift_direito_dormir.jpeg",
-      description: "Para quem vai precisar recuperar as energias e voltar com tudo",
-      mercadoPagoLink: ""
+      description: "Porque a festa não tem hora para acabar",
+      mercadoPagoLink: "https://mpago.li/2FxLfPG"
     },
     {
       id: "curso_fotografia",
       title: "Curso de fotografia para o Gabriel",
-      category: "Brincadeiras",
+      category: "Divertido",
       price: 315.00,
       icon: "camera",
       image: "assets/gift_curso_fotografia.jpeg",
       description: "Para ele aprender a tirar foto nas viagens",
-      mercadoPagoLink: ""
+      mercadoPagoLink: "https://mpago.li/2jGQzJx"
     },
     {
       id: "terninho_jeff",
       title: "Terninho do Jeff",
-      category: "Casa",
+      category: "Divertido",
       price: 350.00,
       icon: "paw-print",
       image: "assets/gift_terninho_jeff.png",
       description: "Para ele chegar trajado",
-      mercadoPagoLink: ""
+      mercadoPagoLink: "https://mpago.li/2uSHRvV"
     },
     {
       id: "jantar_lua_mel",
@@ -103,8 +105,8 @@ const WeddingConfig = {
       price: 388.00,
       icon: "utensils",
       image: "assets/gift_jantar_romantico.jpg",
-      description: "Uma noite especial em São Miguel do Gostoso com vista e boa comida",
-      mercadoPagoLink: ""
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2Dnf4E9"
     },
     {
       id: "aula_kitesurf",
@@ -113,42 +115,42 @@ const WeddingConfig = {
       price: 423.00,
       icon: "waves",
       image: "assets/gift_aula_kitesurf.jpg",
-      description: "Ele vai querer muito. Ela vai fingir que não. Os dois vão amar.",
-      mercadoPagoLink: ""
+      description: "",
+      mercadoPagoLink: "https://mpago.li/18Zbwoq"
     },
     {
-      id: "hipnose_unha",
-      title: "Sessão de hipnose para o Gabriel parar de roer unha",
-      category: "Brincadeiras",
+      id: "panelas_ceramica",
+      title: "Jogo de Panelas Completo",
+      category: "Casa",
       price: 491.00,
-      icon: "brain",
-      image: "assets/gift_hipnose_unha.png",
-      imageClass: "scale-105 origin-center",
-      description: "Já está na hora",
-      mercadoPagoLink: ""
+      icon: "utensils",
+      image: "assets/gift_panelas_ceramica.png",
+      imageClass: "scale-115 origin-center",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/1LcqCmg"
     },
     {
       id: "hipnose_verdura",
       title: "Sessão de hipnose para a Belle comer verdura",
-      category: "Brincadeiras",
+      category: "Divertido",
       price: 526.00,
       icon: "salad",
       image: "assets/gift_hipnose_verdura.png",
       objectFit: "object-contain",
       description: "Para a ela finalmente fazer as pazes com a couve",
-      mercadoPagoLink: ""
+      mercadoPagoLink: "https://mpago.li/324uA6z"
     },
     {
       id: "cantar_casamento",
       title: "Cantar uma música no casamento",
-      category: "Brincadeiras",
+      category: "Divertido",
       price: 583.00,
       icon: "mic",
       image: "assets/gift_cantar_musica.png",
       objectPosition: "object-top",
       imageClass: "scale-110 origin-top",
-      description: "Com participação especial dos noivos",
-      mercadoPagoLink: ""
+      description: "Já pode ir treinando",
+      mercadoPagoLink: "https://mpago.li/1PSYBMy"
     },
     {
       id: "cervejeira",
@@ -158,8 +160,8 @@ const WeddingConfig = {
       icon: "beer",
       image: "assets/gift_cervejeira.jpeg",
       objectFit: "object-contain",
-      description: "Alguem vai ficar muito feliz...",
-      mercadoPagoLink: "https://mpago.li/26Lg3is"
+      description: "Afinal: cerveja só faz mal quando falta",
+      mercadoPagoLink: "https://mpago.li/2EqFbHw"
     },
     {
       id: "corrimao_escada",
@@ -170,19 +172,19 @@ const WeddingConfig = {
       image: "assets/gift_corrimao_escada.jpg",
       isProjectPhoto: true,
       description: "Pequeno detalhe, grande segurança",
-      mercadoPagoLink: "https://mpago.li/2vvJ14P"
+      mercadoPagoLink: "https://mpago.li/1i9Nwsc"
     },
     {
-      id: "gesso_cobertura",
-      title: "Contribuição para gesso da cobertura",
+      id: "reforma_telhado",
+      title: "Reforma do telhado",
       category: "Casa",
       price: 1262.00,
       icon: "home",
       image: "assets/gift_gesso_cobertura.jpeg",
       objectPosition: "object-top",
       imageClass: "scale-110 origin-top",
-      description: "Porque um lar bonito nao pode ter goteiras",
-      mercadoPagoLink: "https://mpago.li/2GUguYP"
+      description: "Porque um lar bonito não pode ter goteiras",
+      mercadoPagoLink: "https://mpago.li/2F3RXHR"
     },
     {
       id: "passagem_aerea",
@@ -191,19 +193,30 @@ const WeddingConfig = {
       price: 1800.00,
       icon: "plane",
       image: "assets/gift_passagem_aerea.jpg",
-      description: "Afinal nao dá pra ir pro RN de carro...",
-      mercadoPagoLink: "https://mpago.li/2GiqhRk"
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2Et5HHf"
     },
     {
       id: "sofa_novo",
       title: "Sofá novo",
       category: "Casa",
-      price: 2691.00,
+      price: 2291.00,
       icon: "armchair",
       image: "assets/gift_sofa_novo.jpg",
       isProjectPhoto: true,
-      description: "O sofá da sala de TV que eles tanto amam",
-      mercadoPagoLink: "https://mpago.li/18WNGQD"
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2ZjUmJz"
+    },
+    {
+      id: "lavadora_secadora",
+      title: "Lavadora e Secadora de Roupas",
+      category: "Casa",
+      price: 3099.00,
+      icon: "washing-machine",
+      image: "assets/gift_lavadora_secadora.jpg",
+      objectFit: "object-contain",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2wHU14j"
     },
     {
       id: "quarto_bebe",
@@ -214,7 +227,7 @@ const WeddingConfig = {
       image: "assets/gift_quarto_bebe.jpg",
       isProjectPhoto: true,
       description: "Para o futuro! 🤣",
-      mercadoPagoLink: "https://mpago.li/2jR1xsu"
+      mercadoPagoLink: "https://mpago.li/1KFNSVs"
     }
   ],
   
@@ -296,16 +309,52 @@ const WeddingConfig = {
     ],
     beautySalons: [
       {
-        name: "Camarin Vip",
-        address: "Av. Pref. Telésforo Cândido de Rezende, 1059 - Centro, Conselheiro Lafaiete - MG",
-        phone: "(31) 3721-2373",
-        description: "Salão conceituado especializado em penteados, maquiagem e produção completa para eventos."
+        name: "Ana Serrano - Maquiadora",
+        address: "Conselheiro Lafaiete, MG",
+        phone: "31 99626-9715",
+        description: ""
       },
       {
-        name: "Cabeleireiros Ponto Com",
-        address: "Avenida Pedro II, 326, Loja 01 - São Sebastião, Conselheiro Lafaiete - MG",
-        phone: "(31) 3763-5484",
-        description: "Ótima opção para cortes de cabelo, manicure e maquiagem rápida para os convidados."
+        name: "Regina Coeli Salon",
+        address: "Conselheiro Lafaiete, MG",
+        phone: "31 99170-8355 / 31 2526-7060",
+        description: ""
+      },
+      {
+        name: "Patrícia Câmara - Maquiadora",
+        address: "Conselheiro Lafaiete, MG",
+        phone: "31 98850-4200",
+        description: ""
+      },
+      {
+        name: "Ana Amorim - Maquiadora",
+        address: "Conselheiro Lafaiete, MG",
+        phone: "31 98310-4266",
+        description: ""
+      },
+      {
+        name: "Jeniffer Neves - Penteados",
+        address: "Conselheiro Lafaiete, MG",
+        phone: "31 98516-0449",
+        description: ""
+      },
+      {
+        name: "Gizelle Carvalho - Maquiadora",
+        address: "Conselheiro Lafaiete, MG",
+        phone: "31 98543-4144",
+        description: ""
+      },
+      {
+        name: "Laura Diniz - Maquiadora",
+        address: "Conselheiro Lafaiete, MG",
+        phone: "31 99644-4476",
+        description: ""
+      },
+      {
+        name: "Karen Borba - Maquiadora",
+        address: "Conselheiro Lafaiete, MG",
+        phone: "31 98894-4147",
+        description: ""
       }
     ],
     attractions: [
@@ -313,12 +362,12 @@ const WeddingConfig = {
         name: "Cervejaria Loba",
         address: "Fazenda Guarará - Zona Rural, Santana dos Montes - MG",
         phone: "(31) 98340-6673",
-        description: "Famosa cervejaria artesanal de Santana dos Montes. Oferece Beer Tour, chopes artesanais variados, espaço de lazer no deck e petiscos deliciosos."
+        description: "Cervejaria artesanal de Santana dos Montes."
       },
       {
         name: "Centro Histórico de Santana dos Montes",
         address: "Praça da Matriz - Centro, Santana dos Montes - MG",
-        description: "Aprecie o charmoso e preservado casario colonial mineiro e a tranquilidade típica de cidade pequena de Minas Gerais."
+        description: "Ideal para caminhar com calma, conhecer a Praça da Matriz e contemplar o preservado casario histórico da cidade."
       }
     ]
   }
