@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Traje | Isabelle &amp; Gabriel</title>
+
+  <!-- Favicon monograma -->
+  <link rel="icon" href="assets/monograma.png" type="image/png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@200;300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2a5c24',       
+            primaryDark: '#1e4620',   
+            champagne: '#f0ebe0',     
+            accentGold: '#D4AF37',    
+            fendi: '#7A756B',         
+            lightBg: '#f7f4ee'        
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['"Courier Prime"', 'monospace'],
+            outfit: ['Outfit', 'sans-serif'],
+            script: ['Great Vibes', 'cursive'],
+            display: ['Cinzel', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      background-image: url('assets/paper_texture.jpg');
+      background-repeat: repeat;
+    }
+    .meander-strip-horizontal {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M0 10 L0 4 L6 4 L6 0 L12 0 L12 4 L18 4 L18 0 L24 0 L24 4 L24 10' fill='none' stroke='%232a5c24' stroke-width='1.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-size: 24px 10px;
+    }
+    .meander-strip-vertical {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='24' viewBox='0 0 10 24'%3E%3Cpath d='M10 0 L4 0 L4 6 L0 6 L0 12 L4 12 L4 18 L0 18 L0 24 L4 24 L10 24' fill='none' stroke='%232a5c24' stroke-width='1.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      background-size: 10px 24px;
+    }
+  </style>
+</head>
+<body class="font-serif bg-lightBg text-stone-800 min-h-screen flex flex-col">
+
+  <!-- Header / Navigation -->
+  <header class="py-6 border-b border-stone-200/50 bg-white/70 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
+      <a href="index.html#evento" class="inline-flex items-center gap-2 text-stone-600 hover:text-primary transition font-outfit text-xs font-semibold uppercase tracking-wider">
+        <i data-lucide="arrow-left" class="h-4 w-4"></i> Voltar ao site
+      </a>
+      <div class="font-display text-lg tracking-widest text-primary font-medium">I &amp; G</div>
+      <div class="w-20"></div> <!-- Spacer -->
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-3xl mx-auto px-4 py-12 w-full">
+    <div class="bg-white border border-stone-200/50 p-6 sm:p-12 rounded-3xl shadow-lg relative overflow-hidden">
+      
+      <!-- Moldura Decorativa -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute inset-3 border-[1.5px] border-primary/70"></div>
+        <div class="absolute inset-[6px] border-[0.5px] border-primary/30"></div>
+        <div class="absolute top-[11px] bottom-[11px] left-[11px] w-[10px] meander-strip-vertical"></div>
+        <div class="absolute top-[11px] bottom-[11px] right-[11px] w-[10px] meander-strip-vertical"></div>
+        <div class="absolute left-[11px] right-[11px] top-[11px] h-[10px] meander-strip-horizontal"></div>
+        <div class="absolute left-[11px] right-[11px] bottom-[11px] h-[10px] meander-strip-horizontal"></div>
+      </div>
+
+      <!-- Content wrapper -->
+      <div class="relative z-10 space-y-8 py-4 px-2 sm:px-6">
+        
+        <!-- Page Title -->
+        <div class="text-center space-y-2">
+          <span class="font-display text-accentGold text-sm tracking-widest uppercase">Dress Code</span>
+          <h1 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Guia de Traje</h1>
+          <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+        </div>
+
+        <div class="text-center text-sm">
+          <p class="font-outfit text-stone-800 font-semibold text-base uppercase tracking-wide">Passeio Completo</p>
+        </div>
+
+        <!-- Descrição geral -->
+        <div class="text-stone-600 text-sm leading-relaxed space-y-4 text-justify bg-stone-50/50 p-5 sm:p-8 rounded-2xl border border-stone-100">
+          <p>Queremos manter a atmosfera aconchegante de fazenda, adicionando uma pitada de elegância e sofisticação.</p>
+          <p><strong>Para os homens:</strong> nossa sugestão é terno. A gravata é opcional: quem quiser usar, fique à vontade; quem preferir dispensá-la também estará perfeitamente adequado.</p>
+          <p><strong>Para as mulheres:</strong> sugerimos vestidos (lisos ou estampados, fluidos ou estruturados). O importante é estarem belíssimas e confortáveis! Lembrando que branco e off-white são cores reservadas exclusivamente para a noiva.</p>
+          <p><strong>Dica de calçado:</strong> Como a celebração acontecerá em áreas gramadas, recomendamos saltos mais grossos (como salto bloco ou anabela) ou calçados que ofereçam maior estabilidade. Não teremos distribuição de chinelos durante a festa, então quem quiser pode levar o seu para maior conforto ao longo da noite.</p>
+        </div>
+
+        <!-- O que Evitar -->
+        <div class="bg-red-50/50 border border-red-100 p-5 rounded-2xl text-sm space-y-2 text-stone-700">
+          <span class="font-semibold text-red-800 flex items-center gap-1.5 font-outfit text-xs uppercase tracking-wider">
+            <i data-lucide="alert-triangle" class="h-4 w-4"></i> O que evitar:
+          </span>
+          <ul class="list-disc list-inside space-y-1 text-xs sm:text-sm">
+            <li>Branco, Off-white ou tons extremamente claros (cores reservadas exclusivamente para a noiva).</li>
+            <li>Saltos agulha muito finos, pois o evento possui áreas extensas de gramado.</li>
+          </ul>
+        </div>
+
+        <!-- Pinterest Link -->
+        <div class="flex flex-col items-center gap-2 pt-2 text-center">
+          <p class="text-xs text-stone-500 font-medium">Abaixo, deixamos um painel de referências visuais no Pinterest:</p>
+          <a href="https://pin.it/47wpTZFOm" target="_blank" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition border border-stone-200/50 shadow-sm font-outfit">
+            <svg class="h-3.5 w-3.5 text-red-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.017 0C5.396 0 0 5.396 0 12.017c0 5.082 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.965 1.406-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.195.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.621 0 12.017-5.396 12.017-12.017C24 5.396 18.638 0 12.017 0z"/>
+            </svg>
+            Sugestões no Pinterest
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 text-center text-xs text-stone-400 font-sans border-t border-stone-200/50 bg-white/30 mt-auto">
+    <p>Isabelle &amp; Gabriel • Setembro de 2026</p>
+  </footer>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

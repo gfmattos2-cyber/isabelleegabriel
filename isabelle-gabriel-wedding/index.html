@@ -44,9 +44,7 @@
     }
   </script>
   
-  <!-- Leaflet Map CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  
+
   <!-- Estilos Customizados (Principalmente para Leaflet e transições) -->
   <style>
     .leaflet-container {
@@ -217,7 +215,7 @@
       
       <!-- Editorial Story Text -->
       <div class="max-w-2xl mx-auto text-stone-600 text-sm leading-relaxed space-y-6 text-justify">
-        <p>Os nossos caminhos se cruzaram algumas vezes antes de seguirem juntos. A gente se conhecia de vista e, por alguma razão, vivíamos nos encontrando por aí. Cada vez que a vida mudava de rumo, lá estava o outro em algum lugar de Belo Horizonte: uma festa, um bar, e até mesmo no Minerão lotado no show do Pearl Jam. Parecia que o destino fazia questão de deixar claro que ainda existia um encontro marcado.</p>
+        <p>Os nossos caminhos se cruzaram algumas vezes antes de seguirem juntos. A gente se conhecia de vista e, por alguma razão, vivíamos nos encontrando por aí. Cada vez que a vida mudava de rumo, lá estava o outro em algum lugar de Belo Horizonte: uma festa, um bar, e até mesmo no Mineirão lotado no show do Pearl Jam. Parecia que o destino fazia questão de deixar claro que ainda existia um encontro marcado.</p>
         <p>Foi em dezembro de 2015, debaixo do céu estrelado de Amarantina, que um convite para dançar forró transformou todas aquelas coincidências em uma escolha.</p>
         <p>De lá pra cá, já são 10 anos de história: 4 anos de namoro e 6 anos dividindo o mesmo lar. Construímos uma vida leve, divertida e de muita parceria. Do nosso jeito, no nosso ritmo e com a certeza de que era para sempre.</p>
         <p>Celebrar essa união e oficializar o casamento sempre foi um grande sonho. E agora ele está prestes a acontecer.</p>
@@ -238,139 +236,65 @@
         <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
       </div>
       
-      <!-- Details Cards Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+      <!-- Details Cards Grid (3 Columns) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16 items-stretch">
         
-        <!-- Info Column (Left) -->
-        <div class="lg:col-span-5 space-y-8 flex flex-col justify-between">
-          
-          <!-- Card: Horário -->
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4 cursor-pointer transition-all duration-300 hover:border-primary/40" id="card-datetime">
-            <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="clock" class="h-6 w-6"></i>
-            </div>
-            <div class="space-y-2">
+        <!-- Card 1: Data e Horário -->
+        <a href="detalhes-data.html" id="card-datetime" class="bg-white p-8 rounded-3xl shadow-sm border border-stone-200/50 cursor-pointer transition-all duration-300 hover:shadow-md hover:border-primary/30 flex flex-col justify-between h-full group">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 pb-3 border-b border-stone-100">
+              <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-primary group-hover:text-white">
+                <i data-lucide="clock" class="h-6 w-6"></i>
+              </div>
               <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Data e Horário</h3>
-              <p class="text-stone-600 text-sm leading-relaxed" id="venue-datetime">
-                <strong>12 de setembro de 2026,</strong><br>
-                Sábado às 15h30
-              </p>
-              <p class="text-xs text-stone-500 leading-normal mt-2">
-                Se programe para chegar com antecedência pois seremos pontuais com o nosso cronograma para aproveitar cada minuto da cerimônia e da festa!
-              </p>
+            </div>
+            <div class="text-stone-600 text-sm leading-relaxed space-y-2">
+              <p class="font-medium text-stone-800 text-base">12 de setembro de 2026,<br>Sábado às 15h30</p>
+              <p class="text-xs text-stone-500 leading-normal">Cerimônia e festa no Hotel Fazenda Fonte Limpa em Santana dos Montes, MG.</p>
             </div>
           </div>
+          <span class="mt-6 w-full bg-stone-50 group-hover:bg-primary group-hover:text-white text-stone-700 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition border border-stone-200/50 flex items-center justify-center gap-1.5 shadow-sm">
+            Saiba Mais <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </span>
+        </a>
 
-          <!-- Card: Localização -->
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4 cursor-pointer transition-all duration-300 hover:border-primary/40" id="card-location">
-            <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="map-pin" class="h-6 w-6"></i>
-            </div>
-            <div class="space-y-3 w-full">
+        <!-- Card 2: Localização -->
+        <a href="detalhes-localizacao.html" id="card-location" class="bg-white p-8 rounded-3xl shadow-sm border border-stone-200/50 cursor-pointer transition-all duration-300 hover:shadow-md hover:border-primary/30 flex flex-col justify-between h-full group">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 pb-3 border-b border-stone-100">
+              <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-primary group-hover:text-white">
+                <i data-lucide="map-pin" class="h-6 w-6"></i>
+              </div>
               <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">Localização</h3>
-              <p class="text-stone-600 text-sm leading-relaxed" id="venue-address-text">
-                <strong>Hotel Fazenda Fonte Limpa</strong><br>
-                Estrada MG-0405, Km 3 - Santana dos Montes, MG
-              </p>
-              
-              <!-- Quick Navigation Buttons -->
-              <div class="flex flex-wrap gap-2 pt-1">
-                <a href="https://maps.google.com/?q=Hotel+Fazenda+Fonte+Limpa,+Santana+dos+Montes,+MG" target="_blank" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition">
-                  <i data-lucide="navigation" class="h-3.5 w-3.5 text-blue-600"></i> Google Maps
-                </a>
-                <a href="https://waze.com/ul?q=Hotel+Fazenda+Fonte+Limpa,+Santana+dos+Montes,+MG" target="_blank" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition">
-                  <i data-lucide="car" class="h-3.5 w-3.5 text-emerald-600"></i> Waze
-                </a>
-              </div>
+            </div>
+            <div class="text-stone-600 text-sm leading-relaxed space-y-2">
+              <p class="font-medium text-stone-800 text-base">Hotel Fazenda Fonte Limpa</p>
+              <p class="text-xs text-stone-500 leading-normal">Estrada MG-405, Km 3 - Santana dos Montes, MG</p>
             </div>
           </div>
+          <span class="mt-6 w-full bg-stone-50 group-hover:bg-primary group-hover:text-white text-stone-700 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition border border-stone-200/50 flex items-center justify-center gap-1.5 shadow-sm">
+            Saiba Mais <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </span>
+        </a>
 
-          <!-- Card: Dress Code -->
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200/50 flex gap-4 cursor-pointer transition-all duration-300 hover:border-primary/40" id="card-dress">
-            <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="shirt" class="h-6 w-6"></i>
-            </div>
-            <div class="space-y-2">
+        <!-- Card 3: Traje -->
+        <a href="detalhes-traje.html" id="card-dress" class="bg-white p-8 rounded-3xl shadow-sm border border-stone-200/50 cursor-pointer transition-all duration-300 hover:shadow-md hover:border-primary/30 flex flex-col justify-between h-full group">
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 pb-3 border-b border-stone-100">
+              <div class="p-3 bg-champagne text-primary rounded-xl h-12 w-12 flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-primary group-hover:text-white">
+                <i data-lucide="shirt" class="h-6 w-6"></i>
+              </div>
               <h3 class="font-display text-base font-semibold tracking-wide text-primary uppercase">TRAJE (DRESS CODE)</h3>
-              <p class="text-stone-600 text-sm leading-relaxed">
-                <strong>Passeio Completo</strong>
-              </p>
-              <div class="pt-1.5">
-                <a href="https://pin.it/47wpTZFOm" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition border border-stone-200/50 shadow-sm">
-                  <svg class="h-3.5 w-3.5 text-red-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.017 0C5.396 0 0 5.396 0 12.017c0 5.082 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.965 1.406-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.195.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.621 0 12.017-5.396 12.017-12.017C24 5.396 18.638 0 12.017 0z"/>
-                  </svg>
-                  Sugestões no Pinterest
-                </a>
-              </div>
+            </div>
+            <div class="text-stone-600 text-sm leading-relaxed space-y-2">
+              <p class="font-medium text-stone-800 text-base">Passeio Completo</p>
+              <p class="text-xs text-stone-500 leading-normal">Nossas sugestões de vestuário e link do Pinterest para inspirações.</p>
             </div>
           </div>
-
-        </div>
-        
-        <!-- Interactive Map / Image Column (Right) -->
-        <div id="event-media-panel" class="lg:col-span-7 min-h-[450px] relative bg-transparent">
-          
-          <!-- Moldura do Convite (Green Meander Frame) -->
-          <div id="container-frame" class="absolute inset-0 pointer-events-none z-20 transition-opacity duration-300">
-            <!-- Linha externa -->
-            <div class="absolute inset-0 border-[1.5px] border-primary"></div>
-            <!-- Linha interna fina -->
-            <div class="absolute inset-[3px] border-[0.5px] border-primary/40"></div>
-            <!-- Faixas meandro -->
-            <div class="absolute top-[8px] bottom-[8px] left-[8px] w-[10px] meander-strip-vertical"></div>
-            <div class="absolute top-[8px] bottom-[8px] right-[8px] w-[10px] meander-strip-vertical"></div>
-            <div class="absolute left-[8px] right-[8px] top-[8px] h-[10px] meander-strip-horizontal"></div>
-            <div class="absolute left-[8px] right-[8px] bottom-[8px] h-[10px] meander-strip-horizontal"></div>
-            <!-- Linha interna após meandro -->
-            <div class="absolute inset-[22px] border-[1px] border-primary/30"></div>
-          </div>
-
-          <!-- Wrapper do Mapa e Descrição (Ativo por padrão) -->
-          <div id="wedding-map-container" class="absolute inset-0 z-0 transition-opacity duration-300 pointer-events-auto">
-            <!-- Leaflet container -->
-            <div id="wedding-map" class="absolute inset-[23px] z-0"></div>
-            
-            <!-- Overlay Card on top of the map -->
-            <div id="location-overlay-card" class="absolute left-[25px] right-[25px] bottom-[25px] lg:left-[35px] lg:right-[35px] lg:bottom-[35px] z-10 bg-white/95 backdrop-blur-md border border-stone-200/50 p-4 sm:p-5 rounded-2xl shadow-xl max-h-[160px] sm:max-h-[220px] lg:max-h-none overflow-y-auto lg:overflow-y-visible custom-scrollbar transition-opacity duration-300 pointer-events-auto">
-              <div class="space-y-3.5 text-stone-600 text-xs sm:text-sm leading-relaxed text-justify">
-                <p>No momento em que pisamos no <strong>Hotel Fazenda Fonte Limpa</strong>, sentimos que aquele seria o lugar da nossa celebração. É uma fazenda histórica, naturalmente bonita e cheia de charme. Além de representar as nossas raízes mineiras, transmite uma sensação única de aconchego e bem-estar, exatamente o que desejamos que vocês sintam ao longo desse dia. Ele fica a aproximadamente 2 horas de Belo Horizonte, no sentido Conselheiro Lafaiete e RJ.</p>
-                <p>Para quem deseja aproveitar o fim de semana, Santana dos Montes oferece excelentes hotéis-fazenda, a maioria com pensão completa. As nossas sugestões estão na seção de hospedagem. Quem preferir uma opção mais econômica também encontra boas hospedagens em Conselheiro Lafaiete, a cerca de 35 minutos do local.</p>
-                <p>Para quem pretende ir e voltar no mesmo dia, organizaremos vans saindo de Belo Horizonte. Mais próximo da data, enviaremos um formulário para organizar o transporte.</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Convite (Foto 3) -->
-          <div id="wedding-invitation-container" class="w-full h-full absolute inset-0 z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-transparent flex items-center justify-center p-0">
-            <img src="assets/convite_completo.jpg" alt="Convite de Casamento" class="w-full h-full object-contain">
-          </div>
-          
-          <!-- Traje Passeio Completo (Texto + Botão Pinterest) -->
-          <div id="wedding-dress-container" class="absolute inset-[23px] z-0 transition-opacity duration-300 opacity-0 pointer-events-none bg-white flex flex-col p-6 sm:p-8 overflow-y-auto custom-scrollbar">
-            <div class="flex items-center gap-3 pb-3 border-b border-stone-100 mb-6 justify-center">
-              <i data-lucide="shirt" class="h-5 w-5 text-primary"></i>
-              <h4 class="font-display text-xs font-semibold tracking-widest text-primary uppercase">Guia de Traje</h4>
-            </div>
-            
-            <div class="text-stone-600 text-sm leading-relaxed space-y-4 text-justify flex-grow">
-              <p>Queremos manter a atmosfera aconchegante de fazenda, adicionando uma pitada de elegância e sofisticação.</p>
-              <p>Para os homens, nossa sugestão é terno. A gravata é opcional: quem quiser usar, fique à vontade; quem preferir dispensá-la também estará perfeitamente adequado.</p>
-              <p>Para as mulheres, sugerimos vestidos (lisos ou estampados, fluidos ou estruturados). O importante é estarem belíssimas e confortáveis! Lembrando que branco e off-white são cores reservadas exclusivamente para a noiva.</p>
-              <p>Como a celebração acontecerá em áreas gramadas, recomendamos saltos mais grossos ou calçados que ofereçam maior estabilidade. Não teremos distribuição de chinelos durante a festa, então quem quiser pode levar o seu para maior conforto.</p>
-              <p class="text-center font-medium pt-2 text-stone-500">Abaixo deixo um link com sugestões de looks no pinterest:</p>
-            </div>
-            
-            <div class="pt-4 pb-2 flex justify-center">
-              <a href="https://pin.it/47wpTZFOm" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition border border-stone-200/50 shadow-sm">
-                <svg class="h-3.5 w-3.5 text-red-600 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.017 0C5.396 0 0 5.396 0 12.017c0 5.082 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.965 1.406-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.195.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.621 0 12.017-5.396 12.017-12.017C24 5.396 18.638 0 12.017 0z"/>
-                </svg>
-                Sugestões no Pinterest
-              </a>
-            </div>
-          </div>
-        </div>
+          <span class="mt-6 w-full bg-stone-50 group-hover:bg-primary group-hover:text-white text-stone-700 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition border border-stone-200/50 flex items-center justify-center gap-1.5 shadow-sm">
+            Saiba Mais <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+          </span>
+        </a>
 
       </div>
 
@@ -690,9 +614,7 @@
   <!-- Lucide Icons Scripts -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
-  <!-- Leaflet Map Script -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  
+
   <!-- QRCode.js Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   

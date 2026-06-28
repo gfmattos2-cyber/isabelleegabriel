@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Localização | Isabelle &amp; Gabriel</title>
+
+  <!-- Favicon monograma -->
+  <link rel="icon" href="assets/monograma.png" type="image/png">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@200;300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2a5c24',       
+            primaryDark: '#1e4620',   
+            champagne: '#f0ebe0',     
+            accentGold: '#D4AF37',    
+            fendi: '#7A756B',         
+            lightBg: '#f7f4ee'        
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['"Courier Prime"', 'monospace'],
+            outfit: ['Outfit', 'sans-serif'],
+            script: ['Great Vibes', 'cursive'],
+            display: ['Cinzel', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      background-image: url('assets/paper_texture.jpg');
+      background-repeat: repeat;
+    }
+    .meander-strip-horizontal {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='10' viewBox='0 0 24 10'%3E%3Cpath d='M0 10 L0 4 L6 4 L6 0 L12 0 L12 4 L18 4 L18 0 L24 0 L24 4 L24 10' fill='none' stroke='%232a5c24' stroke-width='1.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-size: 24px 10px;
+    }
+    .meander-strip-vertical {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='24' viewBox='0 0 10 24'%3E%3Cpath d='M10 0 L4 0 L4 6 L0 6 L0 12 L4 12 L4 18 L0 18 L0 24 L4 24 L10 24' fill='none' stroke='%232a5c24' stroke-width='1.3'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      background-size: 10px 24px;
+    }
+    .leaflet-container {
+      font-family: 'Courier Prime', monospace;
+    }
+  </style>
+</head>
+<body class="font-serif bg-lightBg text-stone-800 min-h-screen flex flex-col">
+
+  <!-- Header / Navigation -->
+  <header class="py-6 border-b border-stone-200/50 bg-white/70 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
+      <a href="index.html#evento" class="inline-flex items-center gap-2 text-stone-600 hover:text-primary transition font-outfit text-xs font-semibold uppercase tracking-wider">
+        <i data-lucide="arrow-left" class="h-4 w-4"></i> Voltar ao site
+      </a>
+      <div class="font-display text-lg tracking-widest text-primary font-medium">I &amp; G</div>
+      <div class="w-20"></div> <!-- Spacer -->
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-3xl mx-auto px-4 py-12 w-full">
+    <div class="bg-white border border-stone-200/50 p-6 sm:p-12 rounded-3xl shadow-lg relative overflow-hidden">
+      
+      <!-- Moldura Decorativa -->
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute inset-3 border-[1.5px] border-primary/70"></div>
+        <div class="absolute inset-[6px] border-[0.5px] border-primary/30"></div>
+        <div class="absolute top-[11px] bottom-[11px] left-[11px] w-[10px] meander-strip-vertical"></div>
+        <div class="absolute top-[11px] bottom-[11px] right-[11px] w-[10px] meander-strip-vertical"></div>
+        <div class="absolute left-[11px] right-[11px] top-[11px] h-[10px] meander-strip-horizontal"></div>
+        <div class="absolute left-[11px] right-[11px] bottom-[11px] h-[10px] meander-strip-horizontal"></div>
+      </div>
+
+      <!-- Content wrapper -->
+      <div class="relative z-10 space-y-8 py-4 px-2 sm:px-6">
+        
+        <!-- Page Title -->
+        <div class="text-center space-y-2">
+          <span class="font-display text-accentGold text-sm tracking-widest uppercase">Como Chegar</span>
+          <h1 class="font-display text-3xl sm:text-4xl font-normal text-primary tracking-wide uppercase">Localização</h1>
+          <div class="h-0.5 w-16 bg-primary/20 mx-auto"></div>
+        </div>
+
+        <div class="text-center text-sm space-y-1">
+          <p class="font-outfit text-stone-800 font-semibold text-base">Hotel Fazenda Fonte Limpa</p>
+          <p class="text-xs text-stone-500 font-outfit">Estrada MG-405, Km 3 - Santana dos Montes, MG</p>
+        </div>
+
+        <!-- Mapa Leaflet -->
+        <div class="border border-stone-100 p-1.5 rounded-2xl bg-stone-50 shadow-inner overflow-hidden">
+          <div id="wedding-map" class="w-full h-[280px] sm:h-[400px] rounded-xl z-0"></div>
+        </div>
+
+        <!-- GPS Action Buttons -->
+        <div class="flex justify-center gap-3 pt-2">
+          <a href="https://maps.google.com/?q=Hotel+Fazenda+Fonte+Limpa,+Santana+dos+Montes,+MG" target="_blank" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition border border-stone-200/50 shadow-sm font-outfit">
+            <i data-lucide="navigation" class="h-4 w-4 text-blue-600"></i> Google Maps
+          </a>
+          <a href="https://waze.com/ul?q=Hotel+Fazenda+Fonte+Limpa,+Santana+dos+Montes,+MG" target="_blank" class="inline-flex items-center gap-1.5 bg-stone-100 hover:bg-stone-200 text-stone-700 px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition border border-stone-200/50 shadow-sm font-outfit">
+            <i data-lucide="car" class="h-4 w-4 text-emerald-600"></i> Waze
+          </a>
+        </div>
+
+        <!-- Informações completas -->
+        <div class="text-stone-600 text-sm leading-relaxed space-y-5 text-justify bg-stone-50/50 p-5 sm:p-8 rounded-2xl border border-stone-100">
+          <div class="space-y-2">
+            <h3 class="font-display text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5">
+              <i data-lucide="map" class="h-4 w-4"></i> O Local
+            </h3>
+            <p>No momento em que pisamos no <strong>Hotel Fazenda Fonte Limpa</strong>, sentimos que aquele seria o lugar da nossa celebração. É uma fazenda histórica, naturalmente bonita e cheia de charme. Além de representar as nossas raízes mineiras, transmite uma sensação única de aconchego e bem-estar, exatamente o que desejamos que vocês sintam ao longo desse dia. Ele fica a aproximadamente 2 horas de Belo Horizonte, no sentido Conselheiro Lafaiete e RJ.</p>
+          </div>
+          
+          <div class="border-t border-stone-200/50 pt-4 space-y-2">
+            <h3 class="font-display text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5">
+              <i data-lucide="home" class="h-4 w-4"></i> Hospedagem
+            </h3>
+            <p>Para quem deseja aproveitar o fim de semana, Santana dos Montes oferece excelentes hotéis-fazenda, a maioria com pensão completa. As nossas sugestões estão na seção de hospedagem. Quem preferir uma opção mais econômica também encontra boas hospedagens em Conselheiro Lafaiete, a cerca de 35 minutos do local.</p>
+          </div>
+
+          <div class="border-t border-stone-200/50 pt-4 space-y-2">
+            <h3 class="font-display text-xs font-bold uppercase tracking-wider text-primary flex items-center gap-1.5">
+              <i data-lucide="bus" class="h-4 w-4"></i> Transporte
+            </h3>
+            <p>Para quem pretende ir e voltar no mesmo dia, organizaremos vans saindo de Belo Horizonte. Mais próximo da data, enviaremos um formulário para organizar o transporte.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 text-center text-xs text-stone-400 font-sans border-t border-stone-200/50 bg-white/30 mt-auto">
+    <p>Isabelle &amp; Gabriel • Setembro de 2026</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    lucide.createIcons();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const coords = [WeddingConfig.venueCoordinates.lat, WeddingConfig.venueCoordinates.lng];
+      const centerCoords = [WeddingConfig.venueCoordinates.lat - 0.0055, WeddingConfig.venueCoordinates.lng];
+      
+      const map = L.map("wedding-map", {
+        scrollWheelZoom: false
+      }).setView(centerCoords, 15);
+      
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+      }).addTo(map);
+
+      const heartIcon = L.divIcon({
+        html: `<div class="bg-primary text-white p-2 rounded-full shadow-lg border-2 border-white flex items-center justify-center animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+               </div>`,
+        className: 'custom-div-icon',
+        iconSize: [36, 36],
+        iconAnchor: [18, 36]
+      });
+
+      L.marker(coords, { icon: heartIcon }).addTo(map)
+        .bindPopup(`<strong class="text-primary font-display uppercase tracking-wide text-xs">${WeddingConfig.venueName}</strong><br><span class="text-xs">${WeddingConfig.venueAddress}</span>`)
+        .openPopup();
+    });
+  </script>
+</body>
+</html>
