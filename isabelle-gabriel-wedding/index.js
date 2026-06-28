@@ -476,7 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
         origin: { y: 0.6 },
         colors: ['#03300B', '#D4AF37', '#ffffff']
       });
-      alert(`Muito obrigado pelo presente, ${name}! 💚 Nós recebemos sua intenção de presente. Assim que for compensado no banco, daremos baixa na lista!`);
+      alert(`${name}, a sua presença é nosso maior presente 💚, mas agradecemos imensamente pelo carinho!`);
     } catch (err) {
       console.error(err);
       alert("Houve um erro ao enviar os dados. Mas não se preocupe, a intenção de Pix foi gerada!");

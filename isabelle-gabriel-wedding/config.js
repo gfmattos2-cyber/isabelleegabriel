@@ -62,7 +62,7 @@ const WeddingConfig = {
       id: "jogo_cama",
       title: "Jogo de cama",
       category: "Casa",
-      price: 220.00,
+      price: 209.00,
       icon: "bed",
       image: "assets/gift_cama_linho.png",
       description: "",
@@ -72,11 +72,22 @@ const WeddingConfig = {
       id: "direito_dormir",
       title: "Direito de dormir 20 minutinhos",
       category: "Divertido",
-      price: 279.00,
+      price: 250.00,
       icon: "moon",
       image: "assets/gift_direito_dormir.jpeg",
       description: "Porque a festa não tem hora para acabar",
       mercadoPagoLink: "https://mpago.li/2FxLfPG"
+    },
+    {
+      id: "air_fryer",
+      title: "Air fryer",
+      category: "Casa",
+      price: 296.00,
+      icon: "utensils",
+      image: "assets/gift_air_fryer.webp",
+      objectFit: "object-contain",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/15mZPRB"
     },
     {
       id: "curso_fotografia",
@@ -188,7 +199,7 @@ const WeddingConfig = {
     },
     {
       id: "passagem_aerea",
-      title: "Passagem aérea para a lua de mel",
+      title: "Passagens aéreas para a lua de mel",
       category: "Lua de Mel",
       price: 1800.00,
       icon: "plane",
@@ -197,21 +208,10 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/2Et5HHf"
     },
     {
-      id: "sofa_novo",
-      title: "Sofá novo",
-      category: "Casa",
-      price: 2291.00,
-      icon: "armchair",
-      image: "assets/gift_sofa_novo.jpg",
-      isProjectPhoto: true,
-      description: "",
-      mercadoPagoLink: "https://mpago.li/2ZjUmJz"
-    },
-    {
       id: "lavadora_secadora",
       title: "Lavadora e Secadora de Roupas",
       category: "Casa",
-      price: 3099.00,
+      price: 2291.00,
       icon: "washing-machine",
       image: "assets/gift_lavadora_secadora.jpg",
       objectFit: "object-contain",
@@ -226,7 +226,7 @@ const WeddingConfig = {
       icon: "baby",
       image: "assets/gift_quarto_bebe.jpg",
       isProjectPhoto: true,
-      description: "Para o futuro! 🤣",
+      description: "Garante o direito de perguntar quando vem o bebê",
       mercadoPagoLink: "https://mpago.li/1KFNSVs"
     }
   ],
