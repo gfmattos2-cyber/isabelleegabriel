@@ -226,7 +226,7 @@ const WeddingConfig = {
       icon: "baby",
       image: "assets/gift_quarto_bebe.jpg",
       isProjectPhoto: true,
-      description: "Garante o direito de perguntar quando vem o bebê",
+      description: "O único que garante o direito de perguntar quando vamos ter filhos 🤣",
       mercadoPagoLink: "https://mpago.li/1KFNSVs"
     }
   ],
