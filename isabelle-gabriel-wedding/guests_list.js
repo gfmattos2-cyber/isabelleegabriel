@@ -141,5 +141,7 @@ const WeddingGuests = [
   { name: "Ingrid Gomes", group: "FFF" },
   { name: "Bruno Mol", group: "FFF" },
   { name: "Maria Fernanda Ribeiro", group: "GGG" },
-  { name: "Gabriel Carvalho", group: "GGG" }
+  { name: "Gabriel Carvalho", group: "GGG" },
+  { name: "Ludmilla Quirino", group: "AAAA" },
+  { name: "Arthur Andrade", group: "AAAA" }
 ];
