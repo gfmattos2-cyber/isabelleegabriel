@@ -298,11 +298,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = document.getElementById("guest-message").value.trim();
     const amountVal = parseFloat(document.getElementById("guest-amount").value);
     
-    if (!name || !email) {
-      alert("Por favor, preencha seu nome e e-mail.");
-      return;
-    }
-    
     if (selectedGift.price === null && (isNaN(amountVal) || amountVal < 10)) {
       alert("Por favor, insira uma cota de no mínimo R$ 10,00.");
       return;
@@ -313,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Desabilitar o botão de avançar e indicar salvamento
     const originalText = modalNextBtn.innerText;
     modalNextBtn.disabled = true;
-    modalNextBtn.innerText = "Enviando...";
+    modalNextBtn.innerText = "Carregando...";
 
     // 1. Enviar informações para a Planilha do Google Sheets na aba "Presentes Reservados"
     const giftData = {
@@ -430,7 +425,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Finalizar presente Pix (Apenas mostrar animação de sucesso, pois os dados já foram salvos no Step 1)
   confirmPixPaidBtn.addEventListener("click", () => {
-    const name = document.getElementById("guest-name").value;
+    const name = document.getElementById("guest-name").value.trim();
+    const nameText = name ? `${name}, a` : "A";
     
     // Sucesso
     closeModal();
@@ -440,7 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
       origin: { y: 0.6 },
       colors: ['#03300B', '#D4AF37', '#ffffff']
     });
-    alert(`${name}, a sua presença é nosso maior presente 💚, mas agradecemos imensamente pelo carinho!`);
+    alert(`${nameText} sua presença é nosso maior presente 💚, mas agradecemos imensamente pelo carinho!`);
   });
 
   // 8. Confirmação de RSVP (Multi-etapas por grupo)
