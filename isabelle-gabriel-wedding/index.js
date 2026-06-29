@@ -291,10 +291,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === modal) closeModal();
   });
 
-  // Próximo passo (Validação do Formulário e Geração de Payload)
-  modalNextBtn.addEventListener("click", () => {
+  // Próximo passo (Validação do Formulário, Geração de Payload e Envio ao Sheets)
+  modalNextBtn.addEventListener("click", async () => {
     const name = document.getElementById("guest-name").value.trim();
     const email = document.getElementById("guest-email").value.trim();
+    const message = document.getElementById("guest-message").value.trim();
     const amountVal = parseFloat(document.getElementById("guest-amount").value);
     
     if (!name || !email) {
@@ -307,12 +308,49 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     
+    const amount = selectedGift.price || amountVal;
+    
+    // Desabilitar o botão de avançar e indicar salvamento
+    const originalText = modalNextBtn.innerText;
+    modalNextBtn.disabled = true;
+    modalNextBtn.innerText = "Enviando...";
+
+    // 1. Enviar informações para a Planilha do Google Sheets na aba "Presentes Reservados"
+    const giftData = {
+      action: "gift",
+      name,
+      email,
+      giftTitle: selectedGift.title,
+      amount,
+      paymentMethod: "Pendente", // Será confirmado manualmente pelos noivos após o pagamento
+      message
+    };
+    
+    try {
+      if (WeddingConfig.googleSheetsUrl) {
+        await fetch(WeddingConfig.googleSheetsUrl, {
+          method: "POST",
+          mode: "no-cors", // Necessário para evitar bloqueios CORS de Apps Script
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(giftData)
+        });
+      } else {
+        // Fallback LocalStorage
+        saveToMockDb("gifts", giftData);
+      }
+    } catch (err) {
+      console.error("Erro ao registrar intenção de presente no Sheets:", err);
+    } finally {
+      // Restaurar o botão original
+      modalNextBtn.disabled = false;
+      modalNextBtn.innerText = originalText;
+    }
+
     // Ir para tela de pagamentos
     modalStep1.classList.add("hidden");
     modalStep2.classList.remove("hidden");
-    
-    // Configurar Tela 1: Pix
-    const amount = selectedGift.price || amountVal;
     
     // Gerar Payload do Pix
     const pixPayload = PixGenerator.generatePayload({
@@ -337,7 +375,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     // Configurar Tela 2: Mercado Pago (Cartão)
-    // Se o casal cadastrou um link Mercado Pago no presente, usa ele. Caso contrário, oculta a aba de cartão.
     const mpLink = selectedGift.mercadoPagoLink;
     if (mpLink) {
       payBtnCard.classList.remove("hidden");
@@ -391,58 +428,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Finalizar presente Pix (Registrar intenção no Sheets / LocalStorage)
-  confirmPixPaidBtn.addEventListener("click", async () => {
+  // Finalizar presente Pix (Apenas mostrar animação de sucesso, pois os dados já foram salvos no Step 1)
+  confirmPixPaidBtn.addEventListener("click", () => {
     const name = document.getElementById("guest-name").value;
-    const email = document.getElementById("guest-email").value;
-    const message = document.getElementById("guest-message").value;
-    const amountVal = parseFloat(document.getElementById("guest-amount").value);
-    const amount = selectedGift.price || amountVal;
     
-    const giftData = {
-      action: "gift",
-      name,
-      email,
-      giftTitle: selectedGift.title,
-      amount,
-      paymentMethod: "Pix",
-      message
-    };
-    
-    confirmPixPaidBtn.disabled = true;
-    confirmPixPaidBtn.innerText = "Salvando...";
-    
-    try {
-      if (WeddingConfig.googleSheetsUrl) {
-        await fetch(WeddingConfig.googleSheetsUrl, {
-          method: "POST",
-          mode: "no-cors", // Necessário para evitar bloqueios CORS de Apps Script
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(giftData)
-        });
-      } else {
-        // Fallback LocalStorage
-        saveToMockDb("gifts", giftData);
-      }
-      
-      // Sucesso
-      closeModal();
-      confetti({
-        particleCount: 150,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: ['#03300B', '#D4AF37', '#ffffff']
-      });
-      alert(`${name}, a sua presença é nosso maior presente 💚, mas agradecemos imensamente pelo carinho!`);
-    } catch (err) {
-      console.error(err);
-      alert("Houve um erro ao enviar os dados. Mas não se preocupe, a intenção de Pix foi gerada!");
-    } finally {
-      confirmPixPaidBtn.disabled = false;
-      confirmPixPaidBtn.innerText = "Já realizei a transferência!";
-    }
+    // Sucesso
+    closeModal();
+    confetti({
+      particleCount: 150,
+      spread: 80,
+      origin: { y: 0.6 },
+      colors: ['#03300B', '#D4AF37', '#ffffff']
+    });
+    alert(`${name}, a sua presença é nosso maior presente 💚, mas agradecemos imensamente pelo carinho!`);
   });
 
   // 8. Confirmação de RSVP (Multi-etapas por grupo)
@@ -820,15 +818,46 @@ document.addEventListener("DOMContentLoaded", () => {
   // Lista de mensagens padrão vazia (recados reais serão adicionados dinamicamente)
   const defaultMessages = [];
 
-  function loadGuestbook() {
+  async function loadGuestbook() {
     const list = document.getElementById("mural-lista");
     list.innerHTML = "";
     
+    // Estado de carregamento
+    list.innerHTML = `
+      <div class="text-center py-10 flex flex-col items-center justify-center space-y-2 text-stone-400">
+        <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-primary"></div>
+        <p class="text-xs">Carregando recados...</p>
+      </div>
+    `;
+    
     let messages = [];
     
-    // Se tiver banco configurado, podemos dar GET (futuramente), mas por ora usamos LocalStorage + Defaults
+    try {
+      if (WeddingConfig.googleSheetsUrl) {
+        const response = await fetch(`${WeddingConfig.googleSheetsUrl}?action=get_guestbook`);
+        if (response.ok) {
+          const apiMsgs = await response.json();
+          if (Array.isArray(apiMsgs)) {
+            messages = apiMsgs;
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Erro ao carregar recados do Sheets:", err);
+    }
+    
+    // Mensagens pendentes locais deste navegador
     const localMsgs = JSON.parse(localStorage.getItem("mock_guestbook")) || [];
-    messages = [...localMsgs, ...defaultMessages];
+    
+    // Filtrar mensagens locais para não exibir duplicadas se já tiverem sido aprovadas na planilha
+    const uniqueLocalMsgs = localMsgs.filter(localMsg => 
+      !messages.some(apiMsg => apiMsg.name === localMsg.name && apiMsg.message === localMsg.message)
+    );
+    
+    // Juntar as mensagens aprovadas da planilha com as pendentes locais deste navegador
+    messages = [...uniqueLocalMsgs, ...messages];
+    
+    list.innerHTML = "";
     
     if (messages.length === 0) {
       list.innerHTML = `
@@ -845,8 +874,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     messages.forEach(msg => {
-      // Iniciais para o avatar
       const initials = msg.name.substring(0, 2).toUpperCase();
+      
+      // Formatar a data se existir
+      let dateText = "Recém enviado";
+      if (msg.date) {
+        try {
+          const d = new Date(msg.date);
+          if (!isNaN(d.getTime())) {
+            dateText = d.toLocaleDateString("pt-BR", { day: "numeric", month: "short" });
+          }
+        } catch(e) {}
+      }
       
       const card = document.createElement("div");
       card.className = "bg-champagne/30 border border-stone-200/40 p-5 rounded-2xl shadow-sm flex gap-4 items-start";
@@ -857,7 +896,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="space-y-1.5 flex-grow">
           <div class="flex justify-between items-center">
             <h4 class="text-sm font-bold text-primary">${msg.name}</h4>
-            <span class="text-[10px] text-stone-400">Recém enviado</span>
+            <span class="text-[10px] text-stone-400">${dateText}</span>
           </div>
           <p class="text-xs text-stone-600 leading-relaxed italic">"${msg.message}"</p>
         </div>
