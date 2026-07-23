@@ -446,8 +446,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let groupMembers = [];
   let memberAttendance = {}; // name -> boolean (true: vai, false: não vai)
 
-  // Groups authorized to add children (MM, RR, B, D, L, Q, T, Y, HHH, II, UU, ZZ)
-  const GROUPS_WITH_CHILDREN = ["MM", "RR", "B", "D", "L", "Q", "T", "Y", "HHH", "II", "UU", "ZZ"];
+  // Groups authorized to add children (MM, RR, B, D, L, Q, T, Y, HHH, II, UU, ZZ, BBBB)
+  const GROUPS_WITH_CHILDREN = ["MM", "RR", "B", "D", "L", "Q", "T", "Y", "HHH", "II", "UU", "ZZ", "BBBB"];
 
   const rsvpStepSearch = document.getElementById("rsvp-step-search");
   const rsvpStepAttendance = document.getElementById("rsvp-step-attendance");
