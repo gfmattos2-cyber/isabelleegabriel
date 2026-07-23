@@ -145,5 +145,11 @@ const WeddingGuests = [
   { name: "Maria Fernanda Ribeiro", group: "GGG" },
   { name: "Gabriel Carvalho", group: "GGG" },
   { name: "Ludmilla Quirino", group: "AAAA" },
-  { name: "Arthur Andrade", group: "AAAA" }
+  { name: "Arthur Andrade", group: "AAAA" },
+  { name: "Ewerton Maurício", group: "BBBB" },
+  { name: "Raquel Raposo", group: "BBBB" },
+  { name: "Irene Aparecida", group: "CCCC" },
+  { name: "Luís Fernando", group: "CCCC" },
+  { name: "Karine Duarte", group: "CCCC" },
+  { name: "Victor Martins", group: "CCCC" }
 ];

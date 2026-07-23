@@ -100,13 +100,13 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/2jGQzJx"
     },
     {
-      id: "terninho_jeff",
-      title: "Terninho do Jeff",
-      category: "Divertido",
+      id: "pratos_ceramica",
+      title: "Jogo de pratos de cerâmica",
+      category: "Casa",
       price: 350.00,
-      icon: "paw-print",
-      image: "assets/gift_terninho_jeff.png",
-      description: "Para ele chegar trajado",
+      icon: "utensils",
+      image: "assets/gift_pratos_ceramica.jpg",
+      description: "",
       mercadoPagoLink: "https://mpago.li/2uSHRvV"
     },
     {
