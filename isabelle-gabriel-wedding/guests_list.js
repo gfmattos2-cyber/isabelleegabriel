@@ -151,5 +151,8 @@ const WeddingGuests = [
   { name: "Irene Aparecida", group: "CCCC" },
   { name: "Luís Fernando", group: "CCCC" },
   { name: "Karine Duarte", group: "CCCC" },
-  { name: "Victor Martins", group: "CCCC" }
+  { name: "Victor Martins", group: "CCCC" },
+  { name: "Leo Amaral", group: "DDDD" },
+  { name: "Gabriel Drumond", group: "EEEE" },
+  { name: "Daniel Nitzsche", group: "EEEE" }
 ];
