@@ -37,6 +37,18 @@ const WeddingConfig = {
   // Lista de Presentes Virtuais (Cotas de Lua de Mel e Itens)
   gifts: [
     {
+      id: "balde_gelo",
+      title: "Balde de gelo com pegador em inox",
+      category: "Casa",
+      price: 75.00,
+      icon: "cup-straw",
+      image: "assets/gift_balde_gelo.webp",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.la/25ng44b"
+    },
+    {
       id: "kit_churrasco",
       title: "Kit churrasco",
       category: "Casa",
@@ -47,6 +59,18 @@ const WeddingConfig = {
       objectPosition: "object-center",
       description: "",
       mercadoPagoLink: "https://mpago.la/1KJf62v"
+    },
+    {
+      id: "potes_hermeticos",
+      title: "Kit de Potes Herméticos",
+      category: "Casa",
+      price: 139.90,
+      icon: "package",
+      image: "assets/gift_potes_hermeticos.jpeg",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.la/2B7HPuX"
     },
     {
       id: "jogo_tabuleiro",
@@ -69,6 +93,16 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/1ymaAJH"
     },
     {
+      id: "vela_aromatica",
+      title: "Vela aromática",
+      category: "Casa",
+      price: 219.90,
+      icon: "flame",
+      image: "assets/gift_vela_aromatica.webp",
+      description: "",
+      mercadoPagoLink: "https://mpago.la/31jUupk"
+    },
+    {
       id: "direito_dormir",
       title: "Direito de dormir 20 minutinhos",
       category: "Divertido",
@@ -77,6 +111,18 @@ const WeddingConfig = {
       image: "assets/gift_direito_dormir.jpeg",
       description: "Porque a festa não tem hora para acabar",
       mercadoPagoLink: "https://mpago.li/2FxLfPG"
+    },
+    {
+      id: "porta_facas_cepo",
+      title: "Porta facas com cepo de madeira",
+      category: "Casa",
+      price: 259.90,
+      icon: "utensils",
+      image: "assets/gift_porta_facas_cepo.webp",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.la/2LNAZjT"
     },
     {
       id: "air_fryer",
@@ -90,6 +136,18 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/15mZPRB"
     },
     {
+      id: "parafusadeira_furadeira",
+      title: "Parafusadeira e furadeira a bateria",
+      category: "Casa",
+      price: 310.00,
+      icon: "wrench",
+      image: "assets/gift_parafusadeira_furadeira.webp",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2tGp39k"
+    },
+    {
       id: "curso_fotografia",
       title: "Curso de fotografia para o Gabriel",
       category: "Divertido",
@@ -98,6 +156,18 @@ const WeddingConfig = {
       image: "assets/gift_curso_fotografia.jpeg",
       description: "Para ele aprender a tirar foto nas viagens",
       mercadoPagoLink: "https://mpago.li/2jGQzJx"
+    },
+    {
+      id: "chaleira_eletrica",
+      title: "Chaleira elétrica inox",
+      category: "Casa",
+      price: 340.90,
+      icon: "coffee",
+      image: "assets/gift_chaleira_eletrica.webp",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2rm6DyB"
     },
     {
       id: "pratos_ceramica",
@@ -110,6 +180,18 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/2uSHRvV"
     },
     {
+      id: "talheres_inox",
+      title: "Conjunto de talheres completo em inox",
+      category: "Casa",
+      price: 379.90,
+      icon: "utensils",
+      image: "assets/gift_talheres_inox.webp",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2EYHwKV"
+    },
+    {
       id: "jantar_lua_mel",
       title: "Jantar romântico na lua de mel",
       category: "Lua de Mel",
@@ -120,6 +202,18 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/2Dnf4E9"
     },
     {
+      id: "panela_pressao_eletrica",
+      title: "Panela de pressão elétrica digital",
+      category: "Casa",
+      price: 419.90,
+      icon: "utensils",
+      image: "assets/gift_panela_pressao.jpg",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2wHc7fj"
+    },
+    {
       id: "aula_kitesurf",
       title: "Aula de kitesurf na lua de mel",
       category: "Lua de Mel",
@@ -128,6 +222,18 @@ const WeddingConfig = {
       image: "assets/gift_aula_kitesurf.jpg",
       description: "",
       mercadoPagoLink: "https://mpago.li/18Zbwoq"
+    },
+    {
+      id: "liquidificador_retro",
+      title: "Liquidificador de vidro retrô potente",
+      category: "Casa",
+      price: 459.90,
+      icon: "utensils",
+      image: "assets/gift_liquidificador_retro.webp",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/32YY9cV"
     },
     {
       id: "panelas_ceramica",
@@ -148,7 +254,7 @@ const WeddingConfig = {
       icon: "salad",
       image: "assets/gift_hipnose_verdura.png",
       objectFit: "object-contain",
-      description: "Para ela finalmente fazer as pazes com a couve",
+      description: "Para a ela finalmente fazer as pazes com a couve",
       mercadoPagoLink: "https://mpago.li/324uA6z"
     },
     {
@@ -164,6 +270,26 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/1PSYBMy"
     },
     {
+      id: "jogo_tacas",
+      title: "Jogo de taças",
+      category: "Casa",
+      price: 589.90,
+      icon: "cup-straw",
+      image: "assets/gift_jogo_tacas.webp",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/18Mbs17"
+    },
+    {
+      id: "mesa_centro",
+      title: "Mesa de centro",
+      category: "Casa",
+      price: 689.90,
+      icon: "home",
+      image: "assets/gift_mesa_centro.jpeg",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2xx2HBL"
+    },
+    {
       id: "cervejeira",
       title: "Cervejeira",
       category: "Casa",
@@ -173,6 +299,18 @@ const WeddingConfig = {
       objectFit: "object-contain",
       description: "Afinal: cerveja só faz mal quando falta",
       mercadoPagoLink: "https://mpago.li/2EqFbHw"
+    },
+    {
+      id: "microondas_espelhado",
+      title: "Micro-ondas inox espelhado",
+      category: "Casa",
+      price: 849.90,
+      icon: "utensils",
+      image: "assets/gift_microondas_espelhado.jpg",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2C3yX9T"
     },
     {
       id: "corrimao_escada",
@@ -198,6 +336,16 @@ const WeddingConfig = {
       mercadoPagoLink: "https://mpago.li/2F3RXHR"
     },
     {
+      id: "edredom_egipcio",
+      title: "Edredom Casal 300 fios 100% Algodão Egípcio",
+      category: "Casa",
+      price: 1429.90,
+      icon: "bed",
+      image: "assets/gift_edredom_egipcio.jpeg",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/2P9T3Yb"
+    },
+    {
       id: "passagem_aerea",
       title: "Passagens aéreas para a lua de mel",
       category: "Lua de Mel",
@@ -217,6 +365,18 @@ const WeddingConfig = {
       objectFit: "object-contain",
       description: "",
       mercadoPagoLink: "https://mpago.li/2wHU14j"
+    },
+    {
+      id: "ar_condicionado",
+      title: "Ar-condicionado portátil",
+      category: "Casa",
+      price: 2629.90,
+      icon: "wind",
+      image: "assets/gift_ar_condicionado.webp",
+      objectFit: "object-contain",
+      imageClass: "p-4 bg-white",
+      description: "",
+      mercadoPagoLink: "https://mpago.li/1MnAaZv"
     },
     {
       id: "quarto_bebe",
