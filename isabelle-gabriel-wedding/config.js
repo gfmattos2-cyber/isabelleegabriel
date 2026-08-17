@@ -225,13 +225,13 @@ const WeddingConfig = {
     },
     {
       id: "liquidificador_retro",
-      title: "Liquidificador de vidro retrô potente",
+      title: "Liquidificador de vidro retrô",
       category: "Casa",
       price: 459.90,
       icon: "utensils",
       image: "assets/gift_liquidificador_retro.webp",
       objectFit: "object-contain",
-      imageClass: "p-4 bg-white",
+      imageClass: "p-6 bg-white scale-95",
       description: "",
       mercadoPagoLink: "https://mpago.li/32YY9cV"
     },
