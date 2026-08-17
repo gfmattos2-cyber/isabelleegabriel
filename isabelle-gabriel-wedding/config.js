@@ -231,7 +231,7 @@ const WeddingConfig = {
       icon: "utensils",
       image: "assets/gift_liquidificador_retro.webp",
       objectFit: "object-contain",
-      imageClass: "p-6 bg-white scale-95",
+      imageClass: "p-4 bg-white",
       description: "",
       mercadoPagoLink: "https://mpago.li/32YY9cV"
     },
