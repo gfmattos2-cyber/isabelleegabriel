@@ -154,5 +154,15 @@ const WeddingGuests = [
   { name: "Victor Martins", group: "CCCC" },
   { name: "Leo Amaral", group: "DDDD" },
   { name: "Gabriel Drumond", group: "EEEE" },
-  { name: "Daniel Nitzsche", group: "EEEE" }
+  { name: "Daniel Nitzsche", group: "EEEE" },
+  { name: "Estevão Coelho", group: "FFFF" },
+  { name: "Renata Moreira", group: "FFFF" },
+  { name: "Leo Dorella", group: "GGGG" },
+  { name: "Janaína Lobo", group: "GGGG" },
+  { name: "Pedro Galdino", group: "HHHH" },
+  { name: "Fernanda", group: "HHHH" },
+  { name: "Flávio Gontijo", group: "IIII" },
+  { name: "Marcela", group: "IIII" },
+  { name: "Flávio Nogueira", group: "JJJJ" },
+  { name: "Esposa", group: "JJJJ" }
 ];
