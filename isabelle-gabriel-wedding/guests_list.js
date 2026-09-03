@@ -164,5 +164,9 @@ const WeddingGuests = [
   { name: "Flávio Gontijo", group: "IIII" },
   { name: "Marcela", group: "IIII" },
   { name: "Flávio Nogueira", group: "JJJJ" },
-  { name: "Esposa", group: "JJJJ" }
+  { name: "Esposa", group: "JJJJ" },
+  { name: "Júlia Braga", group: "KKKK" },
+  { name: "Pedro Vieira", group: "KKKK" },
+  { name: "Bruno Gontijo", group: "LLLL" },
+  { name: "Roberta Lemos", group: "LLLL" }
 ];
